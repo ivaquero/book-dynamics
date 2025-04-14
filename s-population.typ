@@ -1,5 +1,5 @@
-#import "@local/qslide:0.1.0": *
-#show: qslide.with(
+#import "@local/touying-quick:0.1.0": *
+#show: touying-quick.with(
   title: "种群动力学",
   subtilte: "生物建模系列课程第1讲",
   author: "主讲：杨鑫斌",
