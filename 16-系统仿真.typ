@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "系统仿真",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 物理空间
@@ -27,5 +24,4 @@ Lagrangian 途径从运动物体的角度出发。给出所有感兴趣的物体
 #figure(
   image("images/ch16/approaches.png", width: 60%),
   caption: "approaches",
-  supplement: "图",
 )

@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "局部分岔",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 小幅极限环分岔
@@ -98,7 +95,7 @@ $ div(ψ x) = pdv((ψ P), x) + pdv((ψ Q), y) = 0 $
 #definition[
   一个环$(R, +, *)$是具有两个二进制运算`+`和`∗`的集合$R$，满足以下条件：
 
-  + $(R,  +)$是一个 Abelian 群。
+  + $(R, +)$是一个 Abelian 群。
   + $(R, *)$是一个半群
   + 分配律成立
 ]
@@ -165,7 +162,7 @@ $ p = ∑_(i=1)^s q_i p_i + r, ∀p ∈ K[x] $
 且$r = 0$或$r_m$对于$𝑷$完全化简。通过反复应用下面的过程来执行$p$模数化的化简，直到这样做使$p$保持不变。
 
 - 取最小的$i$，使$a_i = "LT"(p_i)$除以$p$的一个项
-- 令$f$是$p$中被$a_i$除的最大的项，用$p - p_i f/a_i$代替$p$，直至终止。
+- 令$f$是$p$中被$a_i$除的最大的项，用$p - p_i f / a_i$代替$p$，直至终止。
 
 固定一个项序$x ≻_("lex") y ≻_("lex") z$，用有序列表${ x_2 + y, z_2 y - 1, y - z_2 }$除以多项式$f = x^4 + y^4 + z^4$。
 

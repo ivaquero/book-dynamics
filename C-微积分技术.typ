@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "附录C：微积分技术",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 插值
@@ -30,7 +27,6 @@ $
 $
   ∑_(i=0)^n ℓ_i (x) = 1
 $ <lag_sum>
-
 
 === 算法改进
 
@@ -68,7 +64,7 @@ $
 假设$f(x)$有$n+1$阶连续导数，可令 Lagrange 插值多项式的误差为
 
 $
-  f(x) - P_n (x) = frac(f^(n + 1) (xi),(n + 1)!) l(x)a
+  f(x) - P_n (x) = frac(f^(n + 1) (xi), (n + 1)!) l(x)a
 $
 
 选取 Chebyshev 节点节点使如下公式的值尽可能小
@@ -129,7 +125,7 @@ $ x_i = -1 + (i - 1)frac(2, n),quad i ∈ {1, 2, ⋯ , n+1} $
 
 $
   frac(l(x), l(t)) &= lr(|frac((x - x_0) ⋯ (x - x_n), (t - x_0) ⋯ (t - x_n))|) \
-  &= (frac(root(n + 1, |x - x_0| ⋯  |x - x_n|), root(n + 1, |t - x_0| ⋯  |t - x_n|)))^(n + 1) \
+  &= (frac(root(n + 1, |x - x_0| ⋯ |x - x_n|), root(n + 1, |t - x_0| ⋯ |t - x_n|)))^(n + 1) \
   &= frac(x ctext("到各节点的几何平均距离"), t #ctext("到各节点的几何平均距离"))
 $
 

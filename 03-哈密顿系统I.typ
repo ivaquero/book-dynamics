@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "Hamiltonian 系统 I",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 扰动
@@ -48,7 +45,6 @@ $ dot.double(x) + x = ɛ x^3 $
 #figure(
   image("images/ch03/eq-duffing.png", width: 60%),
   caption: "duffing",
-  supplement: "图",
 )
 
 = Hamiltonian 系统
@@ -93,7 +89,6 @@ $
 #figure(
   image("images/ch03/hamiltonian.png", width: 80%),
   caption: "Hamiltonian",
-  supplement: "图",
 )
 
 == 临界点
@@ -143,7 +138,7 @@ $
 
 系统的一个临界点$x_0$，若给定\>0，$∃δ > 0$，使$∀t ≥ t_0, x(t) - x_0$，则称为稳定。
 
-系统的一个临界点$x_0$，若它是稳定的，且$∃η > 0$，当$ norm(x(t_0) - x_0 (t_0)) < η$，使
+系统的一个临界点$x_0$，若它是稳定的，且$∃η > 0$，当$norm(x(t_0) - x_0 (t_0)) < η$，使
 
 $ lim_(t → ∞) norm(x(t) - x_0(t)) = 0 $
 

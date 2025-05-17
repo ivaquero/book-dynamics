@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "Hamiltonian II",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = Poincaré 映射
@@ -34,7 +31,6 @@ $ r_(n+1) = P(r_n) $
 #figure(
   image("images/ch06/poincare-sec.png", width: 40%),
   caption: "Poincaré section",
-  supplement: "图",
 )
 
 满足公式$P(r^*) = r *$的点$r^*$被称为周期 1 不动点（fixed point of period one）。
@@ -56,7 +52,6 @@ $
 #figure(
   image("images/ch06/poincare-sec2.png", width: 60%),
   caption: "Poincaré section 2",
-  supplement: "图",
 )
 
 不难知道，原点为稳定的焦点，流向为逆时针。对系统中的线段$Σ = (x, y) ∈ ℝ^2 : 0 ≤ x ≤ 1, y = 0$，转化为极坐标，$dot(r) = -r^2, dot(θ) = 1$，有初始条件：$r(0) = 1$和$θ(0) = 0$
@@ -131,7 +126,6 @@ $ H(p, q) = ω_1 / 2 (p_1^2 + q_1^2) + ω_2 / 2 (p_2^2 + q_2^2) $
 #figure(
   image("images/ch06/hamiltonian2.png", width: 50%),
   caption: "hamiltonian 2",
-  supplement: "图",
 )
 
 设一个具有两个自由度的 Hamiltonian 由$H = H_0 + ɛ H_1$给出，其中，$ɛ$是一个小参数，$H_0$是不可逆的，$H_1$使$H$不可逆。在$ɛ = 0$时存在的准周期极限环（也称为 KAM 环面），在$0 < ɛ ≪ 1$时也会存在，但会被扰动变形。KAM 环面随着$ɛ$增加而逐个溶解，点开始散布在 Poincaré 平面周围。
@@ -164,7 +158,6 @@ $
 #figure(
   image("images/ch06/mod-duffing.png", width: 40%),
   caption: "duffing model",
-  supplement: "图",
 )
 
 - 当$β < 0$时，Duffing 方程建立了一个周期性受力钢梁在两块磁铁之间偏转的模型。
@@ -182,7 +175,7 @@ $
   dot(θ) &= ω
 $
 
-在此状态空间中，一个流对应于一个周期为$2π/ω$的绕环面的流动轨迹。这自然导致了$θ = θ_0$平面通过 Poincaré 映射到自身。
+在此状态空间中，一个流对应于一个周期为$2π / ω$的绕环面的流动轨迹。这自然导致了$θ = θ_0$平面通过 Poincaré 映射到自身。
 
 #tip[
   这里只考虑当$α = 1, β = -1, k = 0.3, ω = 1.25$固定时，振幅$Γ$的变化。
@@ -191,15 +184,14 @@ $
 #figure(
   image("images/ch06/eq-duffing.png", width: 90%),
   caption: "duffing equation",
-  supplement: "图",
 )
 
 - 当$Γ = 0$时，系统有三个临界点，分别是$M = (-1, 0), N = (1, 0), O = (0, 0)$。
   - 当$0 < k < 2 sqrt(2)$时，$M$和$N$点是稳定焦点，$O$是一个鞍点。
 - 当$Γ$从 0 开始增大时，$M$和$N$出现稳定的周期循环，并出现亚谐振荡分岔。在一定的$Γ$值下，系统还可表现出混沌行为。这里只考虑从临界点$N$开始出现的周期循环。
-- 当$Γ = 0.2$时，出现周期$2π/ω$的周期 1 谐波解，它在相位平面上被描绘成一条闭合的曲线，在$θ = 0$平面上被描绘成一个单点。
-- 当$Γ = 0.3$时，出现周期$4π/ω$的周期 2 循环，这是一个 12 次的亚谐波。请注意，在这种情况下，轨迹与自身交叉。
-- 当$Γ = 0.31$时，存在周期$8π/ω$的周期 4 循环。
+- 当$Γ = 0.2$时，出现周期$2π / ω$的周期 1 谐波解，它在相位平面上被描绘成一条闭合的曲线，在$θ = 0$平面上被描绘成一个单点。
+- 当$Γ = 0.3$时，出现周期$4π / ω$的周期 2 循环，这是一个 12 次的亚谐波。请注意，在这种情况下，轨迹与自身交叉。
+- 当$Γ = 0.31$时，存在周期$8π / ω$的周期 4 循环。
 - 当$Γ = 0.37$时，存在一个以$O$为中心的周期 5 循环，同时也包围了$M$和$N$。
 - 当$Γ = 0.5$时，系统变得混沌。在相位平面上绘制的单一轨迹与自身相交多次。但，若在 Poincaré 区上绘制第一个返回，则就会形成一个奇异吸引子，展示出一些潜在的结构。必须注意的是，奇异吸引子在不同的 Poincaré 区上会有不同的形式。奇异吸引子具有分形结构。
 - 当$Γ = 0.8$时，再次出现了一个稳定的周期 1 解。但其中心是$O$。
@@ -212,7 +204,6 @@ $
 #figure(
   image("images/ch06/bif-duffing.png", width: 60%),
   caption: "duffing bifurcation",
-  supplement: "图",
 )
 
 - 当$0 ≤ Γ < 0.32$时，图中的实心曲线代表稳态行为。

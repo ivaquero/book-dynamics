@@ -1,11 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#import "@preview/whalogen:0.3.0": ce
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "连续型混沌",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 吸引子
@@ -145,7 +141,6 @@ Lyapunov 指数谱（spectrum of Lyapunov exponents）是表征无限接近的�
 #figure(
   image("images/ch05/attr-rossler.png", width: 50%),
   caption: "rössler attractor",
-  supplement: "图",
 )
 
 想象一个三维系统的无限球体的扰动初始条件。随着时间的增加，球体将演变成一个无限小椭球。若$d_0$是球体的初始半径，则$d_j = d_0 e^(λ_j t)(j = 1, 2, 3)$定义椭球的轴。对于三维系统可知，
@@ -185,7 +180,7 @@ $
 其中，$x$度量对流翻转率（rate of convective overturning），$y$度量水平温度变化，$z$度量垂直温度变化，$σ$ 为 Prandtl 数（与流体粘度有关），$ρ$ 为 Rayleigh 数（与柱体顶部和底部的温差有关），$β$为标度因子。
 
 #tip[
-  Lorenz 研究了$σ = 10, β = 8/3$时的系统。
+  Lorenz 研究了$σ = 10, β = 8 / 3$时的系统。
 ]
 
 该系统可被认为是一种高度简化的气象模型。事实上，卫星照片显示，在未受干扰的沙漠地面上有六边形图案，这是气流对流的结果。
@@ -195,7 +190,6 @@ Lorenz 得出的惊人结论，现在被广泛标榜为蝴蝶效应（butterfly 
 #figure(
   image("images/ch05/attr-lorenz.png", width: 50%),
   caption: "lorenz attractor",
-  supplement: "图",
 )
 
 Lorenz 系统具有天然的对称性，其$z$轴是不变的，$(x, y, z) → (x, - y, z)$。由于$div X = -(α + β + 1) < 0$，其中，$X$是向量场，故流动是体积收缩的。
@@ -257,7 +251,7 @@ $
     columns: 3,
     align: center + horizon,
     inset: 4pt,
-    stroke: three-line(rgb("000")),
+    stroke: table-three-line(rgb("000")),
     [Step], [Reaction], [Rate],
     [1], [#ce("BrO3^- + Br^- -> HBrO2 + HOBr")], [#ce("k1 [BrO3]- [Br]-")],
     [2], [#ce("HBrO2 + Br^- -> 2HOBr")], [#ce("k2 [HBrO2] [Br]-")],
@@ -294,7 +288,7 @@ $
   dv(Z, τ) &= X - Z
 $
 
-其中，$ɛ_1 = k_5 b/k_a, ɛ_2 = 2 k_5 k_4 b/k_2 k_3 a, q = 2 k_1 k_4/k_2 k_3$。设$ɛ_2 ≪ 1$，故$d Y/dd(τ)$很大，除非分子$-q Y - X Y + C Z$也很小。
+其中，$ɛ_1 = k_5 b / k_a, ɛ_2 = 2 k_5 k_4 b / k_2 k_3 a, q = 2 k_1 k_4 / k_2 k_3$。设$ɛ_2 ≪ 1$，故$d Y / dd(τ)$很大，除非分子$-q Y - X Y + C Z$也很小。
 
 假设在任何时候
 
@@ -312,7 +306,7 @@ $
 Jacobian 矩阵由以下公式给出
 
 $
-  J = mat(delim: "[", 1/ɛ_1 (1 - 2 X - frac(Z, X + q) + frac((X - q) Z, (X + q))^2), 1/ɛ_1 (frac(q - X, X + q)); 1, - 1)
+  J = mat(delim: "[", 1 / ɛ_1 (1 - 2 X - frac(Z, X + q) + frac((X - q) Z, (X + q))^2), 1 / ɛ_1 (frac(q - X, X + q)); 1, - 1)
 $
 
 不难看出，原点是一个鞍点，$A$是一个不稳定节点。轨迹沿极限周期的左右分支（上、下）快速移动，在水平方向上移动相对缓慢。这就说明了颜色的快速变化和这些变化之间的时间跨度。
@@ -320,7 +314,6 @@ $
 #figure(
   image("images/ch05/reaction-bz.png", width: 40%),
   caption: "bz reaction",
-  supplement: "图",
 )
 
 需要注意的是，化学反应与许多其他类型的动力系统不同，封闭的化学反应不能围绕其化学平衡状态进行振荡。混合物中一些反应物的浓度反复通过同一数值；但，推动振荡的能量释放反应不断向完成方向移动，这意味着振荡最终会停止。
@@ -330,7 +323,6 @@ BZ 反应也有可能表现出混沌现象。在这些情况下，存在某些�
 #figure(
   image("images/ch05/reaction-bz2.png", height: 30%),
   caption: "bz reaction 2",
-  supplement: "图",
 )
 
-#bibliography("data/dynam.bib", style: "future-science")
+#bibliography("lib/dynam.bib", style: "future-science")

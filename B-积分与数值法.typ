@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "附录B：积分与数值法",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 符号积分
@@ -44,10 +41,10 @@ $ I_l = ∫_l 𝒇 (x, y, z) d 𝐬 $
 
 $ f(x, y, z) = [P (x, y, z), Q (x, y, z), R (x, y, z)] $
 
-其中，$d 𝐬 = |dv(x, t), dv(y, t), dv(z, t)|^(⊤) dd(t)$，则
+其中，$d 𝐬 = |dv(x, t), dv(y, t), dv(z, t)|^⊤ dd(t)$，则
 
 $
-  I = ∫_a^b [P (x, y, z), Q (x, y, z), R (x, y, z)] |dv(x, t), dv(y, t), dv(z, t)|^(⊤) dd(t)
+  I = ∫_a^b [P (x, y, z), Q (x, y, z), R (x, y, z)] |dv(x, t), dv(y, t), dv(z, t)|^⊤ dd(t)
 $
 
 == 曲面积分
@@ -70,8 +67,6 @@ $ I = ∬ ∑ ϕ [x(u, v), y(u, v), z(u, v)] sqrt(E G - F^2) dd(u, v) $
 其中，$E = x_u^2 + y_u^2 + z_u^2$，$G = x_v^2 + y_v^2 + z_v^2$，$F = x_u x_v + y_u y_v + z_u z_v$
 
 - 向量面积
-
-#pagebreak()
 
 = 多重积分
 <多重积分>
@@ -186,8 +181,6 @@ $ ∫_a^b f(x) dd(x) ≈ h ∑_(i = 0)^(n -1) f(x_i) $
 
 $ x_i = (a + h / 2) + i h $
 
-#pagebreak()
-
 == Monte Carlo 法
 <Monte-Carlo-法>
 
@@ -204,7 +197,7 @@ $ Ω = {(x, y)|g(x, y) ≥ 0} $
 + 将几何图形$Ω$嵌入矩形区域$R$
 + 在$R$中绘制大量随机点$(x, y)$
 + 计算在$Ω$内部点的占比$q$
-+ 通过$q$近似$A(Ω)/A(R)$，即设$A(Ω) = q A(R)$
++ 通过$q$近似$A(Ω) / A(R)$，即设$A(Ω) = q A(R)$
 + 在$A(Ω)$内部点评估$f$的均值$bar(f)$
 + 将积分估计为$A(Ω)bar(f)$
 

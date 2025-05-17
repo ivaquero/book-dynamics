@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "附录A：常微分方程",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 一般形式
@@ -135,7 +132,7 @@ $ dv(𝒙, t) = 𝑷(t) 𝒙 $
 给定$n$个解$𝒙_1, 𝒙_2, …, 𝒙_n$，有
 
 $
-  𝒙_(j)(t) = mat(delim: "[", x_(1 j)(t), ⋮, x_(i j)(t), ⋮,  x_(n j)(t))
+  𝒙_(j)(t) = mat(delim: "[", x_(1 j)(t), ⋮, x_(i j)(t), ⋮, x_(n j)(t))
 $
 
 因此，$x_(i j)(t)$表示向量$𝒙_j(t)$的第$i$个分量，故第二个下标是指向量函数$𝒙_j(t)$，而第一个下标是指这个函数的一个分量。
@@ -308,7 +305,7 @@ Runge Kutta（RK）法可以解决我们所面临的大多数问题。它在速�
 
 $ y_(i + 1) = y_i + frac(h(k_1 + 2 k_2 + 2 k_3 + k_4), 6) $
 
-其中，$(k_1 + 2 k_2 + 2 k_3 + k_4)/6$ 是平均斜率，且
+其中，$(k_1 + 2 k_2 + 2 k_3 + k_4) / 6$ 是平均斜率，且
 
 $
   k_1 &= f(t_i, y_i)\
@@ -356,5 +353,5 @@ $ 1 / 2 dot.double(u) + 2 / 5 dot(u) + u = 2 t, u(0) = 1, dot(u)(0) = 2 $
 
 可改写，得
 
-$ cases(delim: "{", dot(u)_1 = u_2, dot(u)_2 = 4 t - 4/5 u_2 - 2 u_1) $
+$ cases(delim: "{", dot(u)_1 = u_2, dot(u)_2 = 4 t - 4 / 5 u_2 - 2 u_1) $
 

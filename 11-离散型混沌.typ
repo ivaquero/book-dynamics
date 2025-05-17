@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "离散型混沌",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 图的迭代
@@ -16,9 +13,11 @@
 考虑帐篷映射（tent map），$T: [0, 1] → [0, 1]$定义为
 
 $
-  T(x) = cases(delim: "{",
-  μ x & 0 ≤ x < 1/2,
-  μ (1 - x)\, & 1/2 ≤ x ≤ 1)
+  T(x) = cases(
+    delim: "{",
+    μ x & 0 ≤ x < 1 / 2,
+    μ (1 - x)\, & 1 / 2 ≤ x ≤ 1
+  )
 $
 
 其中，$0 ≤ μ ≤ 2$。帐篷映射由两条直线构造而成，这使得分析比真正的非线性系统更简单。
@@ -26,7 +25,6 @@ $
 #figure(
   image("images/ch11/tent.png", width: 40%),
   caption: "tent map",
-  supplement: "图",
 )
 
 #strong[数值迭代]：由
@@ -46,7 +44,6 @@ $ x_(n+1) = T(x_n) $
 #figure(
   image("images/ch11/cobweb.png", width: 60%),
   caption: "cobweb",
-  supplement: "图",
 )
 
 == 周期 1 固定点
@@ -70,8 +67,8 @@ $ x_(n+1) = f(x_n) $
 利用定义，可确定帐篷映射的周期 1 固定点。
 
 - 当$0 < μ < 1$时，则唯一的定点在$x = 0$处，由于$x = 0$处的梯度小于 1，故定点是稳定的。请注意，原点称为琐碎固定点（trivial fixed point）。
-- 当$μ = 1$时，$T(x)$的分支$μ x$与对角线重合，所有位于区间$0 ≤ x ≤ 1/2$的点的周期均是 1。一旦帐篷函数越过对角线，原点就会变得不稳定，因为现在帐篷映射在这一点上的梯度超过了 1。
-- 当$1 < μ ≤ 2$时，有 2 个周期 1 的固定点，$x_(1, 1) = 0, x_(1, 2) = μ/(1 + μ)$。
+- 当$μ = 1$时，$T(x)$的分支$μ x$与对角线重合，所有位于区间$0 ≤ x ≤ 1 / 2$的点的周期均是 1。一旦帐篷函数越过对角线，原点就会变得不稳定，因为现在帐篷映射在这一点上的梯度超过了 1。
+- 当$1 < μ ≤ 2$时，有 2 个周期 1 的固定点，$x_(1, 1) = 0, x_(1, 2) = μ / (1 + μ)$。
 
 #tip[
   这里，由$x_(i j)$给出的周期点将表示周期$i$的第$j$个点。
@@ -89,19 +86,19 @@ $ x_(n+1) = f(x_n) $
 函数$T(T(x)) = T^2(x)$的函数确定，将$x$替换为$T(x)$的映射。
 
 $
-  T^2(x) = cases(delim: "{", 2 T(x)\, & 0 ≤ T(x) < 1/2, 2(1 - T(x))\, quad & 1/2 ≤ T(x) ≤ 1)
+  T^2(x) = cases(delim: "{", 2 T(x)\, & 0 ≤ T(x) < 1 / 2, 2(1 - T(x))\, quad & 1 / 2 ≤ T(x) ≤ 1)
 $
 
-纵轴上的区间$0 ≤ T(x) < 1/2$的对应两个区间，即横轴上的$0 ≤ x < T^(-1)(1/2), T^(-1)(1/2) ≤ x ≤ 1$
+纵轴上的区间$0 ≤ T(x) < 1 / 2$的对应两个区间，即横轴上的$0 ≤ x < T^(-1)(1 / 2), T^(-1)(1 / 2) ≤ x ≤ 1$
 
 $
-  T^2( x ) = cases(delim: "{", 4 x\, & 0 ≤ x < 1/4, 2 - 4 x\, & 1/4 ≤ x < 1/2, 4 x - 2\, & 1/2 ≤ x < 3/4, 4 - 4 x\, quad & 3/4 ≤ x ≤ 1)
+  T^2( x ) = cases(delim: "{", 4 x\, & 0 ≤ x < 1 / 4, 2 - 4 x\, & 1 / 4 ≤ x < 1 / 2, 4 x - 2\, & 1 / 2 ≤ x < 3 / 4, 4 - 4 x\, quad & 3 / 4 ≤ x ≤ 1)
 $
 
 为了确定周期 3 固定点，需要找到$T^3(x)$与对角线的交点。考虑$μ = 2$的情况。下面的方法可适用于区间$[0, 2]$中$μ$的任何值。函数$T(T(T(x))) = T^3(x)$是通过在$T^2(x)$的映射中用$T(x)$代替$x$来确定的，即
 
 $
-  T^3( x ) = cases(delim: "{", 4 T(x)\, & 0 ≤ T(x) < 1/4, 2 - 4 T(x)\, & 1/4 ≤ T(x) < 1/2, 4 T(x) - 2 & 1/2 ≤ T(x) < 3/4, 4 - 4 T(x)\, quad & 3/4 ≤ T(x) ≤ 1)
+  T^3( x ) = cases(delim: "{", 4 T(x)\, & 0 ≤ T(x) < 1 / 4, 2 - 4 T(x)\, & 1 / 4 ≤ T(x) < 1 / 2, 4 T(x) - 2 & 1 / 2 ≤ T(x) < 3 / 4, 4 - 4 T(x)\, quad & 3 / 4 ≤ T(x) ≤ 1)
 $
 
 接下来的过程与此前类似。
@@ -124,7 +121,6 @@ $ x_(n+1) = f_μ (x_n) $
 #figure(
   image("images/ch11/logistic.png", width: 40%),
   caption: "logistic map",
-  supplement: "图",
 )
 
 与帐篷图一样，对于参数$μ$的不同值，可进行简单的数值和图迭代。为了找到周期
@@ -140,9 +136,11 @@ $ f_μ(x) = μ x(1 - x) = x $
 设地图$f_μ(x)$在$x^*$处有一个固定点，则该定点是稳定的，若
 
 $
-  cases(delim: "{",
-| dv(, x) f_μ (x^*)|< 1 &⇒ "stable",
-| dv(, x) f_μ (x^*)|> 1 &⇒ "unstable")
+  cases(
+    delim: "{",
+    | dv(, x) f_μ (x^*)|< 1 &⇒ "stable",
+    | dv(, x) f_μ (x^*)|> 1 &⇒ "unstable"
+  )
 $
 
 由上，$dv(f_μ (0), x)|= μ$。因此点$x_(1, 1)$在$0 < μ < 1$时是稳定的，若$μ > 1$则不稳定。由于$|dv(f_μ (x_(1, 2)), x)|= 2 - μ$，这个定点在$1 < μ < 3$时是稳定的，当$μ < 1, μ > 3$时是不稳定的。
@@ -189,7 +187,6 @@ $|dv(, x) f_μ^2 (x_(2, 1))|= 1$
 #figure(
   image("images/ch11/bif-logistic.png", width: 60%),
   caption: "bifurcation",
-  supplement: "图",
 )
 
 Feigenbaum 发现方程表现出周期性，且，随着参数$μ$的不断增加，它表现出来的周期性会不断增加，会从 2 周期变成 4 周期，然后变成 8 周期。
@@ -230,7 +227,6 @@ $ L = lim_(n → ∞)(1 / n ∑ ln |T^′(x_i)|) = ln μ $
 #figure(
   image("images/ch11/logistic-lyapunov.png", width: 60%),
   caption: "lyapunov exponent",
-  supplement: "图",
 )
 
 = 各态历经假说
@@ -257,7 +253,6 @@ $ x_(n+1) = G(x_n) $
 #figure(
   image("images/ch11/gaussian-map.png", width: 60%),
   caption: "gaussian map",
-  supplement: "图",
 )
 由于该迭代有两个参数，预期动态比逻辑映射更复杂。在逻辑映射中出现的所有特征在 Gauss 映射中也都存在。但，后者的某些特征在逻辑映射中完全没有表现出来。这些额外的现象中的一些可被描述为周期气泡（period bubblings）、周期去倍增（period undoublings）和双稳态。这些特征可出现在分岔图中。
 
@@ -286,9 +281,13 @@ $ x_(n+1) = P (x_n, y_n), y_(n+1) = Q (x_n, y_n) $
 在$(x_1, y_1)$处有一个定点，其中，$𝑷$和$Q$在$x_n$和$y_n$中至少是二次方程。该定点可转化为原点，取 Taylor 数列展开后，可舍弃非线性项。Jacobian 矩阵由以下公式给出
 
 $
-  J(x_1, y_1) = lr(mat(delim: "[",
-  pdv(P, x), pdv(P, y);
-  pdv(Q, x), pdv(Q, y))|)_((x_1, y_1))
+  J(x_1, y_1) = lr(
+    mat(
+      delim: "[",
+      pdv(P, x), pdv(P, y);
+      pdv(Q, x), pdv(Q, y)
+    )|
+  )_((x_1, y_1))
 $
 
 #definition[
@@ -306,7 +305,7 @@ $
   y &= β (frac(((β - 1) ± sqrt((1 - β))^2 + 4 α), 2 α)
 $
 
-故，若且仅当$(1 - β))^2 + 4 α > 0$时，Hénon 映射有 2 个周期 1 的固定点。作为一个特殊的例子，考虑系统，$α = 3/16, β = 1/2$。有 2 个周期 1 固定点，由$𝑨 = (-4, - 2), B = (4/3, 2/3)$给出。Jacobian 由以下公式给出
+故，若且仅当$(1 - β))^2 + 4 α > 0$时，Hénon 映射有 2 个周期 1 的固定点。作为一个特殊的例子，考虑系统，$α = 3 / 16, β = 1 / 2$。有 2 个周期 1 固定点，由$𝑨 = (-4, - 2), B = (4 / 3, 2 / 3)$给出。Jacobian 由以下公式给出
 
 $ 𝑱 = mat(delim: "[", - 2 α x, 1; β, 0) $
 
@@ -315,7 +314,6 @@ $ 𝑱 = mat(delim: "[", - 2 α x, 1; β, 0) $
 #figure(
   image("images/ch11/henon-map.png", width: 60%),
   caption: "hénon map",
-  supplement: "图",
 )
 
 #strong[例]：求 $α = 1.2$和$β = 0.4$时，Hénon 映射的 Lyapunov 指数。
@@ -325,4 +323,4 @@ $ 𝑱 = mat(delim: "[", - 2 α x, 1; β, 0) $
 
 在这些情况下，初始条件的选择是很重要的，因为有些轨道是无界的，会移动到无穷大。必须从这个映射的吸引盆（basin of attraction）内的点开始。但，对于 Hénon 映射来说，在$α$的参数值范围内，不同的混沌吸引子可同时存在，这个系统在某些参数值上也会出现滞后现象（hysteresis）。
 
-#bibliography("data/dynam.bib", style: "future-science")
+#bibliography("lib/dynam.bib", style: "future-science")

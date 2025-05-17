@@ -1,11 +1,8 @@
-#import "@local/touying-quick:0.1.0": *
+#import "lib/lib.typ": *
 #show: touying-quick.with(
   title: "种群动力学",
-  subtilte: "生物建模系列课程第1讲",
-  author: "主讲：杨鑫斌",
+  subtitle: "生物建模系列课程第1讲",
   author-size: 20pt,
-  institute: "食品科学与工程学院",
-  footer: "生物建模系列课程",
   lang: "zh",
 )
 
@@ -29,7 +26,6 @@
     #figure(
       image("slides/fermenter.png", width: 100%),
       caption: none,
-      supplement: "图",
     )
   ],
 )
@@ -60,11 +56,9 @@
     #figure(
       image("slides/malthus.png", width: 60%),
       caption: none,
-      supplement: "图",
     )
   ],
 )
-
 
 == 模型缺陷
 
@@ -81,11 +75,9 @@
     #figure(
       image("slides/malthusian.png", width: 80%),
       caption: none,
-      supplement: "图",
     )
   ],
 )
-
 
 = 逻辑模型
 
@@ -137,7 +129,6 @@ $ lim_(x → ∞) X(t) = r / m = K $
     #figure(
       image("slides/logistic.png", width: 80%),
       caption: none,
-      supplement: "图",
     )
   ],
 )
@@ -160,15 +151,10 @@ $ lim_(x → ∞) X(t) = r / m = K $
     - $X = 0$（不稳定平衡点）
     - $X = K$（稳定平衡点）
 
-    #figure(
-      image("slides/logistic-fixed.png", width: 100%),
-      caption: none,
-      supplement: "图",
-    ),
+    #figure(image("slides/logistic-fixed.png", width: 100%), caption: none),
     #figure(
       image("slides/fixed-stability.png", width: 90%),
       caption: none,
-      supplement: "图",
     )
   ],
 )
@@ -190,11 +176,9 @@ $ lim_(x → ∞) X(t) = r / m = K $
     #figure(
       image("slides/logistic2.png", width: 120%),
       caption: none,
-      supplement: "图",
     )
   ],
 )
-
 
 == 下节预告
 
@@ -214,7 +198,6 @@ $ lim_(x → ∞) X(t) = r / m = K $
     #figure(
       image("slides/allee-fixed.png", width: 100%),
       caption: none,
-      supplement: "图",
     )
   ],
 )

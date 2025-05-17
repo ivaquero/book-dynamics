@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "分岔理论",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 分岔值
@@ -45,7 +42,7 @@ $
 
 $ dv(y, x) = frac(dot(y), dot(x)) = y / x^2 $
 
-解由$|y| = K e^(-1/x)$给出，其中$K$是一个常数。
+解由$|y| = K e^(-1 / x)$给出，其中$K$是一个常数。
 
 - 当$μ > 0$时：有两个临界点，$A = (sqrt(μ), 0)$和$B = (-sqrt(μ), 0)$。按常规方法进行线性化。Jacobian 矩阵由以下公式给出
 
@@ -59,7 +56,6 @@ $
 #figure(
   image("images/ch04/bif-saddle.png", width: 40%),
   caption: "saddle bifurcation",
-  supplement: "图",
 )
 
 == 跨临界分岔
@@ -80,10 +76,9 @@ $ dv(y, x) = y / x^2 $
 #figure(
   image("images/ch04/bif-transcritical.png", width: 40%),
   caption: "transcritical bifurcation",
-  supplement: "图",
 )
 
-解由$|y| = K e^(-1/x)$给出，其中$K$是一个常数。
+解由$|y| = K e^(-1 / x)$给出，其中$K$是一个常数。
 
 - 当$μ > 0$时：有两个临界点，分别在$O = (0, 0)$和$B = (μ, 0)$。$O$是一个鞍点，$B$是一个稳定节点。
 
@@ -113,7 +108,7 @@ $
 
 $ dv(y, x) = y / x^3 $
 
-解由$|y| = K e^(-1/2 x^2)$给出，其中$K$是一个常数。
+解由$|y| = K e^(-1 / 2 x^2)$给出，其中$K$是一个常数。
 
 - 当$μ > 0$时：有三个临界点，$O = (0, 0)$，$A = (sqrt(μ), 0)$和$B = (-sqrt(μ), 0)$。$O$是一个鞍点，$A$和$B$是稳定节点。
 
@@ -121,7 +116,6 @@ $ dv(y, x) = y / x^3 $
   image("images/ch04/bif-pitchfork.png", width: 40%),
   caption: "
     pitchfork bifurcation",
-  supplement: "图",
 )
 
 == Hopf 分岔
@@ -140,7 +134,6 @@ $
 #figure(
   image("images/ch04/bif-hopf.png", width: 60%),
   caption: "hopf bifurcation",
-  supplement: "图",
 )
 
 = 稳定性
@@ -195,13 +188,12 @@ Hopf 分岔。
 #figure(
   image("images/ch04/bistability1.png", width: 50%),
   caption: "bistability 1",
-  supplement: "图",
 )
 
 == 多稳态
 <多稳态>
 
-对系统，这里的新特征是$μ > μ_S = -1/4$时，存在的稳定的 LALC。在范围$μ_S < μ < 0$中，存在两个不同的稳定解；因此系统在此范围内是多稳的（multistable）。初始条件的选择决定了当$t → ∞$时，将接近哪个稳定的极限环。
+对系统，这里的新特征是$μ > μ_S = -1 / 4$时，存在的稳定的 LALC。在范围$μ_S < μ < 0$中，存在两个不同的稳定解；因此系统在此范围内是多稳的（multistable）。初始条件的选择决定了当$t → ∞$时，将接近哪个稳定的极限环。
 
 一个动力系统，若在参数$μ$的固定值下，有一个以上可能的稳定吸引子解（包括稳态、极限循环和奇怪的吸引子），则称其为多稳的。得到的稳定吸引子取决于初始条件。
 
@@ -222,7 +214,6 @@ $
 #figure(
   image("images/ch04/bistability2.png", width: 50%),
   caption: "bistability 2",
-  supplement: "图",
 )
 
 通过先增大再减小参数$μ$，可得到一个双稳态区域，在这种情况下，在$μ = 0$处出现超临界 Hopf 分岔，在$μ_A$和$μ_B$处分别出现极限环的鞍节点分岔。在机械系统中已经观察到不同稳定状态之间的跳跃。需要选择能避免这种
@@ -258,5 +249,4 @@ $ 𝑱 = mat(delim: "[", 1 - 3 r^2, 0; cos θ, - r sin θ) $
 #figure(
   image("images/ch04/bif-snic.png", width: 60%),
   caption: "snic bifurcation",
-  supplement: "图",
 )

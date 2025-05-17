@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "延迟效应",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 时间步
@@ -52,7 +49,6 @@ $
 #figure(
   image("images/ch09/step.png", width: 40%),
   caption: "step",
-  supplement: "图",
 )
 
 == 稳定性
@@ -111,7 +107,6 @@ $
 #figure(
   image("images/ch09/lv-delay.png", width: 60%),
   caption: "lv delay",
-  supplement: "图",
 )
 
 == MacKey-Glass 方程
@@ -125,4 +120,4 @@ $ X^′ = L - frac(V_("max") X^n (t - τ), 1 + X^n (t - τ) X) $
 
 取$L = 6$，$V_("max") = 16$。
 
-#bibliography("data/dynam.bib", style: "future-science")
+#bibliography("lib/dynam.bib", style: "future-science")

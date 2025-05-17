@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "平面系统",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 线性系统
@@ -24,9 +21,11 @@ $ dot(𝒙) = 𝑨 𝒙 $
 其中，$𝒙 ∈ ℝ$，且
 
 $
-  𝑨 = mat(delim: "[",
-a_11, a_12;
-a_21, a_22)
+  𝑨 = mat(
+    delim: "[",
+    a_11, a_12;
+    a_21, a_22
+  )
 $
 
 当将试解$𝒙 = 𝒗 e^(λ t)$（有导数$𝒙^′ = λ 𝒗 e^(λ t)$）代入，结果为：
@@ -58,7 +57,7 @@ $ 𝑨 𝒗 = λ 𝒗 $
 <相图>
 
 #definition[
-  式 @dynam 的每个解，即$ϕ(t) = (x(t), y(t))$，都可用平面上的一条曲线来表示。这些解曲线称为弹道（trajectory）或轨道（orbit）。
+  @dynam 的每个解，即$ϕ(t) = (x(t), y(t))$，都可用平面上的一条曲线来表示。这些解曲线称为弹道（trajectory）或轨道（orbit）。
 ]
 
 存在性和唯一性定理保证弹道不会交叉。在给定适当数量的初始条件的情况下，只需绘制少数弹道，就可确定其定性行为。
@@ -118,7 +117,7 @@ $
 
 其中，$C_1, C_2$为常数。求解如下微分方程可得解的曲线
 
-$ dv(y, x) = frac(y , dot(x)) = frac(λ_2 y, λ_1 x) $
+$ dv(y, x) = frac(y, dot(x)) = frac(λ_2 y, λ_1 x) $
 
 这类系统的稳定点相当于$X$和$Y$轴稳定点的 Descartesian 积。当特征值 < 0，则该轴稳定，反之不稳定。由此可知，
 
@@ -129,7 +128,6 @@ $ dv(y, x) = frac(y , dot(x)) = frac(λ_2 y, λ_1 x) $
 #figure(
   image("images/ch01/eigen-real-distinct.png", width: 60%),
   caption: "实数特征值",
-  supplement: "图",
 )
 
 == 复特征值
@@ -154,7 +152,6 @@ $ cases(delim: "{", dot(r) ̇&= α r, dot(θ) &= -β) $
 #figure(
   image("images/ch01/eigen-complex.png", width: 60%),
   caption: "复数特征值",
-  supplement: "图",
 )
 
 - 若$β < 0$，则弹道绕原点逆时针螺旋运动。- 若$β > 0$，则弹道绕原点顺时针螺旋运动。
@@ -169,7 +166,6 @@ $ cases(delim: "{", dot(r) ̇&= α r, dot(θ) &= -β) $
 #figure(
   image("images/ch01/eigen-repeated.png", width: 50%),
   caption: "重复特征值",
-  supplement: "图",
 )
 
 = 稳定性
@@ -233,9 +229,9 @@ $
 
 $ 𝑨 = mat(delim: "[", 2, 1; 1, 2) $
 
-得特征值$λ_1 = 1, λ_2 = 3$。对应的特征向量为$𝒆_1 = (1, - 1)^(⊤), 𝒆_2 = (1, 1)^(⊤)$。故，通解为
+得特征值$λ_1 = 1, λ_2 = 3$。对应的特征向量为$𝒆_1 = (1, - 1)^⊤, 𝒆_2 = (1, 1)^⊤$。故，通解为
 
-$ 𝒙(t) = C_1 exp(t)(1, - 1)^(⊤) + C_2 exp(3 t)(1, 1)^(⊤) $
+$ 𝒙(t) = C_1 exp(t)(1, - 1)^⊤ + C_2 exp(3 t)(1, 1)^⊤ $
 
 = 线性与非线性
 <线性与非线性>
@@ -259,7 +255,6 @@ $ 𝑱 = 𝑷^(-1) 𝑨 𝑷 = mat(delim: "[", 1, 0; 0, 3) $
 #figure(
   image("images/ch01/orthogonalization.png", width: 80%),
   caption: "正则化",
-  supplement: "图",
 )
 
 == 线性化
@@ -333,5 +328,4 @@ $ dv(y, x) = frac(x - x^3 + y, y) $
 #figure(
   image("images/ch01/linearization.png", width: 40%),
   caption: "线性化",
-  supplement: "图",
 )

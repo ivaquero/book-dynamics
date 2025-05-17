@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "复数型混沌",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = Julia 集
@@ -84,7 +81,7 @@ $
 
 这些定点的稳定性可用常规方法确定。
 
-$ cases(delim: "{",|dv(f_c, z)| < 1 & "stable",|dv(f_c, z)| > 1 & "unstable") $
+$ cases(delim: "{", |dv(f_c, z)| < 1 & "stable", |dv(f_c, z)| > 1 & "unstable") $
 
 通过选择一个周期为一的不稳定定点作为初始点，可使用所谓的后向训练迭代过程生成一个 Julia 集。Julia 集定义了有界轨道和无界轨道之间的边界。设与点$c = a + i b$相关的 Julia 集用$J(a, b)$表示。作为一个简单的例子，考虑映射
 
@@ -100,7 +97,6 @@ $ z_(n+1) = z_n^2 $
 #figure(
   image("images/ch12/julia-set.png", width: 80%),
   caption: "julia set",
-  supplement: "图",
 )
 
 = Mandelbrot 集
@@ -117,7 +113,6 @@ $ 0 + 0 i, c, c^2 + c, (c^2 + c)^2 + c, … $
 #figure(
   image("images/ch12/mandelbrot-set.png", width: 80%),
   caption: "mandelbrot set",
-  supplement: "图",
 )
 
 == 周期轨道的边界
@@ -203,7 +198,6 @@ $ |c + 1| = 1 / 4 $
 #figure(
   image("images/ch12/mandelbrot-boundary.png", width: 60%),
   caption: "mandelbrot boundary",
-  supplement: "图",
 )
 
 在 Argand 平面上形成了一个半径为 1/4 的以$(-1, 0)$为中心的圆。

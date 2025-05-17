@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "极限环数",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 极限环的相对配置
@@ -52,10 +49,12 @@ $ H_n = "sup" {π(P, Q) : ∂P, ∂Q ≤ n} $
 设：将平面上的一点$(x, y)$映射到球体上半球的一点$(X, Y, Z)$上，如$S^2 = (X, Y, Z) ∈ ℝ^3 ： X^2 + Y^2 + Z^2 = 1$。用$(x, y)$定义$(X, Y, Z)$的方程由下列公式给出
 
 $
-  cases(delim: "{",
-  X = x/sqrt(1 + r^2),
-  Y = y/sqrt(1 + r^2),
-  Z = 1/sqrt(1 + r^2))
+  cases(
+    delim: "{",
+    X = x / sqrt(1 + r^2),
+    Y = y / sqrt(1 + r^2),
+    Z = 1 / sqrt(1 + r^2)
+  )
 $
 
 其中，$r^2 = x^2 + y^2$。
@@ -63,7 +62,6 @@ $
 #figure(
   image("images/ch08/compactification.png", width: 40%),
   caption: "压实法",
-  supplement: "图",
 )
 
 变换为极坐标。故，系统转化为
@@ -75,7 +73,7 @@ $
 
 其中，$f_m$和$g_m$是$cos θ$和$sin θ$的$m$次多项式。
 
-设$ρ = 1/r$。故，$dot(ρ) = -dot(r)/ r^2$，系统转化为
+设$ρ = 1 / r$。故，$dot(ρ) = -dot(r) / r^2$，系统转化为
 
 $
   dot(ρ) &= -ρ f_(n+1)(θ) + O (ρ^2)\
@@ -150,7 +148,7 @@ $ dot.double(x) + f(x) dot(x) + g(x) = 0 $
 
 #theorem[
   设特征指数（characteristic exponent）
-  $ ∫_Γ div(X) dd(t) = ∫_0^(⊤)(pdv(P, x) + pdv(Q, y)(x(t), y(t))) dd(t) $
+  $ ∫_Γ div(X) dd(t) = ∫_0^⊤(pdv(P, x) + pdv(Q, y)(x(t), y(t))) dd(t) $
 
   - 若$∫_Γ div(X) dd(t) < 0$，则$Γ$为双曲吸引。
   - 若$∫_Γ div(X) dd(t) > 0$，则$Γ$为双曲排斥。
@@ -185,10 +183,9 @@ $
 #figure(
   image("images/ch08/lienard-big-pm.png", width: 50%),
   caption: "Liénard 系统",
-  supplement: "图",
 )
 
-则，当$μ$很大时，会发生什么？设$μ = 1/ɛ$，则系统可写成一个等价系统，其形式为
+则，当$μ$很大时，会发生什么？设$μ = 1 / ɛ$，则系统可写成一个等价系统，其形式为
 
 $
   ɛ dot(x) &= y - F(x)\
@@ -234,7 +231,6 @@ Christopher 和 Lynch @christopherSmallAmplitudeLimitCycle1999 最近又提出�
 #figure(
   image("images/ch08/table-lynch.png", width: 80%),
   caption: "table lynch",
-  supplement: "图",
 )
 
 Christopher 和 Lloyd @christopherSmallAmplitudeLimitCycles1996 已经证明了上表是对称的，但只是在$f(x)$中的线性系数非零的情况下，最终目的是建立$hat(H)(m, n)$作为$f$和$g$的次数函数的一般公式。2013 年，韩茂安和 Romanovski @hanNumberLimitCycles2013 使用新的方法给出了更多的结果。
@@ -243,4 +239,4 @@ Christopher 和 Lloyd @christopherSmallAmplitudeLimitCycles1996 已经证明了�
   需要注意的是，数学包编程必须谨慎使用。例如，可能在计算机屏幕上无法区分从细焦点分岔出来的两个极限环。
 ]
 
-#bibliography("data/dynam.bib", style: "future-science")
+#bibliography("lib/dynam.bib", style: "future-science")

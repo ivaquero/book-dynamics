@@ -1,10 +1,7 @@
-#import "@local/qooklet:0.1.0": *
-#show: qooklet.with(
+#import "lib/lib.typ": *
+#show: chapter-style.with(
   title: "种群与极限环",
-  author: "Yāng Xīnbīn",
-  footer-cap: "Yāng Xīnbīn",
-  header-cap: "动力系统入门",
-  lang: "zh",
+  info: info,
 )
 
 = 单变量种群
@@ -108,9 +105,9 @@ $ J = mat(delim: "[", β - 2 δ x - γ y, - γ x; - c y, b - 2 dd(y) - c x) $
 
 $
   & 𝑱_O = mat(delim: "[", β, 0; 0, b)
-  & 𝑱_P = mat(delim: "[", β - γ b/d, 0; - b c/d, - b)\
+  & 𝑱_P = mat(delim: "[", β - γ b / d, 0; - b c / d, - b)\
   & 𝑱_R = 1 / C_1 mat(delim: "[", δ C_2, γ C_2; c C_3, d C_3)
-  & 𝑱_Q = mat(delim: "[", - β, - γ β/δ; 0, b - β c/δ)
+  & 𝑱_Q = mat(delim: "[", - β, - γ β / δ; 0, b - β c / δ)
 $
 
 当$C_i < 0$时，$O$为不稳定节点，$P, Q$为鞍点，$R$对于一定参数值是一个稳定的固定点。有一个稳定的节点完全位于第一象限的$R$处，无论初始种群是什么，非零种群$X(t)$和$y(t)$都会随着时间的增加而趋向这个临界点。
@@ -141,7 +138,6 @@ $ 𝑱 = mat(delim: "[", β - γ y, - γ x; c y, - d + c x) $
 #figure(
   image("images/ch02/lotka-volterra.png", width: 80%),
   caption: "Lotka-Volterra",
-  supplement: "图",
 )
 
 = 三变量种群
@@ -195,7 +191,7 @@ $ cases(γ^+(x) = π(x, t) quad & t > 0, γ^-(x) = π(x, t) &t < 0) $
 与之类似，某点$x$的正、负极限集定义为
 
 $
-  cases(Λ^+(x) = y  quad &∃ t_n → ∞, Λ^-(x) = y &∃ t_n → -∞) ⇒ cases(π(x, t) → y, π(x, t) → y)
+  cases(Λ^+(x) = y quad &∃ t_n → ∞, Λ^-(x) = y &∃ t_n → -∞) ⇒ cases(π(x, t) → y, π(x, t) → y)
 $
 
 == 稳定性、周期
@@ -244,9 +240,9 @@ $
 
 其中，$N$为常数，$X(t) ≠ 0, y(t)$分别代表猎物和猎食者的种群。
 
-- 项$x(1 - x/7)$表示在没有捕食者的情况下通常的逻辑增长。
-- 项$-ω * x y/(1 + x)$表示捕食者受最大捕食率的影响。
-- 项$ϕ * y(1 - N y/x)$表示当$x/N$个捕食者最大限度地得到$x$个猎物的支持时，捕食者的生长速度。
+- 项$x(1 - x / 7)$表示在没有捕食者的情况下通常的逻辑增长。
+- 项$-ω * x y / (1 + x)$表示捕食者受最大捕食率的影响。
+- 项$ϕ * y(1 - N y / x)$表示当$x / N$个捕食者最大限度地得到$x$个猎物的支持时，捕食者的生长速度。
 
 通过解方程$dot(x) = dot(y) = 0$找到临界点。
 
@@ -258,7 +254,6 @@ $
 #figure(
   image("images/ch02/holling-tanner.png", width: 60%),
   caption: "Holling-Tanner",
-  supplement: "图",
 )
 
 = 极限环的存在
@@ -313,4 +308,4 @@ $ I_𝑿 (J) = frac(Δ Θ, 2π) $
 - 定理 1：完全包含在一个极限环内的临界点的指数之和为 +1。
 - 定理 2：一个极限环至少包含一个临界点。
 
-#bibliography("data/dynam.bib", style: "future-science")
+#bibliography("lib/dynam.bib", style: "future-science")
