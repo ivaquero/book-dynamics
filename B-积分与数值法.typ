@@ -62,7 +62,7 @@ $
 
 $ x = x(u, v), y = y(u, t), z = z(u, v) $
 
-$ I = ∬ ∑ ϕ [x(u, v), y(u, v), z(u, v)] sqrt(E G - F^2) dd(u, v) $
+$ I = ∬ sum ϕ [x(u, v), y(u, v), z(u, v)] sqrt(E G - F^2) dd(u, v) $
 
 其中，$E = x_u^2 + y_u^2 + z_u^2$，$G = x_v^2 + y_v^2 + z_v^2$，$F = x_u x_v + y_u y_v + z_u z_v$
 
@@ -82,20 +82,20 @@ $∫_a^b ∫_c^d f(x, y) dd(y, x) = ∫_a^b g(x) dd(x), g(x) = ∫_c^d f(x, y) d
 由中点法可得
 
 $
-  g(x) = ∫_c^d f(x, y) dd(y)≈ h_y ∑_(j = 0)^(n_y - 1) f(x, y_j), y_j = c + 1 / 2 h_y + j h_y
+  g(x) = ∫_c^d f(x, y) dd(y)≈ h_y sum_(j = 0)^(n_y - 1) f(x, y_j), y_j = c + 1 / 2 h_y + j h_y
 $
 
 以及
 
 $
-  ∫_a^b g(x) dd(x) ≈ h_x ∑_(i = 0)^(n_x - 1) g(x_i), x_i = a + 1 / 2 h_x + i h_x
+  ∫_a^b g(x) dd(x) ≈ h_x sum_(i = 0)^(n_x - 1) g(x_i), x_i = a + 1 / 2 h_x + i h_x
 $
 
 最终
 
 $
-  ∫_a^b ∫_c^d f(x, y) dd(y, x) & ≈ h_x ∑_(i = 0)^(n_x - 1) h_y ∑_(j = 0)^(n_y - 1) f(x_i, y_j)\
-  &= h_x h_y ∑_(i = 0)^(n_x - 1) ∑_(j = 0)^(n_y - 1) f(a + h_x / 2 + i h_x, c + h_y / 2 + j h_y)
+  ∫_a^b ∫_c^d f(x, y) dd(y, x) & ≈ h_x sum_(i = 0)^(n_x - 1) h_y sum_(j = 0)^(n_y - 1) f(x_i, y_j)\
+  &= h_x h_y sum_(i = 0)^(n_x - 1) sum_(j = 0)^(n_y - 1) f(a + h_x / 2 + i h_x, c + h_y / 2 + j h_y)
 $
 
 其中，$(x_i, y_j)$为中点
@@ -162,7 +162,7 @@ $
 
 即
 
-$ ∫_a^b f(x) dd(x) ≈ h [1 / 2 f(x_0) + ∑_(i=1)^(n -1) f(x_i) + 1 / 2 f(x_n)] $
+$ ∫_a^b f(x) dd(x) ≈ h [1 / 2 f(x_0) + sum_(i=1)^(n -1) f(x_i) + 1 / 2 f(x_n)] $
 
 == 中点法
 <中点法>
@@ -175,7 +175,7 @@ $
 
 即
 
-$ ∫_a^b f(x) dd(x) ≈ h ∑_(i = 0)^(n -1) f(x_i) $
+$ ∫_a^b f(x) dd(x) ≈ h sum_(i = 0)^(n -1) f(x_i) $
 
 其中，
 

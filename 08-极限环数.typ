@@ -67,8 +67,8 @@ $
 变换为极坐标。故，系统转化为
 
 $
-  dot(r) &= ∑_(i = 0)^n r^i f_(i + 1)(θ)\
-  dot(θ) &= ∑_(i = 0)^(n-1) r^(i - 1) g_(i + 1)(θ)
+  dot(r) &= sum_(i = 0)^n r^i f_(i + 1)(θ)\
+  dot(θ) &= sum_(i = 0)^(n-1) r^(i - 1) g_(i + 1)(θ)
 $
 
 其中，$f_m$和$g_m$是$cos θ$和$sin θ$的$m$次多项式。
@@ -117,7 +117,7 @@ $
   dot(y) &= -g(x)
 $
 
-其中，$F(x) = ∑_(i=1)^u a_i x^i, g(x) = x + ∑_(i = 2)^v b_i x^i$。
+其中，$F(x) = sum_(i=1)^u a_i x^i, g(x) = x + sum_(i = 2)^v b_i x^i$。
 
 系统的前三个 Lyapunov 量为
 
@@ -206,7 +206,7 @@ $
   dot(y) &= -g(x) - f(x) y
 $
 
-其中，$f(x) = ∑_(i = 0)^m a_i x^i, g(x) = x + ∑_(j = 2)^n b_j x^j$；$m$和$n$是自然数。令$hat(H)(m, n)$表示系统可从原点分岔的 SALC 的最大数目，其中，$m$为$f$的次，$n$为$g$的次。
+其中，$f(x) = sum_(i = 0)^m a_i x^i, g(x) = x + sum_(j = 2)^n b_j x^j$；$m$和$n$是自然数。令$hat(H)(m, n)$表示系统可从原点分岔的 SALC 的最大数目，其中，$m$为$f$的次，$n$为$g$的次。
 
 1984 年，Blows 和 Lloyd @blowsNumberSmallAmplitudeLimit1984 证明了系统的以下结果。
 

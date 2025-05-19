@@ -25,7 +25,7 @@ $
 同时满足
 
 $
-  ∑_(i=0)^n ℓ_i (x) = 1
+  sum_(i=0)^n ℓ_i (x) = 1
 $ <lag_sum>
 
 === 算法改进
@@ -44,13 +44,13 @@ $ <lag_node>
 联合@lag_sum 和@lag_node，可得
 
 $
-  P_n (x) = l(x) ∑_(j=0)^n y_j frac(w_j, x-x_j) = frac(l(x) ∑_(j=0)^n y_j frac(w_j, x-x_j), ∑_(j=0)^n ℓ_j (x)) = frac(l(x) ∑_(j=0)^n y_j frac(w_j, x-x_j), ∑_(j=0)^n w_j frac(l(x), x-x_j))
+  P_n (x) = l(x) sum_(j=0)^n y_j frac(w_j, x-x_j) = frac(l(x) sum_(j=0)^n y_j frac(w_j, x-x_j), sum_(j=0)^n ℓ_j (x)) = frac(l(x) sum_(j=0)^n y_j frac(w_j, x-x_j), sum_(j=0)^n w_j frac(l(x), x-x_j))
 $
 
 化简得
 
 $
-  P_n (x) = frac(∑_(j=0)^n frac(w_j, x-x_j) y_j, ∑_(j=0)^n frac(w_j, x-x_j))
+  P_n (x) = frac(sum_(j=0)^n frac(w_j, x-x_j) y_j, sum_(j=0)^n frac(w_j, x-x_j))
 $
 
 此公式被称为质心公式（barycentic formula）。其中，$w_j$不再随$x$变化，只算一次即可。即
@@ -134,12 +134,12 @@ $
 对上述等式取对数，可得
 
 $
-  frac(1, n + 1) ∑_(j = 0)^n ln |t - x_j| > frac(1, n + 1) ∑_(j = 0)^n ln |x - x_j|
+  frac(1, n + 1) sum_(j = 0)^n ln |t - x_j| > frac(1, n + 1) sum_(j = 0)^n ln |x - x_j|
 $
 
 简记为$u(t) > u(x)$。其中
 
-$ u(z) = frac(1, n + 1) ∑_(j = 0)^n ln |z - x_j| $
+$ u(z) = frac(1, n + 1) sum_(j = 0)^n ln |z - x_j| $
 
 取极限，得
 
