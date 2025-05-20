@@ -1,6 +1,6 @@
 #import "lib/lib.typ": *
-#show: chapter-style.with(
-  title: "附录A：常微分方程",
+#show: appendix-style.with(
+  title: "常微分方程",
   info: info,
 )
 
@@ -11,7 +11,7 @@
 
 自变量$x$和因变量$y = y(x)$的$n$阶微分方程的最一般形式是
 
-$ F(x, y, y^′, y^″, …, y^((n)) = 0 $
+$ F(x, y, y^′, y^″, …, y^((n))) = 0 $
 
 其中，$F$是$n = 2$个变量的特定实函数。
 

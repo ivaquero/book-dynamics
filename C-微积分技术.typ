@@ -1,6 +1,6 @@
 #import "lib/lib.typ": *
-#show: chapter-style.with(
-  title: "附录C：微积分技术",
+#show: appendix-style.with(
+  title: "微积分技术",
   info: info,
 )
 

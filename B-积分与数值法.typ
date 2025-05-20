@@ -1,6 +1,6 @@
 #import "lib/lib.typ": *
-#show: chapter-style.with(
-  title: "附录B：积分与数值法",
+#show: appendix-style.with(
+  title: "积分与数值法",
   info: info,
 )
 
