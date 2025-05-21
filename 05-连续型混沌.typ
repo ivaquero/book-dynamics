@@ -260,7 +260,6 @@ $
     [5], [#ce("OS + M_ox → 1\/2CBr^-")], [#ce("k5 [OS][M_ox]")],
   ),
   caption: "BZ 振荡反应",
-  supplement: "表",
   kind: table,
 )
 
@@ -325,4 +324,4 @@ BZ 反应也有可能表现出混沌现象。在这些情况下，存在某些�
   caption: "bz reaction 2",
 )
 
-#bibliography("lib/dynam.bib", style: "future-science")
+#bibx(bib)

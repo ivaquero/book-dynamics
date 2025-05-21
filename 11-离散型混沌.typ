@@ -323,4 +323,4 @@ $ 𝑱 = mat(delim: "[", - 2 α x, 1; β, 0) $
 
 在这些情况下，初始条件的选择是很重要的，因为有些轨道是无界的，会移动到无穷大。必须从这个映射的吸引盆（basin of attraction）内的点开始。但，对于 Hénon 映射来说，在$α$的参数值范围内，不同的混沌吸引子可同时存在，这个系统在某些参数值上也会出现滞后现象（hysteresis）。
 
-#bibliography("lib/dynam.bib", style: "future-science")
+#bibx(bib)

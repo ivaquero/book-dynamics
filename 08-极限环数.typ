@@ -239,4 +239,4 @@ Christopher 和 Lloyd @christopherSmallAmplitudeLimitCycles1996 已经证明了�
   需要注意的是，数学包编程必须谨慎使用。例如，可能在计算机屏幕上无法区分从细焦点分岔出来的两个极限环。
 ]
 
-#bibliography("lib/dynam.bib", style: "future-science")
+#bibx(bib)

@@ -114,8 +114,7 @@ $ dv(y, x) = y / x^3 $
 
 #figure(
   image("images/ch04/bif-pitchfork.png", width: 40%),
-  caption: "
-    pitchfork bifurcation",
+  caption: "pitchfork bifurcation",
 )
 
 == Hopf 分岔

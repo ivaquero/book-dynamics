@@ -186,7 +186,6 @@ $
     [虚数], [中心],
   ),
   caption: "特征值与临界点类型",
-  supplement: "表",
   kind: table,
 )
 
@@ -212,7 +211,6 @@ $
     [至少一个为正], [节点源/螺旋源/鞍点], [不稳定],
   ),
   caption: "特征值与临界点类型",
-  supplement: "表",
   kind: table,
 )
 
@@ -276,7 +274,6 @@ $
     [$λ_1, λ_2 = ± b i$], [中心或螺旋点],
   ),
   caption: "特征值与临界点类型",
-  supplement: "表",
   kind: table,
 )
 

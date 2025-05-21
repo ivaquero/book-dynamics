@@ -120,4 +120,4 @@ $ X^′ = L - frac(V_("max") X^n (t - τ), 1 + X^n (t - τ) X) $
 
 取$L = 6$，$V_("max") = 16$。
 
-#bibliography("lib/dynam.bib", style: "future-science")
+#bibx(bib)

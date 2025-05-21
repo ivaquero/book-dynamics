@@ -308,4 +308,4 @@ $ I_𝑿 (J) = frac(Δ Θ, 2π) $
 - 定理 1：完全包含在一个极限环内的临界点的指数之和为 +1。
 - 定理 2：一个极限环至少包含一个临界点。
 
-#bibliography("lib/dynam.bib", style: "future-science")
+#bibx(bib)
