@@ -1,8 +1,5 @@
 #import "lib/lib.typ": *
-#show: chapter-style.with(
-  title: "局部分岔",
-  info: info,
-)
+#show: chapter-style.with(title: "局部分岔", info: info)
 
 = 小幅极限环分岔
 <小幅极限环分岔>
@@ -77,8 +74,8 @@ $ div(ψ x) = pdv((ψ P), x) + pdv((ψ Q), y) = 0 $
   系统原点
 
   $
-    dot(x) &= y - F(G(x))\
-    dot(y) &= -frac(G^′(x), 2) H(G(x))
+    dot(x) & = y - F(G(x))              \
+    dot(y) & = -frac(G^′(x), 2) H(G(x))
   $
 
   其中，$F$和$H$是多项式，当$x ≠ 0, g(0) = 0$，且$G(x) = ∫_0^x g(s) dd(s), g(x) "sign"(x) > 0$，原点是一个中心。
@@ -223,8 +220,8 @@ Buchberger 算法用于将一组多项式理想生成器转化为相对于某个
 确定以下系统的关键点
 
 $
-  dot(x) &= x + y^2 - x^3\
-  dot(y) &= 4 x^3 - 12 x y^2 + x^4 + 2 x^2 y^2 + y^4
+  dot(x) & = x + y^2 - x^3                            \
+  dot(y) & = 4 x^3 - 12 x y^2 + x^4 + 2 x^2 y^2 + y^4
 $
 
 #let code1 = read("python/ch07_groebner.py")
@@ -282,8 +279,8 @@ $ M(r_0, μ_0) = 0 med "and" lr(pdv(M, r)|)_((r_0, μ_0)) ≠ 0 $
 考虑以下 van der Pol 类型系统
 
 $
-  dot(x) &= y + 10 x(0.1 - y^2)\
-  dot(y) &= -x + C
+  dot(x) & = y + 10 x(0.1 - y^2) \
+  dot(y) & = -x + C
 $
 
 其中，$C$是一个常数。若$C = 0$，则系统在原点有一个临界点，周围有一个稳定的极限环。若$C ≠ 0$，则有第二个临界点，一个鞍点，位于

@@ -1,8 +1,5 @@
 #import "lib/lib.typ": *
-#show: appendix-style.with(
-  title: "常微分方程",
-  info: info,
-)
+#show: appendix-style.with(title: "常微分方程", info: info)
 
 = 一般形式
 <一般形式>
@@ -75,11 +72,11 @@ $ x_1 = x, x_2 = x^′, x_3 = x^″, …, x_n = x^((n-1)) $
 因此，两式相减可得以下系统
 
 $
-  x_1^′ &= x_2\
-  x_2^′ &= x_3\
-  & ⋮\
-  x_(n-1)^′ &= x_n\
-  x_n^′ &= f(t, x_1, x_2, …, x_n)
+      x_1^′ & = x_2                    \
+      x_2^′ & = x_3                    \
+            & ⋮                        \
+  x_(n-1)^′ & = x_n                    \
+      x_n^′ & = f(t, x_1, x_2, …, x_n)
 $
 
 显然，这个方程组等价于原$n$阶方程，即当且仅当定义的函数$x_1(t), x_2(t), …, x_n(t)$满足方程组时，$x(t)$才是解。
@@ -87,8 +84,8 @@ $
 二维系统的一个解$(x(t), y(t))$
 
 $
-  x^′ &= f(t, x, y)\
-  y^′ &= g(t, x, y)
+  x^′ & = f(t, x, y) \
+  y^′ & = g(t, x, y)
 $
 
 可以看作是系统在 xy-平面上的轨迹（trajectory）的参数化。在 xy-平面上显示系统轨迹的图像，即所谓的相平面画像（phase plane portrait）未能精确地揭示点$(x(t), y(t))$如何沿着其轨迹移动。
@@ -101,10 +98,10 @@ $
 除了对数值计算有实际的优势外，对于一阶系统的一般理论和系统化的求解技术，比对高阶系统的描述更易、更简洁。例如，考虑一个一阶线性系统，其形式为
 
 $
-  x_1^′ &= sum p_(1 i)(t) x_i + f_1(t)\
-  x_2^′ &= sum p_(2 i)(t) x_i + f_2(t)\
-  & ⋮\
-  x_n^′ &= sum p_(n i)(t) x_i + f_n(t)
+  x_1^′ & = sum p_(1 i)(t) x_i + f_1(t) \
+  x_2^′ & = sum p_(2 i)(t) x_i + f_2(t) \
+        & ⋮                             \
+  x_n^′ & = sum p_(n i)(t) x_i + f_n(t)
 $
 
 #definition[
@@ -240,9 +237,9 @@ $ y_(i + 1) = y_i + f(t_i, y_i)(t_(i + 1) - t_i) $
 分解步骤为
 
 $
-  y_i &= y_(i - 1) + h k\
-  k &= f(t_(i - 1), y_(i - 1))\
-  t_i &= t_(i - 1) + h
+  y_i & = y_(i - 1) + h k         \
+    k & = f(t_(i - 1), y_(i - 1)) \
+  t_i & = t_(i - 1) + h
 $
 
 对如下目标函数，$y(0) = 1$
@@ -262,10 +259,10 @@ $ y_(i + 1) = y_i + (f(t_i, y_i)) + f(t_i + h, y_i + h f_i) h / 2 $
 分解步骤为
 
 $
-  k_1 &= f(t_i, y_i)\
-  k_2 &= f(t_i + h, y_i + h k_1)\
-  y_i &= y_i + (k_1 + k_2) h / 2\
-  t &= t + h
+  k_1 & = f(t_i, y_i)             \
+  k_2 & = f(t_i + h, y_i + h k_1) \
+  y_i & = y_i + (k_1 + k_2) h / 2 \
+    t & = t + h
 $
 
 #let code1 = read("julia/euler_improved.jl")
@@ -281,10 +278,10 @@ $ y_i = y_(i - 1) + f(t_i, y_i^*) h $
 分解步骤为
 
 $
-  t_i &= t_(i - 1) + h\
-  k &= f(t_i, y_i)\
-  y_i^* &= y_i + h k\
-  y_i &= y_(i - 1) + h f(t_i, y_i^*)
+    t_i & = t_(i - 1) + h               \
+      k & = f(t_i, y_i)                 \
+  y_i^* & = y_i + h k                   \
+    y_i & = y_(i - 1) + h f(t_i, y_i^*)
 $
 
 #let code1 = read("julia/euler_backward.jl")
@@ -308,10 +305,10 @@ $ y_(i + 1) = y_i + frac(h(k_1 + 2 k_2 + 2 k_3 + k_4), 6) $
 其中，$(k_1 + 2 k_2 + 2 k_3 + k_4) / 6$ 是平均斜率，且
 
 $
-  k_1 &= f(t_i, y_i)\
-  k_2 &= f(t_i + h / 2, y_i + frac(k_1 h, 2))\
-  k_3 &= f(t_i + h / 2, y_i + frac(k_2 h, 2))\
-  k_4 &= f(t_i + h / 2, y_i + k_3 h)
+  k_1 & = f(t_i, y_i)                          \
+  k_2 & = f(t_i + h / 2, y_i + frac(k_1 h, 2)) \
+  k_3 & = f(t_i + h / 2, y_i + frac(k_2 h, 2)) \
+  k_4 & = f(t_i + h / 2, y_i + k_3 h)
 $
 
 == 改进 RK 法

@@ -1,8 +1,5 @@
 #import "lib/lib.typ": *
-#show: chapter-style.with(
-  title: "种群与极限环",
-  info: info,
-)
+#show: chapter-style.with(title: "种群与极限环", info: info)
 
 = 单变量种群
 <单变量种群>
@@ -65,7 +62,7 @@ $
 实际计算时，通常采用差分法，对@logistic 做差分变换
 
 $
-  & X(t + 1) - X(t) = ɛ (r X(t) - m X(t)^2)\
+  & X(t + 1) - X(t) = ɛ (r X(t) - m X(t)^2) \
   & X(t + 1) = (ɛ r + 1) X(t)(1 - ɛ m X(t))
 $
 
@@ -93,7 +90,7 @@ $
 通过解$dot(x) = dot(y) = 0$来定位临界点。得临界点为
 
 $
-  & O = (0, 0) & P = (0, b / d)\
+  & O = (0, 0)                                                   & P = (0, b / d) \
   & R = (frac(γ b - β d, γ c - δ d), frac(β c - δ b, γ c - δ d)) & Q = (β / δ, 0)
 $
 
@@ -120,8 +117,8 @@ $
 Lotka-Volterra 方程，又称猎食者-猎物方程，常用于描述两个物种相互作用的生物系统的动态，其中一个作为猎食者，另一个作为猎物。根据这一对方程，种群随着时间的推移而变化。该方程，由 Alfred Lotka（1880～1949）于 1910 年在其自催化化学反应的研究中首次提出，并在 1925 年进行了拓展。Vito Volterra（1860～1940）于 1926 年发表了相同的方程，用于研究亚得里亚海的鱼群规模@volterraFluttuazioniNumeroIndinvidui1927。
 
 $
-  dot(x) &= x(β - γ y)\
-  dot(y) &= y(c x - d)
+  dot(x) & = x(β - γ y) \
+  dot(y) & = y(c x - d)
 $
 
 其中，$β, γ$和$c, d$均为常数。通过解$dot(x) = dot(y) = 0$来定位临界点。得临界点为
@@ -148,9 +145,9 @@ $ 𝑱 = mat(delim: "[", β - γ y, - γ x; c y, - d + c x) $
 SIR 模型如下：
 
 $
-  S^′ &= -β frac(S I, N)\
-  I^′ &= β frac(S I, N) - γ I\
-  R^′ &= γ I
+  S^′ & = -β frac(S I, N)      \
+  I^′ & = β frac(S I, N) - γ I \
+  R^′ & = γ I
 $
 
 其中，$S$为可患病人数，$I$为受感染人数，$R$为不能再患病的人（因死亡或免疫）。$β$为感染率，$γ$为 1 人在每个时间单位内感染多少人，因为$S ≈ N$，故，$γ$为一个人的平均时间的倒数。
@@ -234,8 +231,8 @@ $
 对如下 Holling-Tanner 模型
 
 $
-  dot(x) ̇&= x(1 - x / 7) - ω frac(x y, (1 + x))\
-  dot(y) &= ϕ y(1 - frac(N y, x))
+  dot(x) ̇ & = x(1 - x / 7) - ω frac(x y, (1 + x)) \
+   dot(y) & = ϕ y(1 - frac(N y, x))
 $
 
 其中，$N$为常数，$X(t) ≠ 0, y(t)$分别代表猎物和猎食者的种群。

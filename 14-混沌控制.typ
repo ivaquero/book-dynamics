@@ -1,8 +1,5 @@
 #import "lib/lib.typ": *
-#show: chapter-style.with(
-  title: "混沌控制",
-  info: info,
-)
+#show: chapter-style.with(title: "混沌控制", info: info)
 
 = 自我复制
 <自我复制>

@@ -1,8 +1,5 @@
 #import "lib/lib.typ": *
-#show: chapter-style.with(
-  title: "Hamiltonian II",
-  info: info,
-)
+#show: chapter-style.with(title: "Hamiltonian II", info: info)
 
 = Poincaré 映射
 <Poincaré-映射>
@@ -45,8 +42,8 @@ $ r_(n+1) = P(r_n) $
 考虑系统
 
 $
-  dot(x) &= -y - x sqrt(x^2 + y^2)\
-  dot(y) &= x - y sqrt(x^2 + y^2)
+  dot(x) & = -y - x sqrt(x^2 + y^2) \
+  dot(y) & = x - y sqrt(x^2 + y^2)
 $
 
 #figure(
@@ -88,7 +85,7 @@ $ M = (dv(P, r)|)_(r^*) $
 一个具有两个自由度的 Hamiltonian 定义为
 
 $
-  & dot(p)_1 = -pdv(H, q_1) & dot(q)_1 = pdv(H, p_1)\
+  & dot(p)_1 = -pdv(H, q_1) & dot(q)_1 = pdv(H, p_1) \
   & dot(p)_2 = -pdv(H, q_2) & dot(q)_2 = pdv(H, p_2)
 $
 
@@ -151,8 +148,8 @@ $ dot.double(x) + k dot(x) + β x + α x^3 = Γ cos(ω t) $
 其中，在物理模型中，$k ≥ 0$为阻尼系数（damping coefficient），$β$为刚度，$α$为非线性刚度参数，$x ̇$为质量的速度，$Γ$为力的振幅，$ω$为驱动力的频率。设$dot(x) = y$；则 Duffing 方程可写成如下形式的系统
 
 $
-  dot(x) &= y\
-  dot(y) &= -β x - k y - α x^3 + Γ cos(ω t)
+  dot(x) & = y                               \
+  dot(y) & = -β x - k y - α x^3 + Γ cos(ω t)
 $
 
 #figure(
@@ -170,9 +167,9 @@ $
 将准周期强迫应用于非线性系统很有意思，准周期强迫的 van der Pol 系统出现了非混沌吸引子。任何周期性强迫的非自治微分方程都可用环面中的自治流来表示。为了实现这一变换，只需引入第三个变量$θ = ω t$。此时系统就变成了一个三维自治系统，给出的公式为
 
 $
-  dot(x) &= y\
-  dot(y) &= -β x - k y - α x^3 + Γ cos θ\
-  dot(θ) &= ω
+  dot(x) & = y                            \
+  dot(y) & = -β x - k y - α x^3 + Γ cos θ \
+  dot(θ) & = ω
 $
 
 在此状态空间中，一个流对应于一个周期为$2π / ω$的绕环面的流动轨迹。这自然导致了$θ = θ_0$平面通过 Poincaré 映射到自身。

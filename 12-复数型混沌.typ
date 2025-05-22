@@ -1,8 +1,5 @@
 #import "lib/lib.typ": *
-#show: chapter-style.with(
-  title: "复数型混沌",
-  info: info,
-)
+#show: chapter-style.with(title: "复数型混沌", info: info)
 
 = Julia 集
 <Julia-集>
@@ -29,8 +26,8 @@ $ z_(n+1) = f_c(z_n) = z_n^2 + c $
 若集$J$在正向迭代二次映射下是一个排斥子，则 Julia 集将在逆映射下成为一个吸引子。出于计算上的考虑，最好分别处理复数的实部和虚部。
 
 $
-  x_(n+1) &= x_n^2 - y_n^2 + a\
-  y_(n+1) &= 2 x_n y_n + b
+  x_(n+1) & = x_n^2 - y_n^2 + a \
+  y_(n+1) & = 2 x_n y_n + b
 $
 
 其中，$z_n = x_n + i y_n$，$c = a + i b$。要找到逆映射，必须找到$x_n$和$y_n$的表达式，用$x_(n+1)$和$y_(n+1)$来表示。
@@ -40,8 +37,8 @@ $ x_n^2 - y_n^2 = x_(n+1) - a $
 由于
 
 $
-  (x_n^2 + y_n^2)^2 &= (x_n^2 - y_n^2)^2 + 4 x_n^2 y_n^2\
-  &= (x_(n+1) - a)^2 + (y_(n+1) - b)^2
+  (x_n^2 + y_n^2)^2 & = (x_n^2 - y_n^2)^2 + 4 x_n^2 y_n^2 \
+                    & = (x_(n+1) - a)^2 + (y_(n+1) - b)^2
 $
 
 且$x_n^2 + y_n^2 > 0$，可得
@@ -51,8 +48,8 @@ $ x_n^2 + y_n^2 = + sqrt((x_(n+1) - a))^2 + (y_(n+1) - b)^2 $
 设
 
 $
-  u &= sqrt((x_(n+1) - a))^2 + (y_(n+1) - b)^2 / 2\
-  v &= frac(x_(n+1) - a, 2)
+  u & = sqrt((x_(n+1) - a))^2 + (y_(n+1) - b)^2 / 2 \
+  v & = frac(x_(n+1) - a, 2)
 $
 
 因此
@@ -81,7 +78,9 @@ $
 
 这些定点的稳定性可用常规方法确定。
 
-$ cases(delim: "{", |dv(f_c, z)| < 1 & "stable", |dv(f_c, z)| > 1 & "unstable") $
+$
+  cases(delim: "{", |dv(f_c, z)| < 1 & "stable", |dv(f_c, z)| > 1 & "unstable")
+$
 
 通过选择一个周期为一的不稳定定点作为初始点，可使用所谓的后向训练迭代过程生成一个 Julia 集。Julia 集定义了有界轨道和无界轨道之间的边界。设与点$c = a + i b$相关的 Julia 集用$J(a, b)$表示。作为一个简单的例子，考虑映射
 
@@ -94,10 +93,7 @@ $ z_(n+1) = z_n^2 $
 #let code1 = read("python/ch12_set_julia_sym.py")
 #code(code1)
 
-#figure(
-  image("images/ch12/julia-set.png", width: 80%),
-  caption: "julia set",
-)
+#figure(image("images/ch12/julia-set.png", width: 80%), caption: "julia set")
 
 = Mandelbrot 集
 <Mandelbrot-集>

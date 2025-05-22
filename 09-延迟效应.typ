@@ -1,8 +1,5 @@
 #import "lib/lib.typ": *
-#show: chapter-style.with(
-  title: "延迟效应",
-  info: info,
-)
+#show: chapter-style.with(title: "延迟效应", info: info)
 
 = 时间步
 <时间步>
@@ -30,8 +27,8 @@ $ dv(x, t) = -x(t - 1) $
 $ ∫_(ϕ_(i - 1))^(x(t)) dd(x)^′ = -∫_(t_i)^t ϕ_(i - 1)(t^′ - 1) dd(t)^′ $
 
 $
-  x(t) &= ϕ_i(t)\
-  &= ϕ_(i - 1)(t_i) - ∫_(t_i)^t ϕ_(i - 1)(t^′ - 1) dd(t)^′
+  x(t) & = ϕ_i(t)                                                \
+       & = ϕ_(i - 1)(t_i) - ∫_(t_i)^t ϕ_(i - 1)(t^′ - 1) dd(t)^′
 $
 
 故，在区间$[0, 1]$中
@@ -41,15 +38,12 @@ $ x(t) = 1 - ∫_0^t 1 dd(t)^′ = 1 - t $
 并在区间$[1, 2]$
 
 $
-  x(t) &= 0 - ∫_1^t 1 - (t^′ - 1) dd(t)^′\
-  &= -[2 t - t^2 / 2]_1^t\
-  &= -2 t + t^2 / 2 + 3 / 2
+  x(t) & = 0 - ∫_1^t 1 - (t^′ - 1) dd(t)^′ \
+       & = -[2 t - t^2 / 2]_1^t            \
+       & = -2 t + t^2 / 2 + 3 / 2
 $
 
-#figure(
-  image("images/ch09/step.png", width: 40%),
-  caption: "step",
-)
+#figure(image("images/ch09/step.png", width: 40%), caption: "step")
 
 == 稳定性
 <稳定性>
@@ -91,8 +85,8 @@ $ |J_0 + sum e^(-λ τ_i) J_(τ_i) - λ I| = 0 $
 对时滞 LV 模型
 
 $
-  dv(x, t) &= x(t)(r_1 - a_11 x_τ - a_12 y_τ)\
-  dv(y, t) &= y(t)(-r_2 + a_21 x_τ - a_22 y_τ)
+  dv(x, t) & = x(t)(r_1 - a_11 x_τ - a_12 y_τ)  \
+  dv(y, t) & = y(t)(-r_2 + a_21 x_τ - a_22 y_τ)
 $
 
 其中，$r_1, r_2, a_11, a_12, a_21, a_22$为常数，延迟$τ ≥ 0$表示捕食者的妊娠期（gestation），$x_τ = x(t - τ), y_τ = y(t - τ)$。
@@ -104,10 +98,7 @@ $
 - 当$τ = 1.25$时，有一个周期 4 的极限环。
 - 当$τ = 1.5$时，系统显示混沌。
 
-#figure(
-  image("images/ch09/lv-delay.png", width: 60%),
-  caption: "lv delay",
-)
+#figure(image("images/ch09/lv-delay.png", width: 60%), caption: "lv delay")
 
 == MacKey-Glass 方程
 <MacKey-Glass-方程>

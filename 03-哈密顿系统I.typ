@@ -1,8 +1,5 @@
 #import "lib/lib.typ": *
-#show: chapter-style.with(
-  title: "Hamiltonian 系统 I",
-  info: info,
-)
+#show: chapter-style.with(title: "Hamiltonian 系统 I", info: info)
 
 = 扰动
 <扰动>
@@ -42,10 +39,7 @@ $ dot.double(x) + x = ɛ (x^2 - 1) dot(x) $
 
 $ dot.double(x) + x = ɛ x^3 $
 
-#figure(
-  image("images/ch03/eq-duffing.png", width: 60%),
-  caption: "duffing",
-)
+#figure(image("images/ch03/eq-duffing.png", width: 60%), caption: "duffing")
 
 = Hamiltonian 系统
 <Hamiltonian-系统>
@@ -53,7 +47,7 @@ $ dot.double(x) + x = ɛ x^3 $
 若一个在$ℝ^2$上的微分方程系统可用以下形式表示，则称其为具有一个自由度的 Hamiltonian 方程。这样的方程总是可积分的。
 
 $
-  & dv(x, t) = pdv(H, y)\
+  & dv(x, t) = pdv(H, y)  \
   & dv(y, t) = -pdv(H, x)
 $
 
@@ -77,8 +71,8 @@ $ dv(θ, t, 2) + g / l sin θ = 0 $
 设$dot(θ) = ϕ$，则系统可写成一个平面系统，形式为
 
 $
-  dot(θ) &= ϕ\
-  dot(ϕ) &= -g / l sin θ
+  dot(θ) & = ϕ            \
+  dot(ϕ) & = -g / l sin θ
 $
 
 临界点出现在$(n π, 0)$的$(θ, ϕ)$平面上，其中$n$是一个整数。不难看出，
@@ -126,9 +120,8 @@ $
 当
 
 $
-  dv(V, t)
-  &= pdv(V, x) dv(x, t) + pdv(V, y) dv(y, t)\
-  &= -(pdv(V, x))^2 - (pdv(V, y))^2 ≤ 0
+  dv(V, t) & = pdv(V, x) dv(x, t) + pdv(V, y) dv(y, t) \
+           & = -(pdv(V, x))^2 - (pdv(V, y))^2 ≤ 0
 $
 
 这意味着$V(t)$沿轨迹递减，运动总是朝向较低的电位。现在，当$∂V ∂x = ∂V ∂y = 0$时，对应于$V(x, y)$上的局部最大值、最小值或鞍点，则$dot(x) = dot(y) = 0$。局部最大值对应不稳定临界点，局部最小值对应稳定临界点。

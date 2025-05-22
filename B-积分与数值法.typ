@@ -1,8 +1,5 @@
 #import "lib/lib.typ": *
-#show: appendix-style.with(
-  title: "积分与数值法",
-  info: info,
-)
+#show: appendix-style.with(title: "积分与数值法", info: info)
 
 = 符号积分
 <符号积分>

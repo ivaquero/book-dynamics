@@ -1,8 +1,5 @@
 #import "lib/lib.typ": *
-#show: chapter-style.with(
-  title: "极限环数",
-  info: info,
-)
+#show: chapter-style.with(title: "极限环数", info: info)
 
 = 极限环的相对配置
 <极限环的相对配置>
@@ -67,8 +64,8 @@ $
 变换为极坐标。故，系统转化为
 
 $
-  dot(r) &= sum_(i = 0)^n r^i f_(i + 1)(θ)\
-  dot(θ) &= sum_(i = 0)^(n-1) r^(i - 1) g_(i + 1)(θ)
+  dot(r) & = sum_(i = 0)^n r^i f_(i + 1)(θ)           \
+  dot(θ) & = sum_(i = 0)^(n-1) r^(i - 1) g_(i + 1)(θ)
 $
 
 其中，$f_m$和$g_m$是$cos θ$和$sin θ$的$m$次多项式。
@@ -76,8 +73,8 @@ $
 设$ρ = 1 / r$。故，$dot(ρ) = -dot(r) / r^2$，系统转化为
 
 $
-  dot(ρ) &= -ρ f_(n+1)(θ) + O (ρ^2)\
-  dot(θ) &= g_(n+1)(θ) + O (ρ)
+  dot(ρ) & = -ρ f_(n+1)(θ) + O (ρ^2) \
+  dot(θ) & = g_(n+1)(θ) + O (ρ)
 $
 
 #theorem[
@@ -97,8 +94,8 @@ $
   在$y z$平面（$X = ± 1$）上定义的流，除了点$(0, ± 1, 0)$外，与以下定义的流具有质的等价性
 
   $
-    ± dot(y) &= y z^n P (1 / z, y / z) - z^n Q (1 / z, y / z)\
-    ± dot(z) &= z^(n+1) P (1 / z, y / z)
+    ± dot(y) & = y z^n P (1 / z, y / z) - z^n Q (1 / z, y / z) \
+    ± dot(z) & = z^(n+1) P (1 / z, y / z)
   $
 
   其中，流动方向由$g_(n+1)(θ)$决定。
@@ -113,8 +110,8 @@ $
 对 Liénard 方程
 
 $
-  dot(x) &= y - F(x)\
-  dot(y) &= -g(x)
+  dot(x) & = y - F(x) \
+  dot(y) & = -g(x)
 $
 
 其中，$F(x) = sum_(i=1)^u a_i x^i, g(x) = x + sum_(i = 2)^v b_i x^i$。
@@ -157,8 +154,8 @@ $ dot.double(x) + f(x) dot(x) + g(x) = 0 $
 #theorem[
   对 Liénard 方程
   $
-    dot(x) &= y - (a_1 x + a_2 x^2 + a_3 x^3)\
-    dot(y) &= -x
+    dot(x) & = y - (a_1 x + a_2 x^2 + a_3 x^3) \
+    dot(y) & = -x
   $
 
   若$a_1 a_3 < 0$，则存在一个唯一的双曲极限环。
@@ -174,8 +171,8 @@ $ dot.double(x) + μ f(x) dot(x) + g(x) = 0 $
 其中$f(x) = -1 + 3 x^2, g(x) = x$，即为
 
 $
-  dot(x) &= μ y - μ F(x)\
-  μ dot(y) &= -g(x)
+    dot(x) & = μ y - μ F(x) \
+  μ dot(y) & = -g(x)
 $
 
 其中，$F(x) = ∫_0^x f(s) d s = -x + x^3$，在 Liénard 平面内。Liénard 证明了系统有一个唯一的极限环。包含小参数的系统用 Melnikov 积分进行了考虑。
@@ -188,8 +185,8 @@ $
 则，当$μ$很大时，会发生什么？设$μ = 1 / ɛ$，则系统可写成一个等价系统，其形式为
 
 $
-  ɛ dot(x) &= y - F(x)\
-  dot(y) &= -ɛ g(x)
+  ɛ dot(x) & = y - F(x) \
+    dot(y) & = -ɛ g(x)
 $
 
 #theorem[
@@ -202,8 +199,8 @@ $
 虽然 Liénard 方程看起来很简单，但已知的关于最大极限环数的全局结果却很少。相反，若分析仅限于局部分岔，则可得到更多的结果。考虑 Liénard 系统
 
 $
-  dot(x) &= y\
-  dot(y) &= -g(x) - f(x) y
+  dot(x) & = y              \
+  dot(y) & = -g(x) - f(x) y
 $
 
 其中，$f(x) = sum_(i = 0)^m a_i x^i, g(x) = x + sum_(j = 2)^n b_j x^j$；$m$和$n$是自然数。令$hat(H)(m, n)$表示系统可从原点分岔的 SALC 的最大数目，其中，$m$为$f$的次，$n$为$g$的次。
