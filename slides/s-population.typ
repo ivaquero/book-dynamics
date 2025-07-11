@@ -1,8 +1,7 @@
-#import "lib/lib.typ": *
+#import "../lib/slides.typ": *
 #show: touying-quick.with(
   title: "种群动力学",
   subtitle: "生物建模系列课程第1讲",
-  author-size: 20pt,
   lang: "zh",
 )
 
@@ -21,7 +20,10 @@
     - *种群动力学模型*
     - 生态网络模型
 
-  #figure(image("slides/fermenter.png", width: 100%), caption: none)
+  #figure(
+    image("img/fermenter.png", width: 100%),
+    caption: none,
+  )
 ])
 
 = 马尔萨斯模型
@@ -45,7 +47,10 @@
 
   其中，$X(0)$为初始种群
 
-  #figure(image("slides/malthus.png", width: 60%), caption: none)
+  #figure(
+    image("img/malthus.png", width: 60%),
+    caption: none,
+  )
 ])
 
 == 模型缺陷
@@ -58,7 +63,10 @@
     - 未考虑种间竞争的影响
   - 导致不切实际的悲观结论
 
-  #figure(image("slides/malthusian.png", width: 80%), caption: none)
+  #figure(
+    image("img/malthusian.png", width: 80%),
+    caption: none,
+  )
 ])
 
 = 逻辑模型
@@ -106,31 +114,34 @@ $ lim_(x → ∞) X(t) = r / m = K $
     f = frac(K, 1 + A e^(B x))
   $
 
-  #figure(image("slides/logistic.png", width: 80%), caption: none)
+  #figure(
+    image("img/logistic.png", width: 80%),
+    caption: none,
+  )
 ])
 
 == 固定点
 
-#block(
-  height: 15em,
-  columns()[
-    通过求导，来判断曲线的变化趋势。在微分方程的语境下，这种点被称为固定点（或平衡点）。
+#block(height: 15em, columns()[
+  通过求导，来判断曲线的变化趋势。在微分方程的语境下，这种点被称为固定点（或平衡点）。
 
-    令导数为0
+  令导数为0
 
-    $
-      0 = r X(t) (1 - frac(X(t), K))
-    $
+  $
+    0 = r X(t) (1 - frac(X(t), K))
+  $
 
-    解得，方程有2个平衡点
+  解得，方程有2个平衡点
 
-    - $X = 0$（不稳定平衡点）
-    - $X = K$（稳定平衡点）
+  - $X = 0$（不稳定平衡点）
+  - $X = K$（稳定平衡点）
 
-    #figure(image("slides/logistic-fixed.png", width: 100%), caption: none),
-    #figure(image("slides/fixed-stability.png", width: 90%), caption: none)
-  ],
-)
+  #figure(image("img/logistic-fixed.png", width: 100%), caption: none),
+  #figure(
+    image("img/fixed-stability.png", width: 90%),
+    caption: none,
+  )
+])
 
 = 小结
 
@@ -144,7 +155,10 @@ $ lim_(x → ∞) X(t) = r / m = K $
     - 限制因子：$X_0$、$r$、$K$
     - 考虑了环境限制
 
-  #figure(image("slides/logistic2.png", width: 120%), caption: none)
+  #figure(
+    image("img/logistic2.png", width: 120%),
+    caption: none,
+  )
 ])
 
 == 下节预告
@@ -153,13 +167,16 @@ $ lim_(x → ∞) X(t) = r / m = K $
   - Allée 效应
   - 编程实践
 
-  #let code1 = read("python/ch02_eq_logistic.py")
+  #let code1 = read("../python/ch02_eq_logistic.py")
   #code(code1)
 
   $
     X^′ = r X (1 - frac(X, K))(frac(X, a) - 1)
   $
   \
-  #figure(image("slides/allee-fixed.png", width: 100%), caption: none)
+  #figure(
+    image("img/allee-fixed.png", width: 100%),
+    caption: none,
+  )
 ])
 
