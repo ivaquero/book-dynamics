@@ -1,4 +1,4 @@
-#import "../lib/slides.typ": *
+#import "slides.typ": *
 #show: touying-quick.with(
   title: "种群动力学",
   subtitle: "生物建模系列课程第1讲",
