@@ -74,7 +74,7 @@ $ div(ψ x) = pdv((ψ P), x) + pdv((ψ Q), y) = 0 $
   系统原点
 
   $
-    dot(x) & = y - F(G(x))              \
+    dot(x) & = y - F(G(x)) \
     dot(y) & = -frac(G^′(x), 2) H(G(x))
   $
 
@@ -220,7 +220,7 @@ Buchberger 算法用于将一组多项式理想生成器转化为相对于某个
 确定以下系统的关键点
 
 $
-  dot(x) & = x + y^2 - x^3                            \
+  dot(x) & = x + y^2 - x^3 \
   dot(y) & = 4 x^3 - 12 x y^2 + x^4 + 2 x^2 y^2 + y^4
 $
 

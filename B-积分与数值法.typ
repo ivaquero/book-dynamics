@@ -153,8 +153,8 @@ $ x_i = a + i h, i = 0, 1, …, n $
 可得
 
 $
-  ∫_a^b f(x) dd(x) = & ∫_(x_0)^(x_1) f(x) dd(x) + ∫_(x_1)^(x_2) f(x) dd(x) + … + ∫_(x_(n -1))^(x_n) f(x) dd(x)\
-  ≈ & h frac(f(x_0) + f(x_1), 2) + h frac(f(x_1) + f(x_2), 2) + … + h frac(f(x_(n -1)) + f(x_n), 2)
+  ∫_a^b f(x) dd(x) = & ∫_(x_0)^(x_1) f(x) dd(x) + ∫_(x_1)^(x_2) f(x) dd(x) + … + ∫_(x_(n -1))^(x_n) f(x) dd(x) \
+                   ≈ & h frac(f(x_0) + f(x_1), 2) + h frac(f(x_1) + f(x_2), 2) + … + h frac(f(x_(n -1)) + f(x_n), 2)
 $
 
 即
@@ -165,9 +165,9 @@ $ ∫_a^b f(x) dd(x) ≈ h [1 / 2 f(x_0) + sum_(i=1)^(n -1) f(x_i) + 1 / 2 f(x_n
 <中点法>
 
 $
-  ∫_a^b f(x) dd(x) &= ∫_(x_0)^(x_1) f(x) dd(x) + ∫_(x_1)^(x_2) f(x) dd(x) + … + ∫_(x_(n -1))^(x_n) f(x) dd(x)\
-  & ≈ h f(frac(x_0 + x_1, 2)) + h f(frac(x_1 + x_2, 2)) + … + h t(frac(x_(n -1) + x_n, 2))\
-  & ≈ h(t(frac(x_0 + x_1, 2)) + f(frac(x_1 + x_2, 2)) + … + f(frac(x_(n -1) + x_n, 2)))
+  ∫_a^b f(x) dd(x) & = ∫_(x_0)^(x_1) f(x) dd(x) + ∫_(x_1)^(x_2) f(x) dd(x) + … + ∫_(x_(n -1))^(x_n) f(x) dd(x) \
+                   & ≈ h f(frac(x_0 + x_1, 2)) + h f(frac(x_1 + x_2, 2)) + … + h t(frac(x_(n -1) + x_n, 2)) \
+                   & ≈ h(t(frac(x_0 + x_1, 2)) + f(frac(x_1 + x_2, 2)) + … + f(frac(x_(n -1) + x_n, 2)))
 $
 
 即

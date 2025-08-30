@@ -177,7 +177,7 @@ $ cases(delim: "{", dot(r) ̇&= α r, dot(θ) &= -β) $
 
 $
   (λ - λ_1)(λ - λ_2) & = λ_2 - (λ_1 + λ_2) λ + λ_1 λ_2 \
-                     & = λ_2 - tr(𝑨) λ det(𝑨)          \
+                     & = λ_2 - tr(𝑨) λ det(𝑨) \
                      & = 0
 $
 
@@ -271,7 +271,7 @@ $
 Taylor 展开得
 
 $
-  & dot(X) = P (X + u, Y + v) = P (u, v) + X lr(pdv(P, x)|)_(x = u, y = v) + Y lr(pdv(P, y)|)_(x = u, y = v) + R (X, Y)\
+  & dot(X) = P (X + u, Y + v) = P (u, v) + X lr(pdv(P, x)|)_(x = u, y = v) + Y lr(pdv(P, y)|)_(x = u, y = v) + R (X, Y) \
   & dot(Y) = Q (X + u, Y + v) = Q (u, v) + X lr(pdv(Q, x)|)_(x = u, y = v) + Y lr(pdv(Q, y)|)_(x = u, y = v) + S (X, Y)
 $
 
@@ -304,7 +304,7 @@ $
 对非线性系统
 
 $
-  dot(x) & = y              \
+  dot(x) & = y \
   dot(y) & = x(1 - x^2) + y
 $
 
