@@ -170,7 +170,7 @@ $|dv(, x) f_μ^2 (x_(2, 1))|= 1$
 == Feigenbaum 常数
 <Feigenbaum-常数>
 
-分岔理论中，Feigenbaum 常数是两个数学常数，它们都表示非线性图的分岔图中的比率。费根鲍姆（Mitchell J. Feigenbaum，1944～2019）在 1975 年将一个常数与周期倍增分岔（period-doubling bifurcation）关联@feigenbaumUniversalityComplexDiscrete1975。
+分岔理论中，Feigenbaum 常数是两个数学常数，它们都表示非线性图的分岔图中的比率。费根鲍姆（Mitchell J. Feigenbaum，1944\~2019）在 1975 年将一个常数与周期倍增分岔（period-doubling bifurcation）关联@feigenbaumUniversalityComplexDiscrete1975。
 
 #figure(
   image("images/ch11/bif-logistic.png", width: 60%),
@@ -220,7 +220,7 @@ $ L = lim_(n → ∞)(1 / n sum ln |T^′(x_i)|) = ln μ $
 = 各态历经假说
 <各态历经假说>
 
-功历假说（ergodic hypothesis）由玻耳兹曼（Ludwig Eduard Boltzmann，1844～1906）于 1871 年提出，描述了在长时间内，系统在具有相同能量的微观态（microstate）相位空间的某一区域内所花费的时间与该区域的体积成正比，即，所有可进入的微观态在长时间内均是等效的。
+功历假说（ergodic hypothesis）由玻耳兹曼（Ludwig Eduard Boltzmann，1844\~1906）于 1871 年提出，描述了在长时间内，系统在具有相同能量的微观态（microstate）相位空间的某一区域内所花费的时间与该区域的体积成正比，即，所有可进入的微观态在长时间内均是等效的。
 
 = 其他非线性映射
 <其他非线性映射>
