@@ -2,11 +2,28 @@
 import numpy as np
 
 a = np.loadtxt("data14_4.txt")
-f1 = lambda x: x / 8800
-f2 = lambda x: 1 - x / 8000
-f3 = lambda x: (x <= 5.5) + (8 - x) / (8 - 5.5) * ((x > 5.5) & (x < 8))
-f4 = lambda x: 1 - x / 200
-f5 = lambda x: (x - 50) / (1500 - 50)
+
+
+def f1(x):
+    return x / 8800
+
+
+def f2(x):
+    return 1 - x / 8000
+
+
+def f3(x):
+    return (x <= 5.5) + (8 - x) / (8 - 5.5) * ((x > 5.5) & (x < 8))
+
+
+def f4(x):
+    return 1 - x / 200
+
+
+def f5(x):
+    return (x - 50) / (1500 - 50)
+
+
 R = []
 for i in range(len(a)):
     s = "f" + str(i + 1) + "(a[" + str(i) + "])"

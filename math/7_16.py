@@ -29,8 +29,16 @@ ax = plt.axes(projection="3d")  # 创建一个三维坐标轴对象
 ax.plot_surface(x2, y2, zn2, cmap="gist_rainbow")
 
 p0 = np.random.randn(3)  # 拟合参数的初值
-fun = lambda t, x, y: np.exp(-((x - t[0]) ** 2 + (y - t[1]) ** 2) / (2 * t[2] ** 2))
-err = lambda t, x, y, z: fun(t, x, y) - z  # 定义误差向量
+
+
+def fun(t, x, y):
+    return np.exp(-((x - t[0]) ** 2 + (y - t[1]) ** 2) / (2 * t[2] ** 2))
+
+
+def err(t, x, y, z):
+    return fun(t, x, y) - z  # 定义误差向量
+
+
 p2 = least_squares(err, p0, args=(x3, y3, zr))
 print("p2:", p2)
 p3 = leastsq(err, p0, args=(x3, y3, zr))

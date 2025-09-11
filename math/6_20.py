@@ -1,6 +1,5 @@
 # 程序文件 ex6_20.py
 import cvxpy as cp
-import numpy as np
 
 x = cp.Variable(8, pos=True)
 L = [

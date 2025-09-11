@@ -1,6 +1,5 @@
 # 程序文件 ex6_16.py
 import cvxpy as cp
-import networkx as nx
 import numpy as np
 
 L = [

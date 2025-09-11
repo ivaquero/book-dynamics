@@ -1,6 +1,5 @@
 # 程序文件 ex7_6_2.py
 import numpy as np
-import pylab as plt
 
 a = np.loadtxt("data7_6.txt")
 x0 = a[::3].flatten()  # 提出点的横坐标

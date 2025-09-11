@@ -26,7 +26,12 @@ f = pd.ExcelWriter("data5_10.xlsx")  # 创建文件对象
 pd.DataFrame(a0).to_excel(f, "sheet1", index=None)  # 把 a0 写入 Excel 文件
 pd.DataFrame(b0).to_excel(f, "sheet2", index=None)  # 把 b0 写入表单 2
 f.save()
-obj = lambda x: sum(np.abs(x))
+
+
+def obj(x):
+    return sum(np.abs(x))
+
+
 bd = [(-30, 30) for i in range(6)]  # 决策向量的界限
 x0 = 30 * np.random.rand(6)  # 决策变量的初值
 cons = []
