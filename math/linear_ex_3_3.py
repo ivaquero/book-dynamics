@@ -13,6 +13,6 @@ val, vec = eigs(P.T, 1)
 V = vec.real
 V = V.flatten()  # 展开成（n,) 形式的数组
 V = V / V.sum()
-print("V=", np.round(V, 4))
+print(f"V={V}")
 plt.bar(range(1, len(w) + 1), V, width=0.6, color="b")
 plt.show()

@@ -31,7 +31,7 @@ for K in range(1, int(R / 4), 10):
     compress = K * (m + n + 1)
     ratio = (1 - compress / src) * 100  # 计算压缩比率
     CR.append(ratio)
-    print("Rank=%d:K=%d个：ratio=%5.2f" % (R, K, ratio))
+    print(f"Rank={R}:K={K}个：ratio={ratio:.2f}%")
 plt.figure()
 plt.plot(range(1, int(R / 4), 10), CR, "ob-")
 plt.title("奇异值个数与压缩比率的关系")

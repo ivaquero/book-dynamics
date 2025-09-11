@@ -48,8 +48,7 @@ def generate_lhs_matrix(M, hx, hy):  # 定义线性方程组系数矩阵
     A1 = sparse.kron(e1, B).toarray()
     e2 = sparse.diags([np.ones(M), np.ones(M)], [-1, 1], shape=(n, n)).toarray()
     A2 = sparse.kron(e2, C).toarray()
-    mat = A1 + A2
-    return mat
+    return A1 + A2
 
 
 M = 50
