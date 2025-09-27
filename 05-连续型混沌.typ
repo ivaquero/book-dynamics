@@ -1,5 +1,6 @@
 #import "lib/lib.typ": *
 #show: chapter-style.with(title: "连续型混沌", info: info)
+#import "@preview/typsium:0.3.0": ce
 
 = 吸引子
 <吸引子>
