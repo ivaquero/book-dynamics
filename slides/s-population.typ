@@ -2,7 +2,6 @@
 #show: touying-quick.with(
   title: "种群动力学",
   subtitle: "生物建模系列课程第1讲",
-  lang: "zh",
 )
 
 = 背景介绍
