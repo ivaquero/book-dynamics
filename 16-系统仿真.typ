@@ -18,4 +18,7 @@ Eulerian 途径中，空间可是连续的，也可是以单元为单位的离�
 
 Lagrangian 途径从运动物体的角度出发。给出所有感兴趣的物体的位置，作为时间的函数。例如，月球的运动用其轨迹$𝒙(t)$来描述，其中，$𝒙$是一个连续的变量。在一个交通模型中，可给出所有车辆在时间上的位置。
 
-#figure(image("images/ch16/approaches.png", width: 60%), caption: "approaches")
+#figure(
+  image("images/ch16/approaches.png", width: 60%),
+  caption: "approaches",
+)

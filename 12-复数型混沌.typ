@@ -93,7 +93,10 @@ $ z_(n+1) = z_n^2 $
 #let code1 = read("python/ch12_set_julia_sym.py")
 #code(code1)
 
-#figure(image("images/ch12/julia-set.png", width: 80%), caption: "julia set")
+#figure(
+  image("images/ch12/julia-set.png", width: 80%),
+  caption: "julia set",
+)
 
 = Mandelbrot 集
 <Mandelbrot-集>

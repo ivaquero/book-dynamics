@@ -43,7 +43,10 @@ $
        & = -2 t + t^2 / 2 + 3 / 2
 $
 
-#figure(image("images/ch09/step.png", width: 40%), caption: "step")
+#figure(
+  image("images/ch09/step.png", width: 40%),
+  caption: "step",
+)
 
 == 稳定性
 <稳定性>
@@ -98,7 +101,10 @@ $
 - 当$τ = 1.25$时，有一个周期 4 的极限环。
 - 当$τ = 1.5$时，系统显示混沌。
 
-#figure(image("images/ch09/lv-delay.png", width: 60%), caption: "lv delay")
+#figure(
+  image("images/ch09/lv-delay.png", width: 60%),
+  caption: "lv delay",
+)
 
 == MacKey-Glass 方程
 <MacKey-Glass-方程>

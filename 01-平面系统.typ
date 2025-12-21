@@ -321,4 +321,7 @@ $
 
 $ dv(y, x) = frac(x - x^3 + y, y) $
 
-#figure(image("images/ch01/linearization.png", width: 40%), caption: "线性化")
+#figure(
+  image("images/ch01/linearization.png", width: 40%),
+  caption: "线性化",
+)

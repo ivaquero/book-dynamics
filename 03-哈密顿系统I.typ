@@ -39,7 +39,10 @@ $ dot.double(x) + x = ɛ (x^2 - 1) dot(x) $
 
 $ dot.double(x) + x = ɛ x^3 $
 
-#figure(image("images/ch03/eq-duffing.png", width: 60%), caption: "duffing")
+#figure(
+  image("images/ch03/eq-duffing.png", width: 60%),
+  caption: "duffing",
+)
 
 = Hamiltonian 系统
 <Hamiltonian-系统>

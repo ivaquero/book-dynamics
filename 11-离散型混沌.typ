@@ -19,7 +19,10 @@ $
 
 其中，$0 ≤ μ ≤ 2$。帐篷映射由两条直线构造而成，这使得分析比真正的非线性系统更简单。
 
-#figure(image("images/ch11/tent.png", width: 40%), caption: "tent map")
+#figure(
+  image("images/ch11/tent.png", width: 40%),
+  caption: "tent map",
+)
 
 #strong[数值迭代]：由
 
@@ -35,7 +38,10 @@ $ x_(n+1) = T(x_n) $
 #let code1 = read("python/ch11_map_tent_plot.py")
 #code(code1)
 
-#figure(image("images/ch11/cobweb.png", width: 60%), caption: "cobweb")
+#figure(
+  image("images/ch11/cobweb.png", width: 60%),
+  caption: "cobweb",
+)
 
 == 周期 1 固定点
 <周期-1-固定点>
@@ -109,7 +115,10 @@ $ x_(n+1) = f_μ (x_n) $
 
 其中，$f_μ(x) = μ x(1 - x)$。参数$μ$位于区间$[0, 4]$。
 
-#figure(image("images/ch11/logistic.png", width: 40%), caption: "logistic map")
+#figure(
+  image("images/ch11/logistic.png", width: 40%),
+  caption: "logistic map",
+)
 
 与帐篷图一样，对于参数$μ$的不同值，可进行简单的数值和图迭代。为了找到周期
 1 点，有必要求解由以下给出的方程。
@@ -299,7 +308,10 @@ $ 𝑱 = mat(delim: "[", - 2 α x, 1; β, 0) $
 
 定点$𝑨$的特征值为$λ_1 ≈ - 0.28, λ_2 ≈ 1.78$，故，$𝑨$为鞍点。定点$B$的特征值为$λ_1 = -1, λ_2 = 0.5$。因此这个临界点是双曲的。
 
-#figure(image("images/ch11/henon-map.png", width: 60%), caption: "hénon map")
+#figure(
+  image("images/ch11/henon-map.png", width: 60%),
+  caption: "hénon map",
+)
 
 #strong[例]：求 $α = 1.2$和$β = 0.4$时，Hénon 映射的 Lyapunov 指数。
 
