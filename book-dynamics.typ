@@ -24,7 +24,7 @@
 #chapter("14-混沌控制.typ")
 #chapter("15-非线性系统.typ")
 #chapter("16-系统仿真.typ")
-#chapter("A-常微分方程.typ")
-#chapter("B-积分与数值法.typ")
+// #chapter("A-常微分方程.typ")
+// #chapter("B-积分与数值法.typ")
 
 // #bib(main: true)
