@@ -115,7 +115,7 @@ $ div(ψ x) = pdv((ψ P), x) + pdv((ψ Q), y) = 0 $
 == 单项式排序
 <单项式排序>
 
-#theorem(title: "希尔伯特基定理")[
+#theorem(title: ctext("希尔伯特基定理"))[
   若$K$是一个域，则多项式环$K[x]$中的每个理想均是有限生成的。
 ]
 
@@ -192,7 +192,7 @@ $ p = sum_(i=1)^s q_i p_i + r, ∀p ∈ K[x] $
 == Buchberger 算法
 <Buchberger-算法>
 
-#theorem(title: "Buchberger 定理")[
+#theorem(title: ctext("Buchberger 定理"))[
   设$G = { g 1, g 2, …, g s }$是$K[x]$中的一组非零多项式，则$G$是理想$I = P$的 Gröbner 基，当且仅当$∀i ≠ j$。
   $ S (g i, g j) →_G 0 $
 ]

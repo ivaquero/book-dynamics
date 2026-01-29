@@ -9,11 +9,11 @@
 
 在可计算性理论中，Kleene 递归定理（Kleene’s recursion theorems）是关于可计算函数应用于自身描述的一对基本结果。该定理由 Stephen Cole Kleene（1909\~1994）于 1938 年首次证明，并出现在他 1952 年出版的《元数学导论》（Introduction to Metamathematics）一书中。递归定理可应用于构造可计算函数上的某些运算的定点、生成奎因（quine），以及通过递归定义构造函数。
 
-#theorem(title: "第一递归定理")[
+#theorem(title: ctext("第一递归定理"))[
   若$F$和$G$是自然数上的偏函数，记号$F ≃ G$表示，对于每个$n$，$F(n)$和$G(n)$都被定义且等价，否则$F(n)$和$G(n)$均是未定义的。
 ]
 
-#theorem(title: "第二递归定理")[
+#theorem(title: ctext("第二递归定理"))[
   对于任何偏递归函数$Q (x, y)$，存在一个索引$p$，使得$ϕ_p ≃ λ y⋅Q (p, y)$。
 ]
 

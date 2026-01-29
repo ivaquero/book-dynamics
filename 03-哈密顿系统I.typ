@@ -140,7 +140,7 @@ $ lim_(t → ∞) norm(x(t) - x_0(t)) = 0 $
 
 则称为渐近稳定。
 
-#theorem(title: "Lyapunov 定理")[
+#theorem(title: ctext("Lyapunov 定理"))[
   令$E$是$n$的一个开放子集，包含一个孤立的临界点$x_0$。设$f$是连续可微分的，且存在一个连续可微分的函数，如$V(x_0)$，它满足条件。
 
   - $V(x_0) = 0$;

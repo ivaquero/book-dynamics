@@ -204,7 +204,7 @@ $
 
 一个极限环的周期$T$，由$X(t) = x(t + T)$给出，其中$T$是最小周期。
 
-#theorem(title: "Poincaré-Bendixson 定理")[
+#theorem(title: ctext("Poincaré-Bendixson 定理"))[
   设$γ^+$包含在一个有界区域内，其中有有限个临界点，则$Λ^+(γ)$要么是
 
   - 一个单一的临界点。
@@ -276,7 +276,7 @@ $ ∬ D [pdv(P, x) + pdv(Q, y)] dd(x, y) y= ∮_J P dd(y) - Q dd(x) $
 == 两个准则
 <两个准则>
 
-#theorem(title: "Dulac 准则")[
+#theorem(title: ctext("Dulac 准则"))[
   考虑一个环形区域$𝑨$，包含在一个开放集$E$中。若
 
   $ Z_𝑨 = div (ψ 𝑿) = pdv(, x)(ψ P) + pdv(, y)(ψ Q) $
@@ -284,7 +284,7 @@ $ ∬ D [pdv(P, x) + pdv(Q, y)] dd(x, y) y= ∮_J P dd(y) - Q dd(x) $
   其中，$ψ$是连续可微分的，若$Z_A$在$𝑨$中不改变符号，则在$𝑨$中最多有一个完全包含的极限环。
 ]
 
-#theorem(title: "Bendixson 准则")[
+#theorem(title: ctext("Bendixson 准则"))[
   考虑系统，设$D$是一个简单连通的域（$D$中无孔洞），且
 
   $ div (ψ 𝑿) = pdv(, x)(ψ P) + pdv(, y)(ψ Q) ≠ 0 $
