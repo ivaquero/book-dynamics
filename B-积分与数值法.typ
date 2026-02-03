@@ -125,7 +125,7 @@ $ y_i^' ≈ frac(Δ y_i, Δ t) = frac(y_(i + 1) - y_(i -1), 2 Δ t) $
 
 - Taylor 级数展开式
 
-$ tilde(f)(x) = f^'(x) + frac(Δ t^2, 3!) f^″(ξ) $
+$ tilde(f)(x) = f^'(x) + frac(Δ t^2, 3!) f^''(ξ) $
 
 - 算法精度：$𝜊(Δ t^2)$
 
