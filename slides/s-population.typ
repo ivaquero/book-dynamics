@@ -38,7 +38,7 @@
 
   令净增长率$r = b - d$，则
 
-  $ frac(X^′(t), X(t)) = r $
+  $ frac(X^'(t), X(t)) = r $
 
   积分得
 
@@ -170,7 +170,7 @@ $ lim_(x → ∞) X(t) = r / m = K $
   #code(code1)
 
   $
-    X^′ = r X (1 - frac(X, K))(frac(X, a) - 1)
+    X^' = r X (1 - frac(X, K))(frac(X, a) - 1)
   $
   \
   #figure(

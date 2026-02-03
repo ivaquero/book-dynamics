@@ -22,12 +22,12 @@ $ I_l = ∫_l f(x, y, z) dd(s) $
 
 $ x = x(t), y = y(t), z = z(t) $
 
-其中，弧长$s = sqrt(x_t^(′2) + y_t^(′2) + z_t^(′2)) dd(t)$
+其中，弧长$s = sqrt(x_t^('2) + y_t^('2) + z_t^('2)) dd(t)$
 
 则
 
 $
-  I = ∫_(t_m)^(t_M) f [x(t), y(t), z(t)] sqrt(x_t^(′2) + y_t^(′2) + z_t^(′2)) dd(t)
+  I = ∫_(t_m)^(t_M) f [x(t), y(t), z(t)] sqrt(x_t^('2) + y_t^('2) + z_t^('2)) dd(t)
 $
 
 - 坐标积分（$f$为向量）
@@ -105,11 +105,11 @@ $
 
 - 向前差商公式
 
-$ y_i^′ ≈ frac(Δ y_i, Δ t) = frac(y_(i + 1) - y_i, Δ t) $
+$ y_i^' ≈ frac(Δ y_i, Δ t) = frac(y_(i + 1) - y_i, Δ t) $
 
 - 向后差商公式
 
-$ y_i^′ ≈ frac(Δ y_i, Δ t) = frac(y_i - y_(i -1), Δ t) $
+$ y_i^' ≈ frac(Δ y_i, Δ t) = frac(y_i - y_(i -1), Δ t) $
 
 - 算法精度：$𝜊(Δ t)$
 
@@ -121,11 +121,11 @@ $ y_i^′ ≈ frac(Δ y_i, Δ t) = frac(y_i - y_(i -1), Δ t) $
 
 - 公式
 
-$ y_i^′ ≈ frac(Δ y_i, Δ t) = frac(y_(i + 1) - y_(i -1), 2 Δ t) $
+$ y_i^' ≈ frac(Δ y_i, Δ t) = frac(y_(i + 1) - y_(i -1), 2 Δ t) $
 
 - Taylor 级数展开式
 
-$ tilde(f)(x) = f^′(x) + frac(Δ t^2, 3!) f^″(ξ) $
+$ tilde(f)(x) = f^'(x) + frac(Δ t^2, 3!) f^″(ξ) $
 
 - 算法精度：$𝜊(Δ t^2)$
 
@@ -134,7 +134,7 @@ $ tilde(f)(x) = f^′(x) + frac(Δ t^2, 3!) f^″(ξ) $
 
 - 公式
 
-$ y_i^′ ≈ frac(Δ y_i, Δ t) = frac(y_(i + 1) - y_(i -1), 2 Δ t) $
+$ y_i^' ≈ frac(Δ y_i, Δ t) = frac(y_(i + 1) - y_(i -1), 2 Δ t) $
 
 - 算法精度：$𝜊(Δ t^4)$
 

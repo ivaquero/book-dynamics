@@ -75,7 +75,7 @@ $ div(ψ x) = pdv((ψ P), x) + pdv((ψ Q), y) = 0 $
 
   $
     dot(x) & = y - F(G(x)) \
-    dot(y) & = -frac(G^′(x), 2) H(G(x))
+    dot(y) & = -frac(G^'(x), 2) H(G(x))
   $
 
   其中，$F$和$H$是多项式，当$x ≠ 0, g(0) = 0$，且$G(x) = ∫_0^x g(s) dd(s), g(x) "sign"(x) > 0$，原点是一个中心。
