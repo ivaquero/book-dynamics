@@ -25,7 +25,7 @@ def vector_field(X, Y, U, V, ax):
     ax.quiver(X, Y, U, V, M, pivot="mid", cmap=plt.cm.jet)
 
 
-_, (ax, ax2) = plt.subplots(1, 2, figsize=(10, 5), constrained_layout=True)
+_, (ax, ax2) = plt.subplots(1, 2, figsize=(10, 5), constrained_layout=1)
 
 xy_range = [0, 5, 0, 10]
 n_points = 20

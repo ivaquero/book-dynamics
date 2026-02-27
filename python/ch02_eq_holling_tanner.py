@@ -17,7 +17,7 @@ sol = solve_ivp(Holling_Tanner, t_span, z, dense_output=True)
 t = np.linspace(t_span[0], t_span[1], 1000)
 X = sol.sol(t).T
 
-_, axes = plt.subplots(1, 2, constrained_layout=True)
+_, axes = plt.subplots(1, 2, constrained_layout=1)
 
 axes[0].plot(t, X[:, 0], "r-", label="prey")
 axes[0].plot(t, X[:, 1], "b-", label="predator")

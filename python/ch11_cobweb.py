@@ -6,7 +6,7 @@ def logistic_map(X, r):
     return r * X * (1 - X)
 
 
-fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=True)
+fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=1)
 
 r = 4
 X_init = 0.01

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-fig, axes = plt.subplots(1, 2, constrained_layout=True)
+fig, axes = plt.subplots(1, 2, constrained_layout=1)
 ts = np.arange(0, 4, 0.01)
 
 

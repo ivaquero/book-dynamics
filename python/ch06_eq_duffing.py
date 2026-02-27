@@ -36,7 +36,7 @@ z = [1, 0]
 t_span = [0, 1000]
 n_period = (2 * np.pi) / ω
 
-_, axes = plt.subplots(1, 2, constrained_layout=True)
+_, axes = plt.subplots(1, 2, constrained_layout=1)
 
 plot_phase(func=duffing, t_span=t_span, z=z, ax=axes[0])
 plot_poincare(func=duffing, t_span=t_span, z=z, n_period=n_period, ax=axes[1])

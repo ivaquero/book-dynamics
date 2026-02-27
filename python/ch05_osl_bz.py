@@ -20,7 +20,7 @@ sol = solve_ivp(bz_reaction, t_span, xyz_init, args=((q, f, ϵ, δ)), dense_outp
 t = np.linspace(t_span[0], t_span[1], 10000)
 sols = sol.sol(t)
 
-_, axes = plt.subplots(1, 3, constrained_layout=True)
+_, axes = plt.subplots(1, 3, constrained_layout=1)
 
 labels = ["$HBrO_2$", "$Br^-$", "$Ce^{4+}$"]
 linestyles = ["b-", "r-", "m-"]

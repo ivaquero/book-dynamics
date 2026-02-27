@@ -17,7 +17,7 @@ def SIR(t, z, coefs=(0.7, 0.2)):
 t_span = [0, 50]
 t = np.linspace(t_span[0], t_span[1], 5000)
 
-_, axes = plt.subplots(1, 3, constrained_layout=True)
+_, axes = plt.subplots(1, 3, constrained_layout=1)
 
 sir_inits = [[9999, 1, 0], [9900, 100, 0], [5000, 5000, 0]]
 
