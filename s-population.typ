@@ -1,4 +1,4 @@
-#import "slides.typ": *
+#import "lib/lib.typ": *
 #show: touying-quick.with(
   title: "种群动力学",
   subtitle: "生物建模系列课程第1讲",
@@ -20,7 +20,7 @@
     - 生态网络模型
 
   #figure(
-    image("img/fermenter.png", width: 100%),
+    image("images/slides/fermenter.png", width: 100%),
     caption: none,
   )
 ])
@@ -47,7 +47,7 @@
   其中，$X(0)$为初始种群
 
   #figure(
-    image("img/malthus.png", width: 60%),
+    image("images/slides/malthus.png", width: 60%),
     caption: none,
   )
 ])
@@ -63,7 +63,7 @@
   - 导致不切实际的悲观结论
 
   #figure(
-    image("img/malthusian.png", width: 80%),
+    image("images/slides/malthusian.png", width: 80%),
     caption: none,
   )
 ])
@@ -114,7 +114,7 @@ $ lim_(x → ∞) X(t) = r / m = K $
   $
 
   #figure(
-    image("img/logistic.png", width: 80%),
+    image("images/slides/logistic.png", width: 80%),
     caption: none,
   )
 ])
@@ -135,9 +135,9 @@ $ lim_(x → ∞) X(t) = r / m = K $
   - $X = 0$（不稳定平衡点）
   - $X = K$（稳定平衡点）
 
-  #figure(image("img/logistic-fixed.png", width: 100%), caption: none),
+  #figure(image("images/slides/logistic-fixed.png", width: 100%), caption: none),
   #figure(
-    image("img/fixed-stability.png", width: 90%),
+    image("images/slides/fixed-stability.png", width: 90%),
     caption: none,
   )
 ])
@@ -155,7 +155,7 @@ $ lim_(x → ∞) X(t) = r / m = K $
     - 考虑了环境限制
 
   #figure(
-    image("img/logistic2.png", width: 120%),
+    image("images/slides/logistic2.png", width: 120%),
     caption: none,
   )
 ])
@@ -166,7 +166,7 @@ $ lim_(x → ∞) X(t) = r / m = K $
   - Allée 效应
   - 编程实践
 
-  #let code1 = read("../python/ch02_eq_logistic.py")
+  #let code1 = read("python/ch02_eq_logistic.py")
   #code(code1)
 
   $
@@ -174,7 +174,7 @@ $ lim_(x → ∞) X(t) = r / m = K $
   $
   \
   #figure(
-    image("img/allee-fixed.png", width: 100%),
+    image("images/slides/allee-fixed.png", width: 100%),
     caption: none,
   )
 ])
