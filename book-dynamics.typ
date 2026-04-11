@@ -26,5 +26,4 @@
 #chapter("16-系统仿真.typ")
 // #chapter("A-常微分方程.typ")
 // #chapter("B-积分与数值法.typ")
-
-// #bib(main: true)
+// #chapter("C-微积分技术.typ")

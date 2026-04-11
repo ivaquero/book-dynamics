@@ -61,7 +61,6 @@
     tableq(lagrange, 6),
     // caption: "5个点的坐标",
     supplement: [表],
-    kind: table,
   )
 
   $
@@ -111,7 +110,6 @@ $
   tableq(lagrange, 6),
   // caption: "5个点的坐标",
   supplement: [表],
-  kind: table,
 )
 
 == 插值多项式
