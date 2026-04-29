@@ -25,7 +25,7 @@ stable_y = []
 unstable_x = []
 unstable_y = []
 
-for ri, x in zip(r, X):
+for ri, x in zip(r, X, strict=True):
     if stablity(x, ri):
         stable_x.append(ri)
         stable_y.append(x)

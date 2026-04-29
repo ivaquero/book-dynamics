@@ -1,5 +1,5 @@
 import numpy as np
-from sympy import *
+from sympy import I, im, re, sqrt
 
 a, b = -0.5, 0.3
 k = 15

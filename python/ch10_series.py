@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from sympy import *
+from sympy import Derivative, Eq, Function, Symbol, dsolve, lambdify
 
 x = Function("x")
 t = Symbol("t")

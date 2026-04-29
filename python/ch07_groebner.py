@@ -1,5 +1,4 @@
-from sympy import groebner
-from sympy import symbols
+from sympy import groebner, symbols
 
 x = symbols("x")
 y = symbols("y")

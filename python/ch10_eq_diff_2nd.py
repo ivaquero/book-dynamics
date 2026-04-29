@@ -1,4 +1,4 @@
-from sympy import *
+from sympy import Function, rsolve, symbols
 
 x = Function("x")
 n = symbols("n")

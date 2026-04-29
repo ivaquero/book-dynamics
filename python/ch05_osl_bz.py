@@ -25,7 +25,9 @@ _, axes = plt.subplots(1, 3, constrained_layout=1)
 labels = ["$HBrO_2$", "$Br^-$", "$Ce^{4+}$"]
 linestyles = ["b-", "r-", "m-"]
 
-for ax, sol, label, linestyle in zip(axes.flatten(), sols, labels, linestyles):
+for ax, sol, label, linestyle in zip(
+    axes.flatten(), sols, labels, linestyles, strict=True
+):
     ax.set(ylabel=f"relative concentration of {label}")
     ax.plot(t, sol, linestyle)
 

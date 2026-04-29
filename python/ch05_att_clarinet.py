@@ -13,8 +13,8 @@ def clarinet(t, z, a=1):
 
 def arrows(x, y):
     dx, dy = [], []
-    for x, y in zip(x, y):
-        ver = clarinet(t=0, z=[x, y])
+    for x_, y_ in zip(x, y, strict=True):
+        ver = clarinet(t=0, z=[x_, y_])
         dx.append(ver[0])
         dy.append(ver[1])
 

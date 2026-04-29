@@ -1,4 +1,4 @@
-from sympy import *
+from sympy import Eq, Function, dsolve, symbols
 
 t = symbols("t")
 r = symbols("r")

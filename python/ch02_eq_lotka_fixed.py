@@ -1,4 +1,4 @@
-from sympy import *
+from sympy import Matrix, simplify, solve, symbols
 
 x, y = symbols("x y", negative=False)
 β, γ, c, d = symbols("β γ c d")

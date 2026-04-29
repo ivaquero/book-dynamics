@@ -1,4 +1,4 @@
-from sympy import *
+from sympy import LM, LT, expand, lcm, symbols
 
 
 def s_polynomial(f, g):

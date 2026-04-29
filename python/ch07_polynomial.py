@@ -1,5 +1,4 @@
-from sympy import reduced
-from sympy import symbols
+from sympy import reduced, symbols
 
 x, y, z = symbols("x y z")
 f = x**4 + y**4 + z**4

@@ -1,4 +1,4 @@
-from sympy import *
+from sympy import Matrix, solve, symbols
 
 x, y, N = symbols("x, y, N")
 ϕ, ω = 0.2, 6 / 7

@@ -39,10 +39,8 @@ def bifurcation(a_values=None, h_values=None, x_values=None):
             x_list = [
                 x_values[i + 1]
                 for i in range(len(values) - 1)
-                if values[i] <= 0
-                and values[i + 1] >= 0
-                or values[i] >= 0
-                and values[i + 1] <= 0
+                if (values[i] <= 0 and values[i + 1] >= 0)
+                or (values[i] >= 0 and values[i + 1] <= 0)
             ]
 
             null_points = np.zeros(len(x_list))

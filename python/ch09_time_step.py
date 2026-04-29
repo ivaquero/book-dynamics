@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from sympy import *
+from sympy import integrate, lambdify, symbols
 
 ξ, t, i = symbols("xi t i")
 
