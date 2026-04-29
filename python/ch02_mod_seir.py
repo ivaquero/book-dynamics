@@ -26,7 +26,7 @@ t = np.linspace(t_span[0], t_span[1], 5000)
 
 _, ax = plt.subplots()
 
-for seir_init, ρ in zip(seir_inits, ρs):
+for seir_init, ρ in zip(seir_inits, ρs, strict=True):
     sol = solve_ivp(lambda t, z: SEIR(t, z, _), t_span, seir_init, dense_output=True)
     X = sol.sol(t).T
     S, i, E, R = X[:, 0], X[:, 1], X[:, 2], X[:, 3]
