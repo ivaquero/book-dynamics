@@ -2,15 +2,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
-
-def derivatives(t, z):
-    x, y = z
-    return [-y - x * np.sqrt(x**2 + y**2), x - y * np.sqrt(x**2 + y**2)]
-
+from .dynamics.attractors import poincare_derivatives
 
 t_span = [0, 16 * np.pi]
 z = [1, 0]
-sol = solve_ivp(derivatives, t_span, z, dense_output=True)
+sol = solve_ivp(poincare_derivatives, t_span, z, dense_output=True)
 
 t = np.linspace(t_span[0], t_span[1], 10000)
 X = sol.sol(t).T

@@ -2,13 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
+from .dynamics.attractors import duffing
+
 α, β, ω, γ = 1, -1, 1.25, 0.5
 k = 0.3
-
-
-def duffing(t, z):
-    x, y = z
-    return [y, -k * y - β * x - α * x**3 + γ * np.cos(ω * t)]
 
 
 def plot_phase(func, t_span, z, ax):

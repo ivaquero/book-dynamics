@@ -1,16 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from .dynamics.attractors import mckey_glass
 from .ode.integrators import euler_delay
 
 n_list = np.arange(0, 0.5, 0.01)
 τ_list = np.arange(0, 0.5, 0.01)
 ts = np.arange(0, 10, 0.01)
 L, Vmax = 6, 16
-
-
-def mckey_glass(X, X_τ, n):
-    return L - (Vmax * X_τ**n) / (1 + X_τ**n) * X
 
 
 def oscillation(X_init, n, τ, period=len(ts), step_size=0.01):

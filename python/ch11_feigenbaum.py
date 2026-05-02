@@ -1,10 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-def f(x, r):
-    return r * x * (1 - x)
-
+from .dynamics.attractors import logistic_map
 
 ys = []
 rs = np.linspace(0, 4, 2_000)
@@ -12,9 +9,9 @@ rs = np.linspace(0, 4, 2_000)
 for r in rs:
     x = 0.1
     for _ in range(500):
-        x = f(x, r)
+        x = logistic_map(x, r)
     for _ in range(50):
-        x = f(x, r)
+        x = logistic_map(x, r)
         ys.append([r, x])
 
 ys = np.array(ys)

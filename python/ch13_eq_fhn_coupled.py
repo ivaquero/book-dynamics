@@ -1,24 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from .dynamics.attractors import FHN_coupled
 from .ode.integrators import euler, euler_fixed
 
 ts = np.arange(0, 4, 0.01)
 
 v_1, w_1, v_2, w_2, i_ext = euler([1, 1.20, 0.025])
-
-
-def FHN_coupled(Z, I_ext, R=45, a=0.1, γ=0.5, ϵ=0.008):
-    V_1, w_1, V_2, w_2 = Z
-    I_c21 = (V_2 - V_1) / R
-    I_c12 = (V_1 - V_2) / R
-
-    V_1_ = (1 / ϵ) * (-w_1 + V_1 * (1 - V_1) * (V_1 - a) + I_c21 + I_ext)
-    w_1_ = V_1 - γ * w_1
-    V_2_ = (1 / ϵ) * (-w_2 + V_2 * (1 - V_2) * (V_2 - a) + I_c12)
-    w_2_ = V_2 - γ * w_2
-
-    return [V_1_, w_1_, V_2_, w_2_]
 
 
 def run_coupled(start_puls, stop_puls, recover_puls):

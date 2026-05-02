@@ -1,10 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-def logistic_map(X, r):
-    return r * X * (1 - X)
-
+from .dynamics.attractors import logistic_map
 
 fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=1)
 

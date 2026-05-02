@@ -1,13 +1,7 @@
 import matplotlib.pyplot as plt
 
+from .dynamics.attractors import clarinet
 from .ode.integrators import euler_fixed
-
-
-def derivatives(X, V):
-    u = V
-    v = -X - (V**3 - V)
-    return [u, v]
-
 
 _, ax = plt.subplots()
 
@@ -18,7 +12,7 @@ periods = [150, 80]
 for xy_init, step_size, period in zip(xy_inits, step_sizes, periods, strict=True):
     # wrapper to accept (t, z) signature
     def f(t, z):
-        return derivatives(z[0], z[1])
+        return clarinet(t, z, a=1)
 
     traj, t = euler_fixed(f, xy_init, step_size, period)
     x = traj[:, 0]

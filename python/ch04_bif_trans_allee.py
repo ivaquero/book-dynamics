@@ -1,17 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .dynamics.bifurcations import allee
-
-
-def stablity(X_init, a):
-    perturbation = 0.01
-    time_interval = 0.01
-    X = X_init + perturbation
-    for _ in range(100):
-        X += time_interval * allee(X, a)
-    return abs(X - X_init) <= perturbation
-
+from .dynamics.bifurcations import allee, arrows_param, stablity
 
 x_range = [1, 2000]
 interval = 1
@@ -24,21 +14,21 @@ zero_x_stable, zero_y_stable = [], []
 zero_x_unstable, zero_y_unstable = [], []
 
 for a in a_array:
-    if stablity(a, a):
+    if stablity(a, allee, a):
         stable_x.append(a)
         stable_y.append(a)
     else:
         unstable_x.append(a)
         unstable_y.append(a)
 
-    if stablity(1000, a):
+    if stablity(1000, allee, a):
         stable_x.append(a)
         stable_y.append(1000)
     else:
         unstable_x.append(a)
         unstable_y.append(1000)
 
-    if stablity(0, a):
+    if stablity(0, allee, a):
         zero_x_stable.append(a)
         zero_y_stable.append(0)
     else:
@@ -70,9 +60,9 @@ def arrows(a, X, head_width=50, head_length=75):
         )
 
 
-arrows(300, [-50, 100, 500, 1200])
-arrows(500, [-50, 100, 500, 1200])
-arrows(1200, [-50, 250, 1110, 1500])
+arrows_param(ax, 300, [-50, 100, 500, 1200], allee)
+arrows_param(ax, 500, [-50, 100, 500, 1200], allee)
+arrows_param(ax, 1200, [-50, 250, 1110, 1500], allee)
 ax.set(xlabel="a", ylabel="X")
 ax.legend(loc="right")
 plt.show()

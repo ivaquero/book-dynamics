@@ -2,13 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
+from .dynamics.attractors import duffing
+
 α, β, ω, γ = 1, -1, 1.25, 0.5
 k = 0.3
-
-
-def duffing(t, z):
-    x, y = z
-    return [y, -k * y - β * x - α * x**3 + γ * np.cos(ω * t)]
 
 
 n_period = (4 * np.pi) / ω
@@ -24,7 +21,12 @@ ns = np.linspace(0, n_steps, n_steps)
 # Ramp the amplitude of vibration, γ, up.
 for n in ns:
     γ = step * n
-    sol = solve_ivp(duffing, t_span, z, dense_output=True)
+    sol = solve_ivp(
+        lambda t, z: duffing(t, z, α=α, β=β, ω=ω, γ=γ, k=k),
+        t_span,
+        z,
+        dense_output=True,
+    )
     X1 = sol.sol(t).T
 
     for _ in range(2):
@@ -36,7 +38,12 @@ for n in ns:
 # Ramp the amplitude of vibration, γ, down.
 for n in ns:
     γ = γ_max - step * n
-    sol = solve_ivp(duffing, t_span, z, dense_output=True)
+    sol = solve_ivp(
+        lambda t, z: duffing(t, z, α=α, β=β, ω=ω, γ=γ, k=k),
+        t_span,
+        z,
+        dense_output=True,
+    )
     X2 = sol.sol(t).T
 
     for _ in range(2):

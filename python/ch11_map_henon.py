@@ -1,15 +1,10 @@
 import matplotlib.pyplot as plt
 
+from .dynamics.attractors import henon
+
 a = 1.2  # Set a= 1 to get Figure 14.23(a)
 b = 0.4
 num_iterations = 10000
-
-
-def henon(X):
-    x, y = X
-    xn = 1 - a * x * x + y
-    yn = b * x
-    return xn, yn
 
 
 X0 = [(1 - b) / 2, (1 - b) / 2]

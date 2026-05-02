@@ -1,15 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from .dynamics.attractors import collins
 from .ode.field_2d import gen_mesh, vector_field
-
-
-def collins(t, z):
-    A, B = z
-    u = 5 / (1 + B**4) - A
-    v = 5 / (1 + A**4) - B
-    return [u, v]
-
 
 xy_range = [0, 5, 0, 5]
 n_points = 10

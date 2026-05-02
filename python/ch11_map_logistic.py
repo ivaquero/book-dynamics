@@ -1,10 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-def logistic_map(X, r):
-    return r * X * (1 - X)
-
+from .dynamics.attractors import logistic_map
 
 T = np.arange(0, 500, 1)
 X = np.zeros(500)

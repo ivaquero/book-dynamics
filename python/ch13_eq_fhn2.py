@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from .dynamics.attractors import FHN
 from .ode.integrators import euler, euler_fixed
 
 v, w, i_ext = euler(cond=[0, 4, 0.01])
@@ -8,17 +9,10 @@ fig, axes = plt.subplots(1, 2, constrained_layout=1)
 ts = np.arange(0, 4, 0.01)
 
 
-def FHN(V, w, i, a=0.1, γ=1, ϵ=0.01):
-    V_ = (1 / ϵ) * (-w + V * (1 - V) * (V - a) + i)
-    w_ = V - γ * w
-    return [V_, w_]
-
-
 def run_fhn(start_puls, stop_puls, recover_puls):
     def f(t, z):
-        V, w = z
         i_ext = recover_puls if start_puls <= t <= stop_puls else 0
-        return FHN(V, w, i_ext)
+        return FHN(t, z, I_ext=i_ext)
 
     step = ts[1] - ts[0]
     traj, times = euler_fixed(f, [0, 0], step, len(ts))
