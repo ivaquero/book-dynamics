@@ -1,9 +1,9 @@
-v, w, i_ext = euler(cond=[0, 4, 0.01])
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .ode.integrators import euler_fixed
+from .ode.integrators import euler, euler_fixed
 
+v, w, i_ext = euler(cond=[0, 4, 0.01])
 fig, axes = plt.subplots(1, 2, constrained_layout=1)
 ts = np.arange(0, 4, 0.01)
 

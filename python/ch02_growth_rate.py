@@ -12,12 +12,6 @@ def lotka_volterra(t, z, coefs=None):
     return [a * x - b * x * y, -c * y + d * x * y]
 
 
-# Use shared `gen_mesh` and `vector_field` from `ode.field_2d`
-
-
-# Use shared explicit Euler integrator from ode.integrators
-
-
 xy_range = [0, 100, 0, 100]
 n_points = 15
 

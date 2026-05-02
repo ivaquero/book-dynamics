@@ -1,10 +1,11 @@
-v_1, w_1, v_2, w_2, i_ext = euler([1, 1.20, 0.025])
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .ode.integrators import euler_fixed
+from .ode.integrators import euler, euler_fixed
 
 ts = np.arange(0, 4, 0.01)
+
+v_1, w_1, v_2, w_2, i_ext = euler([1, 1.20, 0.025])
 
 
 def FHN_coupled(Z, I_ext, R=45, a=0.1, γ=0.5, ϵ=0.008):

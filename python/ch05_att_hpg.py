@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
+from .ode.integrators import euler_fixed
+
 fig = plt.figure()
 ax = fig.add_subplot(121, projection="3d")
 

@@ -19,6 +19,8 @@
 # Jupyter Notebook
 .ipynb_checkpoints
 
+__pycache__
+
 ### Extra ###
 *.pdf
 test.*
