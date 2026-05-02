@@ -2,13 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
-
-def Holling_Tanner(t, z):
-    x, y = z
-    u = x * (1 - x / 7) - 6 / 7 * x * y / (1 + x)
-    v = 0.2 * y * (1 - 0.5 * y / x)
-    return [u, v]
-
+from .dynamics.attractors import Holling_Tanner
 
 t_span = [0, 200]
 z = [7, 0.1]

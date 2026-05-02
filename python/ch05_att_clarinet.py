@@ -3,33 +3,7 @@ import numpy as np
 from matplotlib.animation import FuncAnimation
 from scipy.integrate import solve_ivp
 
-
-def clarinet(t, z, a=1):
-    X, V = z
-    u = V
-    v = -X - (a * V**3 - V)
-    return [u, v]
-
-
-def arrows(x, y):
-    dx, dy = [], []
-    for x_, y_ in zip(x, y, strict=True):
-        ver = clarinet(t=0, z=[x_, y_])
-        dx.append(ver[0])
-        dy.append(ver[1])
-
-    m = np.hypot(dx, dy)
-
-    for i in range(1, len(x), 50):
-        ax.arrow(
-            x[i],
-            y[i],
-            dx[i] / m[i] / 30,
-            dy[i] / m[i] / 30,
-            head_width=0.05,
-            color="black",
-        )
-
+from .dynamics.attractors import clarinet
 
 θs = np.linspace(0, 2 * np.pi, 5)
 coordinates = []
@@ -60,6 +34,9 @@ def animate(i):
         X = sol.sol(t).T
         x, y = X[:, 0], X[:, 1]
         ax.plot(x, y)
+
+    # optional arrows overlay
+    # arrows(ax, x, y, a=a_list[i])
 
     ax.set(title=f"a={a_list[i]}")
 

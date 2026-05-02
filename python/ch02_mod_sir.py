@@ -2,17 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
-
-def SIR(t, z, coefs=(0.7, 0.2)):
-    population = 10000
-    β, γ = coefs
-    S, II, _ = z
-    u = -1 * β * S * II / population
-    v = β * S * II / population - γ * II
-    w = γ * II
-
-    return [u, v, w]
-
+from .dynamics.attractors import SIR
 
 t_span = [0, 50]
 t = np.linspace(t_span[0], t_span[1], 5000)

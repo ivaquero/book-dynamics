@@ -1,9 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-def lac(X, a, r):
-    return (a + X**2) / (1 + X**2) - r * X
+from .dynamics.bifurcations import lac
 
 
 def stablity(X_init, r):

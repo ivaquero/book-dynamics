@@ -2,13 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import brentq
 
+from .dynamics.bifurcations import opinion
+
 a = 1.3
 x = np.arange(-1, 1, 0.01)
-
-
-def opinion(X, a):
-    return (1 - X) * np.exp(a * X) - (1 + X) * np.exp(-a * X)
-
 
 _, ax = plt.subplots()
 
@@ -20,15 +17,9 @@ ax.plot(x, values)
 ax.plot(x, zeros)
 
 null_points = np.zeros(3)
-null_points[0] = brentq(
-    lambda X: (1 - X) * np.exp(a * X) - (1 + X) * np.exp(-a * X), -1, -0.5
-)
-null_points[1] = brentq(
-    lambda X: (1 - X) * np.exp(a * X) - (1 + X) * np.exp(-a * X), -0.5, 0.5
-)
-null_points[2] = brentq(
-    lambda X: (1 - X) * np.exp(a * X) - (1 + X) * np.exp(-a * X), 0.5, 1
-)
+null_points[0] = brentq(lambda X: opinion(X, a), -1, -0.5)
+null_points[1] = brentq(lambda X: opinion(X, a), -0.5, 0.5)
+null_points[2] = brentq(lambda X: opinion(X, a), 0.5, 1)
 
 idx = np.argwhere(np.diff(np.sign(values - 0))).flatten()
 

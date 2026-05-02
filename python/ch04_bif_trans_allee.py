@@ -1,9 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-def allee(X, a):
-    return 0.1 * X * (1 - X / 1000) * (X / a - 1)
+from .dynamics.bifurcations import allee
 
 
 def stablity(X_init, a):

@@ -1,16 +1,8 @@
 import matplotlib.pyplot as plt
 
+from .dynamics.attractors import lotka_volterra
 from .ode.field_2d import gen_mesh, vector_field
 from .ode.integrators import euler_fixed
-
-
-def lotka_volterra(t, z, coefs=None):
-    if coefs is None:
-        coefs = [0.5, 0.01, 0.2, 0.005]
-    x, y = z
-    a, b, c, d = coefs
-    return [a * x - b * x * y, -c * y + d * x * y]
-
 
 xy_range = [0, 100, 0, 100]
 n_points = 15
@@ -28,7 +20,9 @@ period = 10000
 
 for ind, step in enumerate(step_sizes):
     # wrapper keeps signature f(t, z)
-    f = lambda t, z: lotka_volterra(t, z)
+    def f(t, z):
+        return lotka_volterra(t, z)
+
     traj, times = euler_fixed(f, xy_init, step, period)
     x = traj[:, 0]
     y = traj[:, 1]

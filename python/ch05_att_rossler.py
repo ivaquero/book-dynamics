@@ -1,15 +1,7 @@
 import matplotlib.pyplot as plt
 
+from .dynamics.attractors import rossler
 from .ode.integrators import euler_fixed
-
-
-def rossler(t, state, a=0.2, b=0.2, c=6.3):
-    x, y, z = state
-    x_dot = -y - z
-    y_dot = x + a * y
-    z_dot = b + x * z - c * z
-    return [x_dot, y_dot, z_dot]
-
 
 dt = 0.01
 step_count = 50000

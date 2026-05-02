@@ -2,14 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
+from .dynamics.attractors import lotka_volterra
 from .ode.field_2d import gen_mesh, vector_field
-
-
-def lotka_volterra(t, z, coefs):
-    x, y = z
-    a, b, c, d = coefs
-    return [a * x - b * x * y, -c * y + d * x * y]
-
 
 # Use shared `gen_mesh` and `vector_field` from `ode.field_2d`
 

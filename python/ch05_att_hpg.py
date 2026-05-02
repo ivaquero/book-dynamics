@@ -2,19 +2,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
+from .dynamics.attractors import HPG, HPG2
 from .ode.integrators import euler_fixed
 
 fig = plt.figure()
 ax = fig.add_subplot(121, projection="3d")
-
-
-def HPG(t, init):
-    P, H, G = init
-    h = 1 / (1 + G**9) - 0.2 * H
-    p = H - 0.2 * P
-    g = P - 0.2 * G
-    return [p, h, g]
-
 
 xyz_init = [1, 0.2, 2]
 step_size, period = 0.1, 1000
@@ -37,13 +29,6 @@ for i in range(100, 1000, 400):
 
 ax.plot(x, y, z, label="Limit Cycle of HPG", color="r")
 ax.legend()
-
-
-def HPG2(t, init):
-    H, G = init
-    h = 1 / (1 + G**9) - 0.2 * H
-    g = H - 0.2 * G
-    return [h, g]
 
 
 ax2 = fig.add_subplot(122)

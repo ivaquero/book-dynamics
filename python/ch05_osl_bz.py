@@ -2,14 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
-
-def bz_reaction(t, X, q, f, ϵ, δ):
-    x, y, z = X
-    dx = (q * y - x * y + x * (1 - x)) / ϵ
-    dy = (-q * y - x * y + f * z) / δ
-    dz = x - z
-    return (dx, dy, dz)
-
+from .dynamics.attractors import bz_reaction
 
 q, f, ϵ, δ = 3.1746e-5, 1, 0.0099, 2.4802e-5
 xyz_init = [0, 0, 0.1]

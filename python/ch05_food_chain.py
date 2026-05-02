@@ -2,18 +2,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
+from .dynamics.attractors import food_chain
+
 a1, a2 = 5, 0.1
 b1, b2 = 3, 2
 d1, d2 = 0.4, 0.01
-
-
-def food_chain(t, init0):
-    X, Y, Z = init0
-    dX = X * (1 - X) - a1 * X / (1 + b1 * X) * Y
-    dY = a1 * X / (1 + b1 * X) * Y - d1 * Y - a2 * Y / (1 + b2 * Y) * Z
-    dZ = a2 * Y / (1 + b2 * Y) * Z - d2 * Z
-    return [dX, dY, dZ]
-
 
 t_span = [0, 400]
 t = np.linspace(t_span[0], t_span[1], 1000)
