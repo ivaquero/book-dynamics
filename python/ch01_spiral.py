@@ -9,11 +9,13 @@ xy_inits = [[0, 0.1], [1.2, 1.2]]
 step_sizes = [0.1, 0.1]
 periods = [150, 80]
 
-for xy_init, step_size, period in zip(xy_inits, step_sizes, periods, strict=True):
-    # wrapper to accept (t, z) signature
-    def f(t, z):
-        return clarinet(t, z, a=1)
 
+# wrapper to accept (t, z) signature
+def f(t, z):
+    return clarinet(t, z, a=1)
+
+
+for xy_init, step_size, period in zip(xy_inits, step_sizes, periods, strict=True):
     traj, t = euler_fixed(f, xy_init, step_size, period)
     x = traj[:, 0]
     y = traj[:, 1]

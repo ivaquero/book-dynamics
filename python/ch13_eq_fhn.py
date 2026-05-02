@@ -9,9 +9,9 @@ ts = np.arange(0, 4, 0.01)
 
 
 def run_fhn(start_puls, stop_puls, recover_puls):
-    def f(t, z):
-        i_ext = recover_puls if start_puls <= t <= stop_puls else 0
-        return FHN(t, z, I_ext=i_ext)
+    f = lambda t, z: FHN(
+        t, z, I_ext=(recover_puls if start_puls <= t <= stop_puls else 0)
+    )
 
     step = ts[1] - ts[0]
     traj, times = euler_fixed(f, [0, 0], step, len(ts))

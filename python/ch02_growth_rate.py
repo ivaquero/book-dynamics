@@ -20,8 +20,7 @@ period = 10000
 
 for ind, step in enumerate(step_sizes):
     # wrapper keeps signature f(t, z)
-    def f(t, z):
-        return lotka_volterra(t, z)
+    f = lambda t, z: lotka_volterra(t, z)
 
     traj, times = euler_fixed(f, xy_init, step, period)
     x = traj[:, 0]

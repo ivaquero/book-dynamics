@@ -10,9 +10,9 @@ v_1, w_1, v_2, w_2, i_ext = euler([1, 1.20, 0.025])
 
 
 def run_coupled(start_puls, stop_puls, recover_puls):
-    def f(t, z):
-        i_ext = recover_puls if start_puls <= t <= stop_puls else 0
-        return FHN_coupled(z, i_ext)
+    f = lambda t, z: FHN_coupled(
+        z, (recover_puls if start_puls <= t <= stop_puls else 0)
+    )
 
     step = ts[1] - ts[0]
     traj, times = euler_fixed(f, [0, 0, 0, 0], step, len(ts))

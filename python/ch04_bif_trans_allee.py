@@ -45,21 +45,6 @@ ax.plot(
 )
 
 
-def arrows(a, X, head_width=50, head_length=75):
-    ax.vlines(a, 0, 2000, color="black")
-    for x in X:
-        points_at = allee(x, a)
-        ax.arrow(
-            a,
-            x,
-            0,
-            points_at,
-            head_width=head_width,
-            head_length=head_length,
-            color="black",
-        )
-
-
 arrows_param(ax, 300, [-50, 100, 500, 1200], allee)
 arrows_param(ax, 500, [-50, 100, 500, 1200], allee)
 arrows_param(ax, 1200, [-50, 250, 1110, 1500], allee)

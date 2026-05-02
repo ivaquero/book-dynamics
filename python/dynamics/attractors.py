@@ -83,11 +83,20 @@ def Holling_Tanner(t, z, K=7, α=6 / 7, c=0.2):
 
 def SIR(t, z, coefs=(0.7, 0.2), population=10000):
     β, γ = coefs
-    S, II, R = z
+    S, II, _ = z
     u = -β * S * II / population
     v = β * S * II / population - γ * II
     w = γ * II
     return [u, v, w]
+
+
+def SEIR(t, z, ρ, population=1000000, α=0.2, β=0.266, γ=1 / 14):
+    S, E, II, _ = z
+    u = -ρ * β * S * II / population
+    v = ρ * β * S * II / population - α * E
+    w = α * E - γ * II
+    r = γ * II
+    return [u, v, w, r]
 
 
 def duffing(t, z, α=1, β=-1, ω=1.25, γ=0.5, k=0.3):

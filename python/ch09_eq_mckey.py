@@ -11,17 +11,7 @@ n_list = np.arange(1, 10, 1)
 L, Vmax = 6, 16
 
 
-def euler(X_init, n, τ=0.2, period=len(ts), step_size=0.01):
-    # use shared delay integrator
-    x_arr = euler_delay(
-        lambda X, X_tau: mckey_glass(X, X_tau, n),
-        X_init,
-        step_size,
-        period,
-        τ,
-        history_value=0.5,
-    )
-    return x_arr
+# thin wrapper removed; use `euler_delay` directly in `animate`
 
 
 fig, ax = plt.subplots()
@@ -30,7 +20,8 @@ fig, ax = plt.subplots()
 def animate(i):
     ax.clear()
     ax.set(xlim=(0, 10), ylim=(0, 4), xlabel="time", title=f"n={n_list[i]}")
-    X = euler(2, n_list[i])
+    func = lambda X, X_tau: mckey_glass(X, X_tau, n_list[i])
+    X = euler_delay(func, 2, 0.01, len(ts), τ, history_value=0.5)
     ax.plot(ts, X)
 
 
