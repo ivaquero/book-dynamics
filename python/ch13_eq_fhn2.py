@@ -1,5 +1,8 @@
+v, w, i_ext = euler(cond=[0, 4, 0.01])
 import matplotlib.pyplot as plt
 import numpy as np
+
+from .ode.integrators import euler_fixed
 
 fig, axes = plt.subplots(1, 2, constrained_layout=1)
 ts = np.arange(0, 4, 0.01)
@@ -11,33 +14,27 @@ def FHN(V, w, i, a=0.1, γ=1, ϵ=0.01):
     return [V_, w_]
 
 
-def euler(cond, step_size=0.01, period=len(ts)):
-    start_puls, stop_puls, recover_puls = cond
-    v, w = [], []
-    i_ext = []
-    V, W = 0, 0
-    for _ in ts:
-        v.append(V)
-        w.append(W)
-        if start_puls <= ts <= stop_puls:
-            V += step_size * FHN(v[-1], w[-1], recover_puls)[0]
-            W += step_size * FHN(v[-1], w[-1], recover_puls)[1]
-            i_ext.append(recover_puls)
-        else:
-            V += step_size * FHN(v[-1], w[-1], 0)[0]
-            W += step_size * FHN(v[-1], w[-1], 0)[1]
-            i_ext.append(0)
+def run_fhn(start_puls, stop_puls, recover_puls):
+    def f(t, z):
+        V, w = z
+        i_ext = recover_puls if start_puls <= t <= stop_puls else 0
+        return FHN(V, w, i_ext)
+
+    step = ts[1] - ts[0]
+    traj, times = euler_fixed(f, [0, 0], step, len(ts))
+    v = traj[:, 0]
+    w = traj[:, 1]
+    i_ext = [recover_puls if start_puls <= tt <= stop_puls else 0 for tt in times]
     return v, w, i_ext
 
 
-v, w, i_ext = euler(cond=[0, 4, 0.01])
+v, w, i_ext = run_fhn(0, 4, 0.01)
 axes[0].set(xlim=(0, 4), ylim=(-0.35, 1), title="constant $I_{ext} = 0.01$")
 axes[0].plot(ts, v, label="neuron")
 axes[0].plot(ts, i_ext, label="flow", color="r")
-axes[0].set()
 axes[0].legend()
 
-v_, w_, i_ext_ = euler(cond=[0, 4, 0.2])
+v_, w_, i_ext_ = run_fhn(0, 4, 0.2)
 axes[1].set(xlim=(0, 4), ylim=(-0.35, 1), title="constant $I_{ext} = 0.2$")
 axes[1].plot(ts, v_, label="neuron")
 axes[1].plot(ts, i_ext_, label="flow", color="r")

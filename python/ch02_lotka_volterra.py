@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
+from .ode.field_2d import gen_mesh, vector_field
+
 
 def lotka_volterra(t, z, coefs):
     x, y = z
@@ -9,20 +11,7 @@ def lotka_volterra(t, z, coefs):
     return [a * x - b * x * y, -c * y + d * x * y]
 
 
-def generate_mesh_2d(xy_range, n_points):
-    X, Y = np.meshgrid(
-        np.linspace(xy_range[0], xy_range[1], n_points),
-        np.linspace(xy_range[2], xy_range[3], n_points),
-    )
-    return X, Y
-
-
-def vector_field(X, Y, U, V, ax):
-    M = np.hypot(U, V)  # Norm of the growth rate
-    M[M == 0] = 1  # Avoid zero division errors
-    U /= M  # Normalize each vector_field
-    V /= M
-    ax.quiver(X, Y, U, V, M, pivot="mid", cmap=plt.cm.jet)
+# Use shared `gen_mesh` and `vector_field` from `ode.field_2d`
 
 
 _, (ax, ax2) = plt.subplots(1, 2, figsize=(10, 5), constrained_layout=1)
@@ -33,10 +22,10 @@ coefs = [1, 0.7, 0.35, 1]
 a, b, c, d = coefs
 
 # create a grid
-X, Y = generate_mesh_2d(xy_range, n_points)
+X, Y = gen_mesh(xy_range, n_points)
 # compute growth rate on the grid
 U, V = lotka_volterra(t=0, z=[X, Y], coefs=coefs)
-vector_field(X, Y, U, V, ax)
+vector_field(ax, X, Y, U, V)
 
 X_R = [c / d, a / b]
 t_span = [0, 100]

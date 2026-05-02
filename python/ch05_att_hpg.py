@@ -14,28 +14,21 @@ def HPG(t, init):
     return [p, h, g]
 
 
-def euler3(xyz_init, step_size, period):
-    P, H, G = xyz_init
-    x, y, z = [], [], []
-    # For the arrow:
-    dx, dy, dz = np.zeros(period), np.zeros(period), np.zeros(period)
-
-    for i in range(period):
-        x.append(P)
-        y.append(H)
-        z.append(G)
-        dP, dH, dG = HPG(t=0, init=[x[-1], y[-1], z[-1]])
-        P += step_size * dP
-        H += step_size * dH
-        G += step_size * dG
-        dx[i], dy[i], dz[i] = dP, dH, dG
-
-    return x, y, z, dx, dy, dz
-
-
 xyz_init = [1, 0.2, 2]
 step_size, period = 0.1, 1000
-x, y, z, dx, dy, dz = euler3(xyz_init, step_size, period)
+
+# integrate using shared euler_fixed
+traj, times = euler_fixed(lambda t, z: HPG(t, z), xyz_init, step_size, period)
+
+x = traj[:, 0]
+y = traj[:, 1]
+z = traj[:, 2]
+
+# compute derivatives for arrows
+derivs = np.array([HPG(t=0, init=row) for row in traj])
+dx = derivs[:, 0]
+dy = derivs[:, 1]
+dz = derivs[:, 2]
 
 for i in range(100, 1000, 400):
     ax.quiver(x[i], y[i], z[i], dx[i], dy[i], dz[i], color="red")

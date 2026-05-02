@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
 
+from .ode.integrators import euler_delay
+
 ts = np.arange(0, 10, 0.01)
 τ = 0.2
 n_list = np.arange(1, 10, 1)
@@ -13,13 +15,16 @@ def mckey_glass(X, X_τ, n):
 
 
 def euler(X_init, n, τ=0.2, period=len(ts), step_size=0.01):
-    X = X_init
-    x = []
-    for i in range(period):
-        x.append(X)
-        X_τ = 0.5 if ts[i] <= τ else x[i - int(τ / step_size)]
-        X += step_size * mckey_glass(x[-1], X_τ, n)
-    return x
+    # use shared delay integrator
+    x_arr = euler_delay(
+        lambda X, X_tau: mckey_glass(X, X_tau, n),
+        X_init,
+        step_size,
+        period,
+        τ,
+        history_value=0.5,
+    )
+    return x_arr
 
 
 fig, ax = plt.subplots()
