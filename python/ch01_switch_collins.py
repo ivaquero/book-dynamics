@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .plot.field_2d import gen_mesh, vector_field
+from .ode.field_2d import gen_mesh, vector_field
 
 
 def collins(t, z):

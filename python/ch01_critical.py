@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import integrate, linalg
 
+from .ode.field_2d import derivatives, gen_mesh, vector_field
 from .ode.stability import pillar
-from .plot.field_2d import derivatives, gen_mesh, vector_field
 
 xy_range = [0, 100, 0, 100]
 n_points = 15

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import integrate, linalg
 
-from .plot.field_2d import derivatives, gen_mesh
+from .ode.field_2d import derivatives, gen_mesh
 
 a, b, c, d = 2, 1, 1, 2
 m = np.array([[a, b], [c, d]])
