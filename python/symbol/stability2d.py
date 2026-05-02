@@ -1,6 +1,5 @@
 import numpy as np
-from sympy import im
-from sympy import re
+from sympy import im, re
 
 
 def stability_2D(eigen_values):
