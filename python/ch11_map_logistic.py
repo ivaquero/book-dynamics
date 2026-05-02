@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .dynamics.attractors import logistic_map
+from .dynamics.attractors import iterate_map as ppen
 
 T = np.arange(0, 500, 1)
 X = np.zeros(500)
@@ -9,14 +9,7 @@ X_ = np.arange(0, 1, 0.001)
 f = 4 * X_ * (1 - X_)
 
 
-def ppen(initX, r, period=len(T)):
-    X[0] = initX
-    for i in range(1, period):
-        X[i] = logistic_map(X[i - 1], r)
-    return X
-
-
-X = ppen(0.4, 4)
+X = ppen(0.4, 4, len(T))
 
 _, ax = plt.subplots()
 

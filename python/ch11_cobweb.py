@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .dynamics.attractors import logistic_map
+from .dynamics.attractors import logistic_map, stepwise
 
 fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=1)
 
@@ -43,14 +43,7 @@ T = np.arange(0, step, 1)
 X = np.zeros(step)
 
 
-def stepwise(initX, r, period=len(T)):
-    X[0] = initX
-    for i in range(1, period):
-        X[i] = logistic_map(X[i - 1], r)
-    return X
-
-
-X = stepwise(X_init, r)
+X = stepwise(X_init, r, len(T))
 ax2.plot(T, X, color="b")
 ax2.scatter(T, X, color="black")
 plt.show()

@@ -3,11 +3,7 @@ import numpy as np
 from matplotlib.animation import ArtistAnimation
 from scipy.integrate import solve_ivp
 
-
-def lienard(t, z, μ):
-    x, y = z
-    return [μ * y - μ * (-x + x**3), -x / μ]
-
+from .dynamics.attractors import lienard
 
 t_span = [0, 20]
 t = np.arange(t_span[0], t_span[1], 0.1)

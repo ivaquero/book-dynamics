@@ -7,10 +7,6 @@ X, Y = np.meshgrid(xlist, ylist)
 Z = Y**2 / 2 - 5 * np.cos(X)
 
 
-def fun(x, y):
-    return y**2 / 2 - 5 * np.cos(x)
-
-
 fig = plt.figure()
 
 ax = fig.add_subplot(121)

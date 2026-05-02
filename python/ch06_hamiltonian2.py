@@ -2,15 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
-
-def hamiltonian_4d(t, X, w1, w2):
-    p1, p2, q1, q2 = X
-    dp1 = -w1 * q1
-    dp2 = -w2 * q2
-    dq1 = w1 * p1
-    dq2 = w2 * p2
-    return (dp1, dp2, dq1, dq2)
-
+from .dynamics.attractors import hamiltonian_4d
 
 w1, w2 = np.sqrt(2), 1
 t_span = [0, 100]

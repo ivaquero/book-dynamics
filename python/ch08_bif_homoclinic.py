@@ -3,11 +3,7 @@ import numpy as np
 from matplotlib.animation import ArtistAnimation
 from scipy.integrate import solve_ivp
 
-
-def homoclinic(t, z, C):
-    x, y = z
-    return [y + 10 * x * (0.1 - y**2), -x + C]
-
+from .dynamics.attractors import homoclinic
 
 x0 = [1, 0]
 t_span = [0, 200]

@@ -135,6 +135,18 @@ def henon(X, a=1.2, b=0.4):
     return xn, yn
 
 
+def iterate_map(initX, r, period):
+    X = np.zeros(period)
+    X[0] = initX
+    for i in range(1, period):
+        X[i] = logistic_map(X[i - 1], r)
+    return X
+
+
+def stepwise(initX, r, period):
+    return iterate_map(initX, r, period)
+
+
 def poincare_derivatives(t, z):
     x, y = z
     return [-y - x * np.sqrt(x**2 + y**2), x - y * np.sqrt(x**2 + y**2)]
@@ -190,6 +202,35 @@ def julia_set(
             julia[ix, iy] = iteration_ratio
 
     return julia
+
+    def homoclinic(t, z, C):
+        x, y = z
+        return [y + 10 * x * (0.1 - y**2), -x + C]
+
+    def lienard(t, z, μ):
+        x, y = z
+        return [μ * y - μ * (-x + x**3), -x / μ]
+
+    def fhn_lim_derivatives(t, x, θ=0.14, ω=0.112, γ=2.54, ϵ=0.01):
+        u = -x[0] * (x[0] - θ) * (x[0] - 1) - x[1] + ω
+        v = ϵ * (x[0] - γ * x[1])
+        return u, v
+
+    def hamiltonian_fun(x, y):
+        return y**2 / 2 - 5 * np.cos(x)
+
+    def hamiltonian_4d(t, X, w1, w2):
+        p1, p2, q1, q2 = X
+        dp1 = -w1 * q1
+        dp2 = -w2 * q2
+        dq1 = w1 * p1
+        dq2 = w2 * p2
+        return (dp1, dp2, dq1, dq2)
+
+    def logistic_eq(t, X, r=0.05, K=100):
+        return r * X * (1 - X / K)
+
+    return None
 
 
 def food_chain(t, init0, a1=5, a2=0.1, b1=3, b2=2, d1=0.4, d2=0.01):
