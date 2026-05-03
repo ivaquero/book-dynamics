@@ -2,18 +2,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
 
+from .dynamics.attractors import fhn_lim_derivatives
+
 θ, ω, γ, ϵ = 0.14, 0.112, 2.54, 0.01
-
-
-def derivatives(t, x):
-    u = -x[0] * (x[0] - θ) * (x[0] - 1) - x[1] + ω
-    v = ϵ * (x[0] - γ * x[1])
-    return u, v
 
 
 x0 = [0.5, 0.09]
 t_span = [0, 100]
-sol = solve_ivp(derivatives, t_span, x0, dense_output=True)
+sol = solve_ivp(fhn_lim_derivatives, t_span, x0, dense_output=True)
 t = np.linspace(t_span[0], t_span[1], 1000)
 X = sol.sol(t).T
 

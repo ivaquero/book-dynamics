@@ -10,41 +10,32 @@ ts = np.arange(0, 10, 0.01)
 L, Vmax = 6, 16
 
 
-def oscillation(X_init, n, τ, period=len(ts), step_size=0.01):
-    # integrate using shared delay integrator
-    x_arr = euler_delay(
-        lambda X, X_tau, n: mckey_glass(X, X_tau, n),
-        X_init,
-        step_size,
-        period,
-        τ,
-        history_value=0.5,
-        n=n,
-    )
-
-    count = 0
-    currency_sign = -1
-    delay_steps = int(round(τ / step_size))
-
-    for i in range(period):
-        if i * step_size <= τ or i - delay_steps < 0:
-            X_tau = 0.5
-        else:
-            X_tau = x_arr[i - delay_steps]
-
-        val = mckey_glass(x_arr[i], X_tau, n)
-        if np.sign(val) != currency_sign:
-            count += 1
-            currency_sign = -currency_sign
-
-    return 1 if count > 3 else 0
-
-
 matrix = np.zeros((len(n_list), len(τ_list)))
+
+step_size = ts[1] - ts[0]
+period = len(ts)
 
 for i, n in enumerate(n_list):
     for j, τ in enumerate(τ_list):
-        matrix[i][j] = oscillation(2, n, τ)
+        func = lambda X, X_tau: mckey_glass(X, X_tau, n)
+        x_arr = euler_delay(func, 2, step_size, period, τ, history_value=0.5)
+
+        count = 0
+        currency_sign = -1
+        delay_steps = round(τ / step_size)
+
+        for ii in range(period):
+            if ii * step_size <= τ or ii - delay_steps < 0:
+                X_tau = 0.5
+            else:
+                X_tau = x_arr[ii - delay_steps]
+
+            val = mckey_glass(x_arr[ii], X_tau, n)
+            if np.sign(val) != currency_sign:
+                count += 1
+                currency_sign = -currency_sign
+
+        matrix[i][j] = 1 if count > 3 else 0
 
 extent = [0, 0.5, 0, 0.5]
 # extent = [x_min , x_max, y_min , y_max]
