@@ -1,15 +1,17 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from sympy import Derivative, Eq, Function, Symbol, dsolve, lambdify
+from sympy import Derivative, Eq, Function, Symbol, lambdify
+
+from ..dynamics.symbolic import solve_analytic, solve_power_series
 
 x = Function("x")
 t = Symbol("t")
 ode = Derivative(x(t), t) + t * x(t) - t**3
 
-sol_series = dsolve(ode, hint="1st_power_series", n=8, ics={x(0): 1})
+sol_series = solve_power_series(ode, x(t), n=8, ics={x(0): 1})
 sol_series = Eq(sol_series.lhs, sol_series.rhs.removeO())
 
-sol_analytic = dsolve(ode, n=8, ics={x(0): 1})
+sol_analytic = solve_analytic(ode, n=8, ics={x(0): 1})
 
 t_ = np.linspace(0, 5, 1000)
 func_series = lambdify(t, sol_series.rhs, "numpy")

@@ -1,8 +1,11 @@
-from sympy import LM, LT, expand, lcm, symbols
+x, y, z = symbols("x y z")
+from sympy import symbols
+
+from ..dynamics.symbolic import s_polynomial_sym
 
 
 def s_polynomial(f, g):
-    return expand(lcm(LM(f), LM(g)) * (1 / LT(f) * f - 1 / LT(g) * g))
+    return s_polynomial_sym(f, g)
 
 
 x, y, z = symbols("x y z")

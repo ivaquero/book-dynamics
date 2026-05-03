@@ -1,40 +1,18 @@
+tmax = 10
 import matplotlib.pyplot as plt
 import numpy as np
-from sympy import integrate, lambdify, symbols
 
-ξ, t, i = symbols("xi t i")
+from ..dynamics.symbolic import build_piecewise_time_lambdas
 
-
-def ϕ(i, t):
-    if i == 0:
-        return 1  # Initial history x(t) = 1 on [-1, 0]
-    return ϕ(i - 1, i - 1) - integrate(ϕ(i - 1, ξ - 1), (ξ, i - 1, t))
-
-
-tmax = 10
-x = [ϕ(j, t) for j in range(tmax + 1)]
-
-expressions = [lambdify(t, x[i]) for i in range(tmax + 1)]
+tmax_default = 10
+functions, tmax = build_piecewise_time_lambdas(tmax_default)
 
 t = np.linspace(-1, 10, 1000)
-
-conditions = [
-    t <= 0,
-    t > 0,
-    t > 1,
-    t > 2,
-    t > 3,
-    t > 4,
-    t > 5,
-    t > 6,
-    t > 7,
-    t > 8,
-    t > 9,
-]
+conditions = [t <= 0] + [t > i for i in range(tmax)]
 
 _, ax = plt.subplots()
 
-ax.plot(t, np.piecewise(t, conditions, expressions))
+ax.plot(t, np.piecewise(t, conditions, functions))
 
 ax.set(xlabel="t", ylabel="x(t)")
 plt.show()
