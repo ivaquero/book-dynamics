@@ -1,20 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from sympy import symbols
-from sympy.solvers import solve
 
-
-def number_track(H, A):
-    matrix = []
-    X = symbols("X", real=True)
-    np.zeros(len(H))
-    for h in enumerate(H):
-        item = np.zeros(len(A))
-        for ind, a in enumerate(A):
-            item[ind] = len(solve(X * (1 - X) - h * X / (a + X), X))
-        matrix.append(item)
-    return matrix
-
+from ..dynamics.bifurcations import number_track
 
 # colormap
 # cmap = colors.ListedColormap(['red', 'orange'])

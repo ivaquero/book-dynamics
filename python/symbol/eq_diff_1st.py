@@ -1,10 +1,9 @@
-from sympy import Function, N, rsolve, symbols
+from sympy import N, symbols
 
-x = Function("x")
+from ..dynamics.symbolic import solve_first_order_difference
+
 n = symbols("n")
-
-f = x(n + 1) - (1 + 3 / 100) * x(n)
-sol = rsolve(f, x(n), {"x0": 10_000})
+sol = solve_first_order_difference(1 + 3 / 100, 10_000, n_symbol=n)
 print(f"x_n = {sol}")
 
 x5 = N(sol.subs(n, 5), 5)

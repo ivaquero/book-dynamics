@@ -1,22 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import colors
-from sympy import symbols
-from sympy.solvers import solve
 
-
-def number_track(rs, ks, n_points):
-    X = symbols("X", real=True)
-    item = np.zeros(n_points)
-
-    for r in range(n_points):
-        for k in range(n_points):
-            r_i, k_i = rs[r], ks[k]
-            item[k] = len(solve(r_i * (1 - X / k_i) - X / (1 + X**2), X)) + 1
-        matrix.append(item)
-        item = np.zeros(n_points)
-    return matrix
-
+from ..dynamics.bifurcations import number_track
 
 n_points = 20
 r_range = [0, 0.6]

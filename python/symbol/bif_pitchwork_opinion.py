@@ -3,25 +3,7 @@ import numpy as np
 from scipy.optimize import brentq
 from sympy import symbols
 
-
-def opinion(X, a):
-    return (1 - X) * np.exp(a * X) - (1 + X) * np.exp(-a * X)
-
-
-def function_factory(a):
-    def f(X):
-        return (1 - X) * np.exp(a * X) - (1 + X) * np.exp(-a * X)
-
-    return f
-
-
-def stability(X_init, a):
-    perturbation = 0.01
-    time_interval = 0.01
-    X = X_init + perturbation
-    for _ in range(50):
-        X += time_interval * opinion(X, a)
-    return abs(X - X_init) <= perturbation
+from ..dynamics.bifurcations import opinion, stablity
 
 
 def pitchwork(a_vals, x_vals):
@@ -40,10 +22,10 @@ def pitchwork(a_vals, x_vals):
         # find null_points:
         null_points = np.zeros(len(x_list))
         for i, x in enumerate(x_list):
-            null_points[i] = brentq(function_factory(a), x - 0.02, x + 0.02)
+            null_points[i] = brentq(opinion, x - 0.02, x + 0.02, args=(a,))
             # 0.01 is the spacing between 2 points with different sign -> 0.02 certainly
         for null_point in null_points:
-            if stability(null_point, a):
+            if stablity(null_point, opinion, a):
                 final_xs.append(a)
                 final_ys.append(null_point)
             else:

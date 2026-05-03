@@ -3,25 +3,7 @@ import numpy as np
 from scipy.optimize import brentq
 from sympy import symbols
 
-
-def logistic(X, h, a):
-    return X * (1 - X) - h * X / (a + X)
-
-
-def function_factory(h, a):
-    def f(X):
-        return X * (1 - X) - h * X / (a + X)
-
-    return f
-
-
-def stablity(X_init, h, a):
-    perturbation = 0.01
-    time_interval = 0.01
-    X = X_init + perturbation
-    for _ in range(50):
-        X += time_interval * logistic(X, h, a)
-    return abs(X - X_init) <= perturbation
+from ..dynamics.bifurcations import logistic, stablity
 
 
 def bifurcation(a_values=None, h_values=None, x_values=None):
@@ -51,13 +33,11 @@ def bifurcation(a_values=None, h_values=None, x_values=None):
                 if np.sign(logistic(x - 0.02, h, a)) != np.sign(
                     logistic(x + 0.02, h, a)
                 ):
-                    null_points[ind] = brentq(
-                        function_factory(h, a), x - 0.02, x + 0.02
-                    )
+                    null_points[ind] = brentq(logistic, x - 0.02, x + 0.02, args=(h, a))
                 else:
                     null_points[ind] = x
             for null_point in null_points:
-                if stablity(null_point, h, a):
+                if stablity(null_point, logistic, h, a):
                     x_s.append(h)
                     y_s.append(null_point)
                 else:

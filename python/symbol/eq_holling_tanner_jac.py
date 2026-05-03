@@ -1,21 +1,16 @@
-from sympy import Matrix, solve, symbols
+from sympy import symbols
 
-x, y, N = symbols("x, y, N")
-ϕ, ω = 0.2, 6 / 7
-dx = x * (1 - x / 7) - ω * x * y / (1 + x)
-dy = ϕ * y * (1 - N * y / x)
-dy = dy.subs(N, 0.5)
-sol = solve([dx, dy], [x, y])
-print(sol)
-dy = dy.subs(N, 1)
-sol = solve([dx, dy], [x, y])
-print(sol)
+from ..dynamics.symbolic import compute_fixed_points_and_jacobian
 
-jac = Matrix([dx, dy]).jacobian([x, y])
-print(jac)
-jac_solution = jac.subs(x, sol[1][0]).subs(y, sol[1][1])
-print(jac_solution)
-print("eigenvalues:")
-print(list(jac_solution.eigenvals()))
-print("With the corresponding own vectors:")
-print([list(tup[2][0]) for tup in jac_solution.eigenvects()])
+x, y, N = symbols("x y N")
+phi, omega = 0.2, 6 / 7
+dx = x * (1 - x / 7) - omega * x * y / (1 + x)
+dy = phi * y * (1 - N * y / x)
+
+results_05 = compute_fixed_points_and_jacobian(
+    [dx.subs(N, 0.5), dy.subs(N, 0.5)], (x, y)
+)
+print(results_05)
+
+results_1 = compute_fixed_points_and_jacobian([dx.subs(N, 1), dy.subs(N, 1)], (x, y))
+print(results_1)
