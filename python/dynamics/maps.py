@@ -1,10 +1,31 @@
+"""Map iteration and analysis functions.
+
+This module contains functions for iterating discrete maps and computing
+dynamical properties like Lyapunov exponents.
+"""
+
 import numpy as np
 
 from .attractors import logistic_map
 
 
 def cobweb_points(x_init, r, steps):
-    """Return the sequence of iterates for the cobweb (useful for plotting separately)."""
+    """Return the sequence of iterates for the cobweb (useful for plotting separately).
+
+    Parameters
+    ----------
+    x_init : float
+        Initial condition
+    r : float
+        Logistic map parameter
+    steps : int
+        Number of iterations
+
+    Returns
+    -------
+    list
+        Sequence of iterates
+    """
     X = [x_init]
     for _ in range(steps - 1):
         X.append(logistic_map(X[-1], r))
@@ -14,7 +35,21 @@ def cobweb_points(x_init, r, steps):
 def iterate_map_2d(map_func, x0, n_steps, *args, **kwargs):
     """Iterate a 2D map function `map_func(state, *args, **kwargs)`.
 
-    Returns two lists `(X, Y)` of length `n_steps` containing iterates.
+    Parameters
+    ----------
+    map_func : callable
+        Map function to iterate
+    x0 : array-like
+        Initial condition [x, y]
+    n_steps : int
+        Number of iterations
+    *args, **kwargs
+        Additional arguments passed to map_func
+
+    Returns
+    -------
+    tuple
+        Two lists (X, Y) of length n_steps containing iterates
     """
     X = []
     Y = []
@@ -48,46 +83,50 @@ def compute_henon_lyapunov_exponents(
     Returns
     -------
     tuple
-        (h1, h2) Lyapunov exponents.
+        (lyapunov_exp_1, lyapunov_exp_2) - the two Lyapunov exponents
     """
+    from .attractors import henon
+
+    # Initialize state
     x, y = initial_x, initial_y
-    vec1 = [1, 0]
-    vec2 = [0, 1]
 
-    for i in range(1, iterations + 1):
-        # Henon map iteration
-        x = 1 - a * x**2 + y
-        y = b * x
+    # Initialize tangent vectors (identity matrix)
+    u1, u2 = np.array([1.0, 0.0]), np.array([0.0, 1.0])
 
-        # Jacobian matrix
+    # Initialize Lyapunov exponent sums
+    lyap_sum1, lyap_sum2 = 0.0, 0.0
+
+    for _ in range(iterations):
+        # Iterate the map
+        x_new, y_new = henon([x, y], a=a, b=b)
+
+        # Jacobian matrix of Henon map
         J = np.array([[-2 * a * x, 1], [b, 0]])
 
-        # Apply Jacobian to vectors
-        vec1 = J @ vec1
-        vec2 = J @ vec2
+        # Apply Jacobian to tangent vectors
+        u1_new = J @ u1
+        u2_new = J @ u2
 
         # Gram-Schmidt orthogonalization
-        dotprod_1 = vec1 @ vec1
-        dotprod_2 = vec1 @ vec2
-        vec2 = vec2 - np.multiply((dotprod_2 / dotprod_1), vec1)
+        # Normalize u1
+        norm1 = np.linalg.norm(u1_new)
+        u1_new = u1_new / norm1
 
-        # Calculate lengths and area
-        length_v1 = np.sqrt(dotprod_1)
-        area = np.multiply(vec1[0], vec2[1]) - np.multiply(vec1[1], vec2[0])
+        # Orthogonalize u2 against u1
+        u2_new = u2_new - np.dot(u2_new, u1_new) * u1_new
+        norm2 = np.linalg.norm(u2_new)
+        u2_new = u2_new / norm2
 
-        # Compute Lyapunov exponents
-        h1 = np.log(length_v1) / i
-        h2 = np.log(area) / i - h1
+        # Accumulate Lyapunov exponents
+        lyap_sum1 += np.log(norm1)
+        lyap_sum2 += np.log(norm2)
 
-    return h1, h2
+        # Update state and vectors
+        x, y = x_new, y_new
+        u1, u2 = u1_new, u2_new
 
+    # Normalize by number of iterations
+    lyap_exp_1 = lyap_sum1 / iterations
+    lyap_exp_2 = lyap_sum2 / iterations
 
-def draw_cobweb(ax, steps, x_init, r):
-    """Draw cobweb plot on the given axes."""
-    x, y = [x_init], [0]
-    for _ in range(1, steps):
-        x.append(x[-1])
-        y.append(logistic_map(x[-1], r))
-        x.append(y[-1])
-        y.append(y[-1])
-    ax.plot(x, y, color="blue")
+    return lyap_exp_1, lyap_exp_2

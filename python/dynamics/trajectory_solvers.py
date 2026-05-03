@@ -1,6 +1,7 @@
 """Trajectory solvers for dynamical systems.
 
-This module contains functions for solving trajectories of various dynamical systems.
+This module contains functions for solving trajectories of various dynamical systems
+using numerical integration methods.
 """
 
 import numpy as np
@@ -53,11 +54,12 @@ def solve_rossler_trajectory(initial_conditions=None, dt=0.01, step_count=50000)
         (trajectory, times) where trajectory is array of shape (step_count, 3)
         and times is array of integration time points.
     """
+    from .systems import rossler
+
     if initial_conditions is None:
         initial_conditions = [1.0, 1.0, 1.0]
 
     from .integrators import euler_fixed
-    from .systems import rossler
 
     traj, times = euler_fixed(rossler, initial_conditions, dt, step_count)
     return traj, times
@@ -198,3 +200,49 @@ def solve_poincare_trajectory(initial_conditions, t_span, n_points=10000):
     sol = solve_ivp(poincare_derivatives, t_span, initial_conditions, dense_output=True)
     t = np.linspace(t_span[0], t_span[1], n_points)
     return sol.sol(t).T
+
+
+def iterate_map(initX, r, period):
+    """Iterate logistic map for given number of steps.
+
+    Parameters
+    ----------
+    initX : float
+        Initial value.
+    r : float
+        Growth parameter.
+    period : int
+        Number of iterations.
+
+    Returns
+    -------
+    numpy.ndarray
+        Array of iterated values.
+    """
+    from .systems import logistic_map
+
+    X = np.zeros(period)
+    X[0] = initX
+    for i in range(1, period):
+        X[i] = logistic_map(X[i - 1], r)
+    return X
+
+
+def stepwise(initX, r, period):
+    """Stepwise iteration of logistic map.
+
+    Parameters
+    ----------
+    initX : float
+        Initial value.
+    r : float
+        Growth parameter.
+    period : int
+        Number of iterations.
+
+    Returns
+    -------
+    numpy.ndarray
+        Array of iterated values.
+    """
+    return iterate_map(initX, r, period)

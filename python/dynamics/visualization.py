@@ -1,6 +1,7 @@
 """Visualization utilities for dynamical systems.
 
-This module contains functions for visualizing dynamical systems and their properties.
+This module contains functions for visualizing vector fields, nullclines,
+and other properties of dynamical systems.
 """
 
 import numpy as np
@@ -12,19 +13,21 @@ def arrows(ax, x, y, a=1, step=50, head_width=0.05, scale=30, color="black"):
     Parameters
     ----------
     ax : matplotlib.axes.Axes
-        Axes instance for plotting.
-    x, y : array-like
-        Grid coordinates for arrow placement.
+        The axes to draw arrows on
+    x : array-like
+        x-coordinates of arrow positions
+    y : array-like
+        y-coordinates of arrow positions
     a : float, optional
-        System parameter. Defaults to 1.
+        System parameter for clarinet system, by default 1
     step : int, optional
-        Step size for arrow placement. Defaults to 50.
+        Step size for arrow placement, by default 50
     head_width : float, optional
-        Arrow head width. Defaults to 0.05.
-    scale : float, optional
-        Arrow scale factor. Defaults to 30.
+        Arrow head width, by default 0.05
+    scale : int, optional
+        Arrow scaling factor, by default 30
     color : str, optional
-        Arrow color. Defaults to "black".
+        Arrow color, by default "black"
     """
     from .systems import clarinet
 
@@ -33,9 +36,7 @@ def arrows(ax, x, y, a=1, step=50, head_width=0.05, scale=30, color="black"):
         ver = clarinet(t=0, z=[x_, y_], a=a)
         dx.append(ver[0])
         dy.append(ver[1])
-
     m = np.hypot(dx, dy)
-
     for i in range(1, len(x), step):
         ax.arrow(
             x[i],
@@ -50,19 +51,22 @@ def arrows(ax, x, y, a=1, step=50, head_width=0.05, scale=30, color="black"):
 def fhn_nullclines(V, theta=0.1, gamma_slope=2.0):
     """Compute FHN nullclines for a given range or array of V values.
 
+    - `V` may be a numpy array.
+    - Returns tuple `(W_nullcline, w_prime)` for plotting.
+
     Parameters
     ----------
     V : array-like
-        Voltage values for nullcline calculation.
+        Voltage values for nullcline calculation
     theta : float, optional
-        Threshold parameter. Defaults to 0.1.
+        Threshold parameter, by default 0.1
     gamma_slope : float, optional
-        Slope parameter. Defaults to 2.0.
+        Slope parameter for w-nullcline, by default 2.0
 
     Returns
     -------
     tuple
-        (W_nullcline, w_prime) for plotting.
+        (W_nullcline, w_prime) arrays for plotting
     """
     V = np.asarray(V)
     W = V * (1 - V) * (V - theta)

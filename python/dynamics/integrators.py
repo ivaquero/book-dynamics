@@ -1,7 +1,33 @@
+"""Numerical integration utilities.
+
+This module contains various numerical integrators for solving
+differential equations, including Euler methods and Runge-Kutta.
+"""
+
 import numpy as np
 
 
 def euler(t, tmax, y, func_dx, step=1.0):
+    """Simple Euler integration (legacy function).
+
+    Parameters
+    ----------
+    t : float
+        Initial time
+    tmax : float
+        Maximum time
+    y : float
+        Initial value
+    func_dx : callable
+        Derivative function
+    step : float, optional
+        Time step, by default 1.0
+
+    Returns
+    -------
+    list
+        Solution values
+    """
     ys = []
     while t < tmax:
         y = y + step * dx(t, y)
@@ -11,15 +37,30 @@ def euler(t, tmax, y, func_dx, step=1.0):
 
 
 def dx(t, y):
+    """Test derivative function (legacy)."""
     return y
 
 
 def euler_fixed(func, z0, step_size, n_steps, t0=0.0):
     """Simple fixed-step explicit Euler integrator.
 
-    - `func` may have signature `f(t, z)` or `f(z)`.
-    - `z0` is an iterable initial state (scalar or vector).
-    - Returns `(traj, times)` where `traj` is an array shape (n_steps, dim).
+    Parameters
+    ----------
+    func : callable
+        Function to integrate. May have signature f(t, z) or f(z).
+    z0 : array-like
+        Initial state (scalar or vector)
+    step_size : float
+        Time step size
+    n_steps : int
+        Number of steps
+    t0 : float, optional
+        Initial time, by default 0.0
+
+    Returns
+    -------
+    tuple
+        (traj, times) where traj is array shape (n_steps, dim)
     """
     z = np.asarray(z0, dtype=float)
     dim = z.size if z.ndim > 0 else 1
@@ -42,18 +83,54 @@ def euler_fixed(func, z0, step_size, n_steps, t0=0.0):
 
 
 def euler_1d(func, x0, step_size, n_steps, t0=0.0):
-    """Convenience wrapper for scalar state."""
+    """Convenience wrapper for scalar state.
+
+    Parameters
+    ----------
+    func : callable
+        Derivative function
+    x0 : float
+        Initial value
+    step_size : float
+        Time step size
+    n_steps : int
+        Number of steps
+    t0 : float, optional
+        Initial time, by default 0.0
+
+    Returns
+    -------
+    tuple
+        (traj, times) for scalar state
+    """
     traj, times = euler_fixed(func, [x0], step_size, n_steps, t0=t0)
     return traj.ravel(), times
 
 
 def euler_delay(func, x0, step_size, n_steps, tau, history_value=0.5, *args, **kwargs):
-    """Simple explicit Euler integrator with a fixed delay `tau` for scalar state.
+    """Simple explicit Euler integrator with a fixed delay.
 
-    - `func(x, x_tau, *args, **kwargs)` should return dx/dt given current x and delayed x_tau.
-    - `x0` initial scalar state at t=0.
-    - `history_value` is used for t <= tau as the delayed state.
-    Returns array of states length `n_steps` and implicit times can be inferred as `i*step_size`.
+    Parameters
+    ----------
+    func : callable
+        Function with signature f(x, x_tau, *args, **kwargs)
+    x0 : float
+        Initial state
+    step_size : float
+        Time step size
+    n_steps : int
+        Number of steps
+    tau : float
+        Delay time
+    history_value : float, optional
+        Value for delayed state when t <= tau, by default 0.5
+    *args, **kwargs
+        Additional arguments passed to func
+
+    Returns
+    -------
+    numpy.ndarray
+        Array of states of length n_steps
     """
     x_arr = np.empty(n_steps)
     x = float(x0)
@@ -73,7 +150,24 @@ def euler_delay(func, x0, step_size, n_steps, tau, history_value=0.5, *args, **k
 
 
 def runge_kutta4(y, x, dx, f):
-    """computes 4th order Runge-Kutta for dy/dx."""
+    """Compute 4th order Runge-Kutta for dy/dx.
+
+    Parameters
+    ----------
+    y : float
+        Current y value
+    x : float
+        Current x value
+    dx : float
+        Step size
+    f : callable
+        Derivative function dy/dx = f(y, x)
+
+    Returns
+    -------
+    float
+        Next y value
+    """
     k1 = dx * f(y, x)
     k2 = dx * f(y + 0.5 * k1, x + 0.5 * dx)
     k3 = dx * f(y + 0.5 * k2, x + 0.5 * dx)

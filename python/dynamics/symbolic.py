@@ -1,10 +1,13 @@
+"""Symbolic computation utilities for dynamical systems.
+
+This module contains functions for symbolic mathematics, including
+Groebner basis computation, polynomial operations, and Julia set analysis.
+"""
+
 from sympy import (
     LM,
     LT,
-    Eq,
-    Function,
     I,
-    Matrix,
     Rational,
     dsolve,
     expand,
@@ -13,8 +16,6 @@ from sympy import (
     lambdify,
     lcm,
     re,
-    rsolve,
-    solve,
     sqrt,
     symbols,
 )
@@ -23,42 +24,96 @@ from sympy import (
 def compute_julia_unstable(a, b):
     """Compute the instability measure used in the Julia example.
 
-    Returns a numeric sympy expression (or Float) for 2*abs(x1 + y1*I).
-    """
+    Parameters
+    ----------
+    a : float
+        Real part of parameter
+    b : float
+        Imaginary part of parameter
 
+    Returns
+    -------
+    sympy expression
+        Numeric expression for 2*abs(x1 + y1*I)
+    """
     x1 = (re(0.5 + sqrt(0.25 - (a + b * I)))).expand(complex=True)
     y1 = (im(0.5 + sqrt(0.25 - (a + b * I)))).expand(complex=True)
     return 2 * abs(x1 + y1 * I)
 
 
 def s_polynomial_sym(f, g):
-    """Compute the S-polynomial of two polynomials (sympy objects)."""
+    """Compute the S-polynomial of two polynomials (sympy objects).
 
+    Parameters
+    ----------
+    f : sympy expression
+        First polynomial
+    g : sympy expression
+        Second polynomial
+
+    Returns
+    -------
+    sympy expression
+        S-polynomial
+    """
     return expand(lcm(LM(f), LM(g)) * (1 / LT(f) * f - 1 / LT(g) * g))
 
 
 def compute_reduced(f, polys):
-    """Wrapper around sympy.reduced."""
+    """Wrapper around sympy.reduced.
+
+    Parameters
+    ----------
+    f : sympy expression
+        Polynomial to reduce
+    polys : list
+        List of divisor polynomials
+
+    Returns
+    -------
+    tuple
+        Reduced polynomial and remainder
+    """
     from sympy import reduced
 
     return reduced(f, polys)
 
 
 def groebner_basis(polys, symbols_tuple, order="lex"):
-    """Compute a Groebner basis for `polys` with given symbol tuple."""
+    """Compute a Groebner basis for given polynomials.
+
+    Parameters
+    ----------
+    polys : list
+        List of polynomials
+    symbols_tuple : tuple
+        Symbols to use
+    order : str, optional
+        Monomial order, by default "lex"
+
+    Returns
+    -------
+    sympy expression
+        Groebner basis
+    """
     from sympy import groebner
 
     return groebner(*polys, *symbols_tuple, order=order)
 
 
 def build_piecewise_time_lambdas(tmax=10):
-    """Build a list of lambdified functions x_0..x_tmax for the recursive
-    definition used in the `time_step` example.
+    """Build a list of lambdified functions for recursive time-step definition.
 
-    Returns (functions_list, tmax) where each function is a numpy-callable
-    accepting a numeric `t` array or scalar.
+    Parameters
+    ----------
+    tmax : int, optional
+        Maximum time, by default 10
+
+    Returns
+    -------
+    tuple
+        (functions_list, tmax) where each function is numpy-callable
     """
-
     xi, t = symbols("xi t")
     x = []
     for j in range(tmax + 1):
@@ -78,10 +133,18 @@ def build_piecewise_time_lambdas(tmax=10):
 def tent_map(x, mu):
     """Tent map: works with sympy Rational or numeric values.
 
-    Returns mu*x for x < 1/2, mu*(1-x) for x > 1/2, else None.
+    Parameters
+    ----------
+    x : float or Rational
+        Input value
+    mu : float or Rational
+        Map parameter
 
+    Returns
+    -------
+    float or None
+        mu*x for x < 1/2, mu*(1-x) for x > 1/2, else None
     """
-
     half = Rational(1, 2)
     try:
         if x < half:
@@ -97,52 +160,19 @@ def tent_map(x, mu):
     return None
 
 
-def solve_first_order_difference(multiplier, x0, n_symbol=None):
-    n = symbols("n") if n_symbol is None else n_symbol
-    x = Function("x")
-    f = x(n + 1) - multiplier * x(n)
-    return rsolve(f, x(n), {x(0): x0})
-
-
-def solve_second_order_linear(a, b, x0, x1, n_symbol=None):
-    n = symbols("n") if n_symbol is None else n_symbol
-    x = Function("x")
-    f = x(n + 2) - a * x(n + 1) - b * x(n)
-    return rsolve(f, x(n), {x(0): x0, x(1): x1})
-
-
-def solve_logistic_ode(r, m, t_symbol=None):
-    t = symbols("t") if t_symbol is None else t_symbol
-    N = Function("N")
-    eqn = Eq(N(t).diff(t), r * N(t) - m * N(t) * N(t))
-    return dsolve(eqn, N(t))
-
-
-def compute_fixed_points_and_jacobian(eqs, vars_):
-    """Solve for fixed points and compute Jacobian and eigenvalues.
-
-    - `eqs`: list of expressions (sympy) equal to zero at fixed points.
-    - `vars_`: list/tuple of symbols.
-    Returns list of dicts: { 'point': (xval, yval,...), 'jac': Matrix, 'eigenvals': list, 'eigenvects': list }
-    """
-    sols = solve(eqs, vars_)
-    results = []
-    jac = Matrix(eqs).jacobian(Matrix(vars_))
-    for sol in sols:
-        subs = list(zip(vars_, sol, strict=True))
-        jac_sub = jac.subs(subs)
-        eigvals = list(jac_sub.eigenvals().keys())
-        eigvects = list(jac_sub.eigenvects())
-        results.append(
-            {"point": sol, "jac": jac_sub, "eigenvals": eigvals, "eigenvects": eigvects}
-        )
-    return results
-
-
 def compute_stability_2d(eigen_values):
     """Classify 2D linear stability from eigenvalues.
 
-    Returns (stab_type, one_hot_vector)
+    Parameters
+    ----------
+    eigen_values : array-like
+        Two eigenvalues to classify
+
+    Returns
+    -------
+    tuple
+        (stab_type, one_hot_vector) where stab_type is string description
+        and one_hot_vector indicates stability type
     """
     import numpy as _np
 
@@ -168,10 +198,22 @@ def compute_stability_2d(eigen_values):
 
 
 def solve_power_series(ode, func, n=8, ics=None):
-    """Solve an ODE using sympy power-series method (wrapper)."""
+    """Solve an ODE using sympy power-series method (wrapper).
+
+    Parameters
+    ----------
+    ode : sympy expression
+        Ordinary differential equation
+    func : sympy Function
+        Function to solve for
+    n : int, optional
+        Order of power series, by default 8
+    ics : dict, optional
+        Initial conditions
+
+    Returns
+    -------
+    sympy expression
+        Power series solution
+    """
     return dsolve(ode, hint="1st_power_series", n=n, ics=ics)
-
-
-def solve_analytic(ode, n=None, ics=None):
-    """Wrapper around sympy.dsolve for analytic solution requests."""
-    return dsolve(ode, n=n, ics=ics)
