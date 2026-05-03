@@ -2,16 +2,22 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from .dynamics.attractors import pulsed_FHN_coupled_factory
+from .dynamics.plotting import time_series_from_pulsed_factory
 from .ode.integrators import euler_fixed
 
 ts = np.arange(0, 4, 0.01)
 
 
 def run_coupled(start_puls, stop_puls, recover_puls):
-    f = pulsed_FHN_coupled_factory(start_puls, stop_puls, recover_puls)
-
-    step = ts[1] - ts[0]
-    traj, times = euler_fixed(f, [0, 0, 0, 0], step, len(ts))
+    traj, times = time_series_from_pulsed_factory(
+        start_puls,
+        stop_puls,
+        recover_puls,
+        ts,
+        [0, 0, 0, 0],
+        integrator=euler_fixed,
+        factory_func=pulsed_FHN_coupled_factory,
+    )
     v_1 = traj[:, 0]
     v_2 = traj[:, 2]
     i_ext = [recover_puls if start_puls <= tt <= stop_puls else 0 for tt in times]

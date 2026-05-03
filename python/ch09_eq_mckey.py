@@ -5,6 +5,7 @@ import numpy as np
 from matplotlib.animation import FuncAnimation
 
 from .dynamics.attractors import mckey_glass
+from .dynamics.plotting import make_multi_traj_anim
 from .ode.integrators import euler_delay
 
 ts = np.arange(0, 10, 0.01)
@@ -19,14 +20,16 @@ L, Vmax = 6, 16
 fig, ax = plt.subplots()
 
 
-def animate(i):
-    ax.clear()
-    ax.set(xlim=(0, 10), ylim=(0, 4), xlabel="time", title=f"n={n_list[i]}")
-
-    func = partial(mckey_glass, n=n_list[i])
+def compute_trajs_for_param(n):
+    func = partial(mckey_glass, n=n)
     X = euler_delay(func, 2, 0.01, len(ts), τ, history_value=0.5)
-    ax.plot(ts, X)
+    # euler_delay returns 1D array; convert to 2D column so plotting helper can index [:,0]
+    return [np.column_stack((ts, X))]
 
 
-anim = FuncAnimation(fig, animate, frames=len(n_list), interval=200)
+animate = make_multi_traj_anim(
+    ax, compute_trajs_for_param, xlim=(0, 10), ylim=(0, 4), xlabel="time", ylabel="X"
+)
+
+anim = FuncAnimation(fig, animate, frames=n_list, interval=200)
 plt.show()

@@ -71,3 +71,31 @@ def make_multi_traj_anim(
             ax.plot(X[:, 0], X[:, 1])
 
     return animate
+
+    def time_series_from_pulsed_factory(
+        start, stop, I_ext_value, ts, z0, integrator=None, factory_func=None
+    ):
+        """Integrate a pulsed factory over time grid `ts` using `integrator`.
+
+        - `integrator` defaults to `ode.integrators.euler_fixed` and must accept
+          signature `integrator(func, z0, step_size, n_steps)`.
+        - Returns `(traj, times)` where `traj` is array n_steps x dim and `times` equals `ts`.
+        """
+
+        if integrator is None:
+            from ..ode.integrators import euler_fixed as _default_integrator
+
+            integrator = _default_integrator
+
+        # delayed import to avoid circulars; pulsed factory is in attractors
+        from .attractors import pulsed_FHN_factory
+
+        if factory_func is None:
+            factory_func = pulsed_FHN_factory
+
+        func = factory_func(start, stop, I_ext_value)
+        step = ts[1] - ts[0]
+        traj, times = integrator(func, z0, step, len(ts))
+        return traj, times
+
+    return None
