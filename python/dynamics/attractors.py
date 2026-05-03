@@ -50,11 +50,11 @@ def HPG2(t, init):
     return [h, g]
 
 
-def lorenz(t, X, σ, β, ρ):
+def lorenz(t, X, sigma, beta, rho):
     x, y, z = X
-    dx = -σ * (x - y)
-    dy = ρ * x - y - x * z
-    dz = -β * z + x * y
+    dx = -sigma * (x - y)
+    dy = rho * x - y - x * z
+    dz = -beta * z + x * y
     return (dx, dy, dz)
 
 
@@ -90,18 +90,18 @@ def SIR(t, z, coefs=(0.7, 0.2), population=10000):
     return [u, v, w]
 
 
-def SEIR(t, z, ρ, population=1000000, α=0.2, β=0.266, γ=1 / 14):
+def SEIR(t, z, rho, population=1000000, alpha=0.2, beta=0.266, gamma=1 / 14):
     S, E, II, _ = z
-    u = -ρ * β * S * II / population
-    v = ρ * β * S * II / population - α * E
-    w = α * E - γ * II
-    r = γ * II
+    u = -rho * beta * S * II / population
+    v = rho * beta * S * II / population - alpha * E
+    w = alpha * E - gamma * II
+    r = gamma * II
     return [u, v, w, r]
 
 
-def duffing(t, z, α=1, β=-1, ω=1.25, γ=0.5, k=0.3):
+def duffing(t, z, alpha=1, beta=-1, omega=1.25, gamma=0.5, k=0.3):
     x, y = z
-    return [y, -k * y - β * x - α * x**3 + γ * np.cos(ω * t)]
+    return [y, -k * y - beta * x - alpha * x**3 + gamma * np.cos(omega * t)]
 
 
 def duffing_simple(t, x, eps=0.01):
@@ -120,17 +120,57 @@ def FHN(t, z, I_ext=0.0, a=0.1, γ=1, ϵ=0.01):
     return [V_, w_]
 
 
-def FHN_coupled(Z, I_ext, R=45, a=0.1, γ=0.5, ϵ=0.008):
+def FHN_coupled(Z, I_ext, R=45, a=0.1, gamma=0.5, epsilon=0.008):
     V_1, w_1, V_2, w_2 = Z
     I_c21 = (V_2 - V_1) / R
     I_c12 = (V_1 - V_2) / R
 
-    V_1_ = (1 / ϵ) * (-w_1 + V_1 * (1 - V_1) * (V_1 - a) + I_c21 + I_ext)
-    w_1_ = V_1 - γ * w_1
-    V_2_ = (1 / ϵ) * (-w_2 + V_2 * (1 - V_2) * (V_2 - a) + I_c12)
-    w_2_ = V_2 - γ * w_2
+    V_1_ = (1 / epsilon) * (-w_1 + V_1 * (1 - V_1) * (V_1 - a) + I_c21 + I_ext)
+    w_1_ = V_1 - gamma * w_1
+    V_2_ = (1 / epsilon) * (-w_2 + V_2 * (1 - V_2) * (V_2 - a) + I_c12)
+    w_2_ = V_2 - gamma * w_2
 
     return [V_1_, w_1_, V_2_, w_2_]
+
+
+def pulsed_FHN_factory(start, stop, I_ext_value, a=0.1, γ=1, ϵ=0.01):
+    """Return a function f(t, z) that applies a pulse of `I_ext_value` between start and stop.
+
+    The returned function matches the signature expected by integrators: f(t, z).
+    """
+
+    def f(t, z):
+        i_ext = I_ext_value if start <= t <= stop else 0
+        return FHN(t, z, I_ext=i_ext, a=a, γ=γ, ϵ=ϵ)
+
+    return f
+
+
+def pulsed_FHN_coupled_factory(
+    start, stop, I_ext_value, R=45, a=0.1, gamma=0.5, epsilon=0.008
+):
+    """Factory for pulsed `FHN_coupled` wrapper usable by integrators.
+
+    Returns function f(t, z) -> calls `FHN_coupled(z, i_ext, ...)`.
+    """
+
+    def f(t, z):
+        i_ext = I_ext_value if start <= t <= stop else 0
+        return FHN_coupled(z, i_ext, R=R, a=a, gamma=gamma, epsilon=epsilon)
+
+    return f
+
+
+def fhn_nullclines(V, theta=0.1, gamma_slope=2.0):
+    """Compute FHN nullclines for a given range or array of V values.
+
+    - `V` may be a numpy array.
+    - Returns tuple `(W_nullcline, w_prime)` for plotting.
+    """
+    V = np.asarray(V)
+    W = V * (1 - V) * (V - theta)
+    w_prime = gamma_slope * V
+    return W, w_prime
 
 
 def logistic_map(X, r):
@@ -220,9 +260,9 @@ def julia_set(
         x, y = z
         return [μ * y - μ * (-x + x**3), -x / μ]
 
-    def fhn_lim_derivatives(t, x, θ=0.14, ω=0.112, γ=2.54, ϵ=0.01):
-        u = -x[0] * (x[0] - θ) * (x[0] - 1) - x[1] + ω
-        v = ϵ * (x[0] - γ * x[1])
+    def fhn_lim_derivatives(t, x, theta=0.14, omega=0.112, gamma=2.54, epsilon=0.01):
+        u = -x[0] * (x[0] - theta) * (x[0] - 1) - x[1] + omega
+        v = epsilon * (x[0] - gamma * x[1])
         return u, v
 
     def hamiltonian_fun(x, y):
@@ -250,9 +290,9 @@ def food_chain(t, init0, a1=5, a2=0.1, b1=3, b2=2, d1=0.4, d2=0.01):
     return [dX, dY, dZ]
 
 
-def bz_reaction(t, X, q, f, ϵ, δ):
+def bz_reaction(t, X, q, f, epsilon, delta):
     x, y, z = X
-    dx = (q * y - x * y + x * (1 - x)) / ϵ
-    dy = (-q * y - x * y + f * z) / δ
+    dx = (q * y - x * y + x * (1 - x)) / epsilon
+    dy = (-q * y - x * y + f * z) / delta
     dz = x - z
     return (dx, dy, dz)

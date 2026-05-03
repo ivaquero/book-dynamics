@@ -15,7 +15,7 @@ my_images = []
 μs = np.arange(0, 5, 0.1)
 
 for μ in μs:
-    sol = solve_ivp(lambda t, z: lienard(t, z, μ), t_span, x0)
+    sol = solve_ivp(lienard, t_span, x0, args=(μ,))
     X = sol.y
     img = ax.plot(X[0, :], X[1, :], "r-")
     my_images.append(img)

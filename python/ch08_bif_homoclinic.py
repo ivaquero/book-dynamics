@@ -15,7 +15,7 @@ my_images = []
 Cs = np.arange(-0.2, 0.2, 0.01)
 
 for C in Cs:
-    sol = solve_ivp(lambda t, z: homoclinic(t, z, C), t_span, x0)
+    sol = solve_ivp(homoclinic, t_span, x0, args=(C,))
     X = sol.y
     img = ax.plot(X[0, :], X[1, :], "r-")
     my_images.append(img)

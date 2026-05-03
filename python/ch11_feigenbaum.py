@@ -5,7 +5,7 @@ from .dynamics.attractors import logistic_map
 
 ys = []
 rs = np.linspace(0, 4, 2_000)
-# rs = np.linspace(3.5, 4, 2_000) # For Figure 14.16.
+# rs = np.linspace(3.5, 4, 2_000)
 for r in rs:
     x = 0.1
     for _ in range(500):

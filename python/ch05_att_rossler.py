@@ -10,7 +10,7 @@ step_count = 50000
 xyz0 = [1.0, 1.0, 1.0]
 
 # integrate using shared euler_fixed
-traj, times = euler_fixed(lambda t, z: rossler(t, z), xyz0, dt, step_count)
+traj, times = euler_fixed(rossler, xyz0, dt, step_count)
 
 xs = traj[:, 0]
 ys = traj[:, 1]

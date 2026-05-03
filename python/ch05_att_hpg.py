@@ -12,7 +12,7 @@ xyz_init = [1, 0.2, 2]
 step_size, period = 0.1, 1000
 
 # integrate using shared euler_fixed
-traj, times = euler_fixed(lambda t, z: HPG(t, z), xyz_init, step_size, period)
+traj, times = euler_fixed(HPG, xyz_init, step_size, period)
 
 x = traj[:, 0]
 y = traj[:, 1]
@@ -53,6 +53,5 @@ for coordinate in coordinates:
     x, y = X[:, 0], X[:, 1]
     ax2.plot(x, y)
 
-# ax2.set(xlim=(-2, 2)
-# ax2.set(ylim=(-2, 4)
+# ax2.set(xlim=(-2, 2), ylim=(-2, 4))
 plt.show()

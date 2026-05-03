@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .dynamics.attractors import FHN_coupled
+from .dynamics.attractors import pulsed_FHN_coupled_factory
 from .ode.integrators import euler, euler_fixed
 
 ts = np.arange(0, 4, 0.01)
@@ -10,9 +10,7 @@ v_1, w_1, v_2, w_2, i_ext = euler([1, 1.20, 0.025])
 
 
 def run_coupled(start_puls, stop_puls, recover_puls):
-    f = lambda t, z: FHN_coupled(
-        z, (recover_puls if start_puls <= t <= stop_puls else 0)
-    )
+    f = pulsed_FHN_coupled_factory(start_puls, stop_puls, recover_puls)
 
     step = ts[1] - ts[0]
     traj, times = euler_fixed(f, [0, 0, 0, 0], step, len(ts))

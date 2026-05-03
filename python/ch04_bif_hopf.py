@@ -13,7 +13,7 @@ t = np.arange(t_span[0], t_span[1], 0.01)
 fig, ax = plt.subplots()
 
 for mu in np.arange(-1, 1, 0.1):
-    sol = solve_ivp(lambda t, z: hopf(t, z, mu), t_span, x0, dense_output=True)
+    sol = solve_ivp(hopf, t_span, x0, args=(mu,), dense_output=True)
     X = sol.sol(t).T
     img = ax.plot(X[:, 0], X[:, 1], "r-")
     my_images.append(img)

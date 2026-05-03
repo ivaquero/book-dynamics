@@ -19,10 +19,8 @@ xy_init = [80, 60]
 period = 10000
 
 for ind, step in enumerate(step_sizes):
-    # wrapper keeps signature f(t, z)
-    f = lambda t, z: lotka_volterra(t, z)
-
-    traj, times = euler_fixed(f, xy_init, step, period)
+    # pass the shared function directly
+    traj, times = euler_fixed(lotka_volterra, xy_init, step, period)
     x = traj[:, 0]
     y = traj[:, 1]
     axes[ind].scatter(x, y)

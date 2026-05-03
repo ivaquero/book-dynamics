@@ -21,12 +21,7 @@ ns = np.linspace(0, n_steps, n_steps)
 # Ramp the amplitude of vibration, γ, up.
 for n in ns:
     γ = step * n
-    sol = solve_ivp(
-        lambda t, z: duffing(t, z, α=α, β=β, ω=ω, γ=γ, k=k),
-        t_span,
-        z,
-        dense_output=True,
-    )
+    sol = solve_ivp(duffing, t_span, z, args=(α, β, ω, γ, k), dense_output=True)
     X1 = sol.sol(t).T
 
     for _ in range(2):
@@ -38,12 +33,7 @@ for n in ns:
 # Ramp the amplitude of vibration, γ, down.
 for n in ns:
     γ = γ_max - step * n
-    sol = solve_ivp(
-        lambda t, z: duffing(t, z, α=α, β=β, ω=ω, γ=γ, k=k),
-        t_span,
-        z,
-        dense_output=True,
-    )
+    sol = solve_ivp(duffing, t_span, z, args=(α, β, ω, γ, k), dense_output=True)
     X2 = sol.sol(t).T
 
     for _ in range(2):

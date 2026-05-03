@@ -26,10 +26,7 @@ def animate(i):
         x_i = coordinate[0]
         y_i = coordinate[1]
         sol = solve_ivp(
-            lambda t, z: clarinet(t, z, a_list[i]),
-            t_span,
-            [x_i, y_i],
-            dense_output=True,
+            clarinet, t_span, [x_i, y_i], args=(a_list[i],), dense_output=True
         )
         X = sol.sol(t).T
         x, y = X[:, 0], X[:, 1]
@@ -46,9 +43,7 @@ def animate2(i):
     ax.set(xlabel="time", ylabel="deviation", xlim=(0, 100), ylim=(-5, 5))
     x_i = 0
     y_i = 1 / np.sqrt(a_list[i]) if a_list[i] != 0 else 0
-    sol = solve_ivp(
-        lambda t, z: clarinet(t, z, a_list[i]), t_span, [x_i, y_i], dense_output=True
-    )
+    sol = solve_ivp(clarinet, t_span, [x_i, y_i], args=(a_list[i],), dense_output=True)
 
     X = sol.sol(t).T
     x, _ = X[:, 0], X[:, 1]

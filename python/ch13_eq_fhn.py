@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .dynamics.attractors import FHN
+from .dynamics.attractors import pulsed_FHN_factory
 from .ode.integrators import euler_fixed
 
 _, axes = plt.subplots(1, 2, constrained_layout=1)
@@ -9,9 +9,7 @@ ts = np.arange(0, 4, 0.01)
 
 
 def run_fhn(start_puls, stop_puls, recover_puls):
-    f = lambda t, z: FHN(
-        t, z, I_ext=(recover_puls if start_puls <= t <= stop_puls else 0)
-    )
+    f = pulsed_FHN_factory(start_puls, stop_puls, recover_puls)
 
     step = ts[1] - ts[0]
     traj, times = euler_fixed(f, [0, 0], step, len(ts))

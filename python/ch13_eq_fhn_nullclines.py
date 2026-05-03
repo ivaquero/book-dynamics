@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from .dynamics.attractors import fhn_nullclines
+
 V = np.arange(-2, 2.05, 0.01)
-W = V * (1 - V) * (V - 0.1)
-w_ = 2 * V
+W, w_ = fhn_nullclines(V, theta=0.1, gamma_slope=2.0)
 
 _, ax = plt.subplots()
 

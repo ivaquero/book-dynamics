@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
 from .dynamics.attractors import henon
+from .dynamics.maps import iterate_map_2d
 
 a = 1.2  # Set a= 1 to get Figure 14.23(a)
 b = 0.4
@@ -9,18 +10,10 @@ num_iterations = 10000
 
 X0 = [(1 - b) / 2, (1 - b) / 2]
 
-X, Y = [], []
+# warmup iterates (discarded)
+_, _ = iterate_map_2d(henon, X0, 100, a, b)
 
-for _ in range(100):
-    xn, yn = henon(X0)
-    X, Y = [*X, xn], [*Y, yn]
-    X0 = [xn, yn]
-
-X, Y = [], []
-for _ in range(num_iterations):
-    xn, yn = henon(X0)
-    X, Y = [*X, xn], [*Y, yn]
-    X0 = [xn, yn]
+X, Y = iterate_map_2d(henon, X0, num_iterations, a, b)
 
 _, ax = plt.subplots()
 
