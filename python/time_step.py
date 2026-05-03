@@ -1,9 +1,9 @@
-tmax = 10
 import matplotlib.pyplot as plt
 import numpy as np
 
-from ..dynamics.symbolic import build_piecewise_time_lambdas
+from .dynamics.symbolic import build_piecewise_time_lambdas
 
+tmax = 10
 tmax_default = 10
 functions, tmax = build_piecewise_time_lambdas(tmax_default)
 

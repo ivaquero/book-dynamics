@@ -1,6 +1,6 @@
 from sympy import Rational
 
-from ..dynamics.symbolic import tent_map
+from .dynamics.symbolic import tent_map
 
 # Initial value
 x = Rational(1, 5)

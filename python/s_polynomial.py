@@ -1,7 +1,8 @@
-x, y, z = symbols("x y z")
 from sympy import symbols
 
-from ..dynamics.symbolic import s_polynomial_sym
+from .dynamics.symbolic import s_polynomial_sym
+
+x, y, z = symbols("x y z")
 
 
 def s_polynomial(f, g):

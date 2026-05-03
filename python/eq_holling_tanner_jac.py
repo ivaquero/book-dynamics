@@ -1,6 +1,6 @@
 from sympy import symbols
 
-from ..dynamics.symbolic import compute_fixed_points_and_jacobian
+from .dynamics.symbolic import compute_fixed_points_and_jacobian
 
 x, y, N = symbols("x y N")
 phi, omega = 0.2, 6 / 7

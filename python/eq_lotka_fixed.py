@@ -1,6 +1,6 @@
 from sympy import symbols
 
-from ..dynamics.symbolic import compute_fixed_points_and_jacobian
+from .dynamics.symbolic import compute_fixed_points_and_jacobian
 
 x, y = symbols("x y", negative=False)
 beta, gamma, c, d = symbols("β γ c d")

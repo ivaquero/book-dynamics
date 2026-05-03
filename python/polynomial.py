@@ -1,6 +1,6 @@
 from sympy import symbols
 
-from ..dynamics.symbolic import compute_reduced
+from .dynamics.symbolic import compute_reduced
 
 x, y, z = symbols("x y z")
 f = x**4 + y**4 + z**4

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from ..dynamics.bifurcations import number_track
+from .dynamics.bifurcations import number_track
 
 # colormap
 # cmap = colors.ListedColormap(['red', 'orange'])

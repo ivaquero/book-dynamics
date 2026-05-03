@@ -1,6 +1,6 @@
 import numpy as np
 
-from ..dynamics.symbolic import compute_julia_unstable
+from .dynamics.symbolic import compute_julia_unstable
 
 a, b = -0.5, 0.3
 k = 15

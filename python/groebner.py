@@ -1,6 +1,6 @@
 from sympy import symbols
 
-from ..dynamics.symbolic import groebner_basis
+from .dynamics.symbolic import groebner_basis
 
 x = symbols("x")
 y = symbols("y")

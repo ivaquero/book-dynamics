@@ -1,6 +1,6 @@
 from sympy import N, symbols
 
-from ..dynamics.symbolic import solve_first_order_difference
+from .dynamics.symbolic import solve_first_order_difference
 
 n = symbols("n")
 sol = solve_first_order_difference(1 + 3 / 100, 10_000, n_symbol=n)

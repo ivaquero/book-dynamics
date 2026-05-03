@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sympy import Derivative, Eq, Function, Symbol, lambdify
 
-from ..dynamics.symbolic import solve_analytic, solve_power_series
+from .dynamics.symbolic import solve_analytic, solve_power_series
 
 x = Function("x")
 t = Symbol("t")
