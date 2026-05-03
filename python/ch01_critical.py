@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import integrate, linalg
 
+from .dynamics.plotting import derivatives, gen_mesh, vector_field
 from .dynamics.stability import pillar
-from .ode.field_2d import derivatives, gen_mesh, vector_field
 
 
 def prepare_system_data(

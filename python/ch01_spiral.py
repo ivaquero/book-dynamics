@@ -3,7 +3,7 @@ from functools import partial
 import matplotlib.pyplot as plt
 
 from .dynamics.attractors import clarinet
-from .ode.integrators import euler_fixed
+from .dynamics.integrators import euler_fixed
 
 
 def solve_trajectory(f, xy_init, step_size, period, integrator=euler_fixed):

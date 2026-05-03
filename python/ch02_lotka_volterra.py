@@ -3,7 +3,7 @@ import numpy as np
 from scipy.integrate import solve_ivp
 
 from .dynamics.attractors import lotka_volterra
-from .ode.field_2d import gen_mesh, vector_field
+from .dynamics.plotting import gen_mesh, vector_field
 
 
 def prepare_lotka_volterra_data(

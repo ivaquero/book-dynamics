@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from .dynamics.integrators import euler_fixed
 from .dynamics.plotting import time_series_from_pulsed_factory
-from .ode.integrators import euler_fixed
 
 _, axes = plt.subplots(1, 2, constrained_layout=1)
 ts = np.arange(0, 4, 0.01)

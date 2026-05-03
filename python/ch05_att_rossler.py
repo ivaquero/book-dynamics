@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 from .dynamics.attractors import rossler
-from .ode.integrators import euler_fixed
+from .dynamics.integrators import euler_fixed
 
 
 def solve_rossler_trajectory(initial_conditions=None, dt=0.01, step_count=50000):

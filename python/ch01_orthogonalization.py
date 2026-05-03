@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import integrate, linalg
 
-from .ode.field_2d import derivatives, gen_mesh
+from .dynamics.plotting import derivatives, gen_mesh
 
 
 def prepare_system_matrix(a=2, b=1, c=1, d=2):

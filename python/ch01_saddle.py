@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import integrate, linalg
 
+from .dynamics.plotting import derivatives, gen_mesh, vector_field
 from .dynamics.stability import pillar
-from .ode.field_2d import derivatives, gen_mesh, vector_field
 
 
 def prepare_system_data(
@@ -14,7 +14,7 @@ def prepare_system_data(
     u, v = derivatives(0, [A, B], *coefs)
 
     M = np.array([coefs[0:2], coefs[2:4]])
-    eigen_values, eigen_vectors = linalg.eig(M)
+    _, eigen_vectors = linalg.eig(M)
     X, Y = eigen_vectors
 
     return A, B, u, v, X, Y

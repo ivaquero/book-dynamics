@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from .dynamics.attractors import mckey_glass
-from .ode.integrators import euler_delay
+from .dynamics.integrators import euler_delay
 
 n_list = np.arange(0, 0.5, 0.01)
 τ_list = np.arange(0, 0.5, 0.01)

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from .dynamics.attractors import pulsed_FHN_factory
-from .ode.integrators import euler_fixed
+from .dynamics.integrators import euler_fixed
 
 fig, axes = plt.subplots(1, 2, constrained_layout=1)
 ts = np.arange(0, 4, 0.01)

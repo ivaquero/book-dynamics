@@ -5,8 +5,8 @@ import numpy as np
 from matplotlib.animation import FuncAnimation
 
 from .dynamics.attractors import mckey_glass
+from .dynamics.integrators import euler_delay
 from .dynamics.plotting import make_multi_traj_anim
-from .ode.integrators import euler_delay
 
 ts = np.arange(0, 10, 0.01)
 τ = 0.2

@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from .dynamics.attractors import pulsed_FHN_coupled_factory
+from .dynamics.integrators import euler_fixed
 from .dynamics.plotting import time_series_from_pulsed_factory
-from .ode.integrators import euler_fixed
 
 ts = np.arange(0, 4, 0.01)
 

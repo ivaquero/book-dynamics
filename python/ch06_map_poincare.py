@@ -1,21 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.integrate import solve_ivp
 
-from .dynamics.attractors import poincare_derivatives
-
-
-def solve_poincare_trajectory(initial_conditions, t_span, n_points=10000):
-    """Solve Poincare trajectory."""
-    sol = solve_ivp(poincare_derivatives, t_span, initial_conditions, dense_output=True)
-    t = np.linspace(t_span[0], t_span[1], n_points)
-    return sol.sol(t).T
-
-
-def plot_poincare_section(ax, X, **plot_kwargs):
-    """Plot Poincare section on given axes."""
-    ax.plot(X[:, 0], X[:, 1], "r-", **plot_kwargs)
-    ax.set(xlabel="x", ylabel="y", xlim=(-0.5, 1.5), ylim=(-0.5, 0.5))
+from .dynamics.attractors import solve_poincare_trajectory
+from .dynamics.plotting import plot_poincare_section
 
 
 def create_poincare_plot():

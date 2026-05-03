@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 
 from .dynamics.attractors import lotka_volterra
-from .ode.field_2d import gen_mesh, vector_field
-from .ode.integrators import euler_fixed
+from .dynamics.integrators import euler_fixed
+from .dynamics.plotting import gen_mesh, vector_field
 
 
 def prepare_growth_rate_data(xy_range=[0, 100, 0, 100], n_points=15):

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from .dynamics.attractors import collins
-from .ode.field_2d import gen_mesh, vector_field
+from .dynamics.plotting import gen_mesh, vector_field
 
 
 def prepare_vector_field_data(xy_range=(0, 5, 0, 5), n_points=10, system_func=collins):
