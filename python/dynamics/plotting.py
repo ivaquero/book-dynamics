@@ -23,3 +23,51 @@ def plot_poincare(func, t_span, z, n_period, ax):
 
     ax.plot(x, y, "b.", ms=2)
     ax.set(xlabel="x", ylabel="y", title="Poincaré section")
+
+
+def make_param_anim(
+    ax, compute_xy_for_param, xlim=None, ylim=None, xlabel="x", ylabel="y"
+):
+    """Create init and animate callables for a parameterized curve.
+
+    - `compute_xy_for_param(param)` should return (x_array, y_array).
+    - Returned `init()` clears the line; `animate(param)` sets data and returns the line tuple.
+    """
+
+    (line,) = ax.plot([], [], lw=2)
+
+    def init():
+        line.set_data([], [])
+        return (line,)
+
+    def animate(param):
+        x, y = compute_xy_for_param(param)
+        line.set_data(x, y)
+        if xlim is not None:
+            ax.set(xlim=xlim)
+        if ylim is not None:
+            ax.set(ylim=ylim)
+        ax.set(xlabel=xlabel, ylabel=ylabel)
+        return (line,)
+
+    return init, animate
+
+
+def make_multi_traj_anim(
+    ax, compute_trajs_for_param, xlim=None, ylim=None, xlabel="x", ylabel="y"
+):
+    """Create an animate callable that clears the axes and plots multiple trajectories for a parameter."""
+
+    def animate(param):
+        ax.clear()
+        if xlim is not None:
+            ax.set(xlim=xlim)
+        if ylim is not None:
+            ax.set(ylim=ylim)
+        ax.set(xlabel=xlabel, ylabel=ylabel)
+
+        trajs = compute_trajs_for_param(param)
+        for X in trajs:
+            ax.plot(X[:, 0], X[:, 1])
+
+    return animate

@@ -8,8 +8,11 @@ def logistic(X, h, a):
     return X * (1 - X) - h * X / (a + X)
 
 
-def function(X, h, a):
-    return lambda X: X * (1 - X) - h * X / (a + X)
+def function_factory(h, a):
+    def f(X):
+        return X * (1 - X) - h * X / (a + X)
+
+    return f
 
 
 def stablity(X_init, h, a):
@@ -48,7 +51,9 @@ def bifurcation(a_values=None, h_values=None, x_values=None):
                 if np.sign(logistic(x - 0.02, h, a)) != np.sign(
                     logistic(x + 0.02, h, a)
                 ):
-                    null_points[ind] = brentq(function(X, h, a), x - 0.02, x + 0.02)
+                    null_points[ind] = brentq(
+                        function_factory(h, a), x - 0.02, x + 0.02
+                    )
                 else:
                     null_points[ind] = x
             for null_point in null_points:

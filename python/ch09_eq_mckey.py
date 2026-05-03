@@ -1,3 +1,5 @@
+from functools import partial
+
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
@@ -21,9 +23,7 @@ def animate(i):
     ax.clear()
     ax.set(xlim=(0, 10), ylim=(0, 4), xlabel="time", title=f"n={n_list[i]}")
 
-    def func(X, X_tau):
-        return mckey_glass(X, X_tau, n_list[i])
-
+    func = partial(mckey_glass, n=n_list[i])
     X = euler_delay(func, 2, 0.01, len(ts), τ, history_value=0.5)
     ax.plot(ts, X)
 

@@ -8,8 +8,11 @@ def opinion(X, a):
     return (1 - X) * np.exp(a * X) - (1 + X) * np.exp(-a * X)
 
 
-def function(X, a):
-    return lambda X: (1 - X) * np.exp(a * X) - (1 + X) * np.exp(-a * X)
+def function_factory(a):
+    def f(X):
+        return (1 - X) * np.exp(a * X) - (1 + X) * np.exp(-a * X)
+
+    return f
 
 
 def stability(X_init, a):
@@ -37,7 +40,7 @@ def pitchwork(a_vals, x_vals):
         # find null_points:
         null_points = np.zeros(len(x_list))
         for i, x in enumerate(x_list):
-            null_points[i] = brentq(function(X, a), x - 0.02, x + 0.02)
+            null_points[i] = brentq(function_factory(a), x - 0.02, x + 0.02)
             # 0.01 is the spacing between 2 points with different sign -> 0.02 certainly
         for null_point in null_points:
             if stability(null_point, a):

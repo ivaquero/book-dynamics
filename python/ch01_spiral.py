@@ -1,3 +1,5 @@
+from functools import partial
+
 import matplotlib.pyplot as plt
 
 from .dynamics.attractors import clarinet
@@ -10,12 +12,8 @@ step_sizes = [0.1, 0.1]
 periods = [150, 80]
 
 
-# wrapper to accept (t, z) signature
-def f(t, z):
-    return clarinet(t, z, a=1)
-
-
 for xy_init, step_size, period in zip(xy_inits, step_sizes, periods, strict=True):
+    f = partial(clarinet, a=1)
     traj, t = euler_fixed(f, xy_init, step_size, period)
     x = traj[:, 0]
     y = traj[:, 1]

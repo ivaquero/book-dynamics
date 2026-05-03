@@ -8,7 +8,7 @@ from .dynamics.attractors import duffing_simple
 x0 = [1, 0]
 t_span = [0, 100]
 
-sol = solve_ivp(lambda t, x: duffing_simple(t, x, eps=ϵ), t_span, x0, dense_output=True)
+sol = solve_ivp(duffing_simple, t_span, x0, args=(ϵ,), dense_output=True)
 
 t = np.linspace(t_span[0], t_span[1], 2000)
 X = sol.sol(t).T[:, 0]

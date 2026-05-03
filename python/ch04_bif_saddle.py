@@ -2,29 +2,31 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
 
+from .dynamics.plotting import make_param_anim
+
 xmin, xmax = -4, 4
 μ_min, μ_max = -3, 3
 
 fig, ax = plt.subplots()
 
-(line,) = ax.plot([], [], lw=2)
-
 ax.plot([xmin, xmax], [0, 0], "m")
 ax.plot([0, 0], [xmin, xmax], "m")
 
 
-def init():
-    line.set_data([], [])
-    return (line,)
-
-
-# Animate μ-x^**2, where -3<μ<3.
-def animate(μ):
+def compute_xy_for_param(mu):
     x = np.linspace(xmin, xmax, 100)
-    y = μ - x**2
-    line.set_data(x, y)
-    return (line,)
+    y = mu - x**2
+    return x, y
 
+
+init, animate = make_param_anim(
+    ax,
+    compute_xy_for_param,
+    xlim=(xmin, xmax),
+    ylim=(μ_min, μ_max),
+    xlabel="x",
+    ylabel="y",
+)
 
 saddle = FuncAnimation(
     fig,

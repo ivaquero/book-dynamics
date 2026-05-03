@@ -1,3 +1,5 @@
+from functools import partial
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -17,7 +19,7 @@ period = len(ts)
 
 for i, n in enumerate(n_list):
     for j, τ in enumerate(τ_list):
-        func = lambda X, X_tau: mckey_glass(X, X_tau, n)
+        func = partial(mckey_glass, n=n)
         x_arr = euler_delay(func, 2, step_size, period, τ, history_value=0.5)
 
         count = 0

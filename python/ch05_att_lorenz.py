@@ -8,8 +8,9 @@ from .dynamics.attractors import lorenz
 xyz_init = 0, 1, 1.05
 t_span = [0, 100]
 
+
 # Integrate the lorenz equations on the time grid t.
-sol = solve_ivp(lambda t, X: lorenz(t, X, σ, β, ρ), t_span, xyz_init, dense_output=True)
+sol = solve_ivp(lorenz, t_span, xyz_init, args=(σ, β, ρ), dense_output=True)
 
 t = np.linspace(t_span[0], t_span[1], 10000)
 x, y, z = sol.sol(t)
