@@ -3,7 +3,7 @@ import numpy as np
 from scipy.optimize import brentq
 from sympy import symbols
 
-from ..dynamics.bifurcations import opinion, stablity
+from .dynamics.bifurcations import opinion, stablity
 
 
 def pitchwork(a_vals, x_vals):

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import colors
 
-from ..dynamics.bifurcations import number_track
+from .dynamics.bifurcations import number_track
 
 n_points = 20
 r_range = [0, 0.6]

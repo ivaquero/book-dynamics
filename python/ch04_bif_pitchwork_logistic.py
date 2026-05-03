@@ -3,7 +3,7 @@ import numpy as np
 from scipy.optimize import brentq
 from sympy import symbols
 
-from ..dynamics.bifurcations import logistic, stablity
+from .dynamics.bifurcations import logistic, stablity
 
 
 def bifurcation(a_values=None, h_values=None, x_values=None):
