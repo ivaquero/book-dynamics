@@ -4,13 +4,24 @@ This module re-exports functions from the modularized dynamics submodules.
 For better organization, functions have been split into:
 - systems: Dynamical system definitions
 - trajectory_solvers: Functions for solving system trajectories
-- visualization: Plotting and visualization utilities
+- plotting: Plotting and plotting utilities
 - fractals: Fractal generation functions
 """
 
 # Import system definitions
 # Import fractal functions
 from .fractals import complex_set, julia_set
+
+# Import plotting utilities
+from .plotting import (
+    arrows,
+    derivatives,
+    fhn_nullclines,
+    gen_mesh,
+    plot_phase,
+    plot_poincare,
+    vector_field,
+)
 from .systems import (
     FHN,
     HPG,
@@ -57,9 +68,6 @@ from .trajectory_solvers import (
     stepwise,
 )
 
-# Import visualization utilities
-from .visualization import arrows, fhn_nullclines
-
 # Re-export everything for backward compatibility
 __all__ = [
     # Systems
@@ -105,7 +113,12 @@ __all__ = [
     "stepwise",
     # Visualization
     "arrows",
+    "derivatives",
     "fhn_nullclines",
+    "gen_mesh",
+    "plot_phase",
+    "plot_poincare",
+    "vector_field",
     # Fractals
     "complex_set",
     "julia_set",
