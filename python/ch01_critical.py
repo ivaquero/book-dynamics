@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import integrate, linalg
 
+from .dynamics.bifurcations import pillar
 from .dynamics.plotting import derivatives, gen_mesh, vector_field
-from .dynamics.stability import pillar
 
 
 def prepare_system_data(
