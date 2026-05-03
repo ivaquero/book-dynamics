@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.integrate import solve_ivp
 
 
 def clarinet(t, z, a=1):
@@ -317,7 +318,6 @@ def solve_lorenz_trajectory(xyz_init, t_span, params=(10, 2.667, 28), n_points=1
     tuple
         (x, y, z, t) arrays of trajectory coordinates and time points.
     """
-    from scipy.integrate import solve_ivp
 
     σ, β, ρ = params
     sol = solve_ivp(lorenz, t_span, xyz_init, args=(σ, β, ρ), dense_output=True)
@@ -452,7 +452,6 @@ def solve_hpg2_trajectories(coordinates, t_span, t):
     list
         List of (H_traj, G_traj) trajectory tuples.
     """
-    from scipy.integrate import solve_ivp
 
     trajectories = []
     for coordinate in coordinates:
@@ -480,7 +479,6 @@ def solve_poincare_trajectory(initial_conditions, t_span, n_points=10000):
     numpy.ndarray
         Trajectory array of shape (n_points, 2).
     """
-    from scipy.integrate import solve_ivp
 
     sol = solve_ivp(poincare_derivatives, t_span, initial_conditions, dense_output=True)
     t = np.linspace(t_span[0], t_span[1], n_points)
