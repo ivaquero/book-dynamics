@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .dynamics.bifurcations import arrows_with_r, lac, stablity
+from .dynamics.bifurcations import lac, stablity
+from .dynamics.plotting import arrows_with_r
 
 x_range = [0.001, 10]
 X = np.linspace(x_range[0], x_range[1], 2000)
