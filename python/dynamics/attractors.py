@@ -113,10 +113,10 @@ def mckey_glass(X, X_τ, n, L=6, Vmax=16):
     return L - (Vmax * X_τ**n) / (1 + X_τ**n) * X
 
 
-def FHN(t, z, I_ext=0.0, a=0.1, γ=1, ϵ=0.01):
+def FHN(t, z, I_ext=0.0, a=0.1, gamma=1, epsilon=0.01):
     V, w = z
-    V_ = (1 / ϵ) * (-w + V * (1 - V) * (V - a) + I_ext)
-    w_ = V - γ * w
+    V_ = (1 / epsilon) * (-w + V * (1 - V) * (V - a) + I_ext)
+    w_ = V - gamma * w
     return [V_, w_]
 
 
@@ -133,7 +133,7 @@ def FHN_coupled(Z, I_ext, R=45, a=0.1, gamma=0.5, epsilon=0.008):
     return [V_1_, w_1_, V_2_, w_2_]
 
 
-def pulsed_FHN_factory(start, stop, I_ext_value, a=0.1, γ=1, ϵ=0.01):
+def pulsed_FHN_factory(start, stop, I_ext_value, a=0.1, gamma=1, epsilon=0.01):
     """Return a function f(t, z) that applies a pulse of `I_ext_value` between start and stop.
 
     The returned function matches the signature expected by integrators: f(t, z).
@@ -141,7 +141,7 @@ def pulsed_FHN_factory(start, stop, I_ext_value, a=0.1, γ=1, ϵ=0.01):
 
     def f(t, z):
         i_ext = I_ext_value if start <= t <= stop else 0
-        return FHN(t, z, I_ext=i_ext, a=a, γ=γ, ϵ=ϵ)
+        return FHN(t, z, I_ext=i_ext, a=a, gamma=gamma, epsilon=epsilon)
 
     return f
 

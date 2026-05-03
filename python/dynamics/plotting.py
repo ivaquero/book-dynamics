@@ -1,17 +1,19 @@
 import numpy as np
 from scipy.integrate import solve_ivp
 
+from .attractors import logistic_map
 
-def plot_phase(func, t_span, z, ax):
+
+def plot_phase(ax, func, t_span, z):
     sol = solve_ivp(func, t_span, z, dense_output=True)
     t = np.linspace(t_span[0], t_span[1], int((t_span[1] - t_span[0]) * 10))
     X1 = sol.sol(t).T
 
     ax.plot(X1[:, 0], X1[:, 1], "r-", lw=0.2)
-    ax.set(xlabel="x", ylabel="y", title="Phase portrait")
+    ax.set(title="Phase portrait")
 
 
-def plot_poincare(func, t_span, z, n_period, ax):
+def plot_poincare(ax, func, t_span, z, n_period):
     sol = solve_ivp(func, t_span, z, dense_output=True)
     t = np.linspace(
         t_span[0], t_span[1] * n_period, int((t_span[1] - t_span[0]) * n_period)
@@ -22,12 +24,10 @@ def plot_poincare(func, t_span, z, n_period, ax):
     y = [X2[int(t_span[1] * i), 1] for i in range(int(t_span[1]))]
 
     ax.plot(x, y, "b.", ms=2)
-    ax.set(xlabel="x", ylabel="y", title="Poincaré section")
+    ax.set(title="Poincaré section")
 
 
-def make_param_anim(
-    ax, compute_xy_for_param, xlim=None, ylim=None, xlabel="x", ylabel="y"
-):
+def make_param_anim(ax, compute_xy_for_param, xlim=None, ylim=None):
     """Create init and animate callables for a parameterized curve.
 
     - `compute_xy_for_param(param)` should return (x_array, y_array).
@@ -47,15 +47,13 @@ def make_param_anim(
             ax.set(xlim=xlim)
         if ylim is not None:
             ax.set(ylim=ylim)
-        ax.set(xlabel=xlabel, ylabel=ylabel)
+
         return (line,)
 
     return init, animate
 
 
-def make_multi_traj_anim(
-    ax, compute_trajs_for_param, xlim=None, ylim=None, xlabel="x", ylabel="y"
-):
+def make_multi_traj_anim(ax, compute_trajs_for_param, xlim=None, ylim=None):
     """Create an animate callable that clears the axes and plots multiple trajectories for a parameter."""
 
     def animate(param):
@@ -64,7 +62,6 @@ def make_multi_traj_anim(
             ax.set(xlim=xlim)
         if ylim is not None:
             ax.set(ylim=ylim)
-        ax.set(xlabel=xlabel, ylabel=ylabel)
 
         trajs = compute_trajs_for_param(param)
         for X in trajs:
@@ -99,3 +96,59 @@ def make_multi_traj_anim(
         return traj, times
 
     return None
+
+
+def arrows_with_r(
+    ax, r_val, X_list, func, *func_args, head_width=0.02, head_length=0.5, color="black"
+):
+    ax.vlines(r_val, min(X_list) - 1, max(X_list) + 1, color=color)
+    for x in X_list:
+        points_at = func(x, *func_args, r_val)
+        ax.arrow(
+            r_val,
+            x,
+            0,
+            points_at,
+            head_width=head_width,
+            head_length=head_length,
+            color=color,
+        )
+
+
+def arrows_param(
+    ax, param, X_list, func, head_width=0.02, head_length=0.5, color="black"
+):
+    ax.vlines(param, min(X_list) - 1, max(X_list) + 1, color=color)
+    for x in X_list:
+        points_at = func(x, param)
+        ax.arrow(
+            param,
+            x,
+            0,
+            points_at,
+            head_width=head_width,
+            head_length=head_length,
+            color=color,
+        )
+
+
+def draw_cobweb(ax, steps, x_init, r, color="b"):
+    """Draw a cobweb diagram on the given axis.
+
+    - `ax` is a matplotlib Axes instance.
+    - `steps` number of cobweb iterations to draw.
+    - `x_init` initial x value.
+    - `r` logistic map parameter.
+    """
+    X, Y = [], []
+    X.append(x_init)
+    Y.append(0)
+    for _ in range(steps):
+        # compute next point and draw the two segments of the cobweb
+        y_next = logistic_map(X[-1], r)
+        X.append(X[-1])
+        Y.append(y_next)
+        ax.plot(X[-2:], Y[-2:], color=color)
+        X.append(y_next)
+        Y.append(y_next)
+        ax.plot(X[-2:], Y[-2:], color=color)

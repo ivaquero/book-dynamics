@@ -1,4 +1,23 @@
-from sympy import Eq, Function, Matrix, dsolve, rsolve, solve, symbols
+from sympy import (
+    LM,
+    LT,
+    Eq,
+    Function,
+    I,
+    Matrix,
+    Rational,
+    dsolve,
+    expand,
+    im,
+    integrate,
+    lambdify,
+    lcm,
+    re,
+    rsolve,
+    solve,
+    sqrt,
+    symbols,
+)
 
 
 def compute_julia_unstable(a, b):
@@ -6,7 +25,6 @@ def compute_julia_unstable(a, b):
 
     Returns a numeric sympy expression (or Float) for 2*abs(x1 + y1*I).
     """
-    from sympy import I, im, re, sqrt
 
     x1 = (re(0.5 + sqrt(0.25 - (a + b * I)))).expand(complex=True)
     y1 = (im(0.5 + sqrt(0.25 - (a + b * I)))).expand(complex=True)
@@ -15,7 +33,6 @@ def compute_julia_unstable(a, b):
 
 def s_polynomial_sym(f, g):
     """Compute the S-polynomial of two polynomials (sympy objects)."""
-    from sympy import LM, LT, expand, lcm
 
     return expand(lcm(LM(f), LM(g)) * (1 / LT(f) * f - 1 / LT(g) * g))
 
@@ -41,7 +58,6 @@ def build_piecewise_time_lambdas(tmax=10):
     Returns (functions_list, tmax) where each function is a numpy-callable
     accepting a numeric `t` array or scalar.
     """
-    from sympy import integrate, lambdify, symbols
 
     xi, t = symbols("xi t")
     x = []
@@ -63,8 +79,8 @@ def tent_map(x, mu):
     """Tent map: works with sympy Rational or numeric values.
 
     Returns mu*x for x < 1/2, mu*(1-x) for x > 1/2, else None.
+
     """
-    from sympy import Rational
 
     half = Rational(1, 2)
     try:
@@ -129,7 +145,6 @@ def compute_stability_2d(eigen_values):
     Returns (stab_type, one_hot_vector)
     """
     import numpy as _np
-    from sympy import im, re
 
     eig1, eig2 = tuple(eigen_values)
     stability = _np.zeros(5)

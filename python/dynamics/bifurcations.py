@@ -85,37 +85,3 @@ def stablity(
     for _ in range(iterations):
         X += time_interval * func(X, *func_args)
     return abs(X - X_init) <= perturbation
-
-
-def arrows_param(
-    ax, param, X_list, func, head_width=0.02, head_length=0.5, color="black"
-):
-    ax.vlines(param, min(X_list) - 1, max(X_list) + 1, color=color)
-    for x in X_list:
-        points_at = func(x, param)
-        ax.arrow(
-            param,
-            x,
-            0,
-            points_at,
-            head_width=head_width,
-            head_length=head_length,
-            color=color,
-        )
-
-
-def arrows_with_r(
-    ax, r_val, X_list, func, *func_args, head_width=0.02, head_length=0.5, color="black"
-):
-    ax.vlines(r_val, min(X_list) - 1, max(X_list) + 1, color=color)
-    for x in X_list:
-        points_at = func(x, *func_args, r_val)
-        ax.arrow(
-            r_val,
-            x,
-            0,
-            points_at,
-            head_width=head_width,
-            head_length=head_length,
-            color=color,
-        )
