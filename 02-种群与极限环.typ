@@ -36,7 +36,7 @@ $ dv(X(t), t) = r X(t) - m X(t)^2 $ <logistic>
 
 $ X(t) = frac(r X(0), m X(0) + (r - m X(0)) exp(-r t)) $
 
-#let code1 = read("python/ch02_eq_logistic.py")
+#let code1 = read("python/ch02_logistic_eq.py")
 #code(code1)
 
 不难看出
@@ -127,7 +127,7 @@ $ O = (0, 0), R = (d / c, β / γ) $
 
 $ 𝑱 = mat(delim: "[", β - γ y, - γ x; c y, - d + c x) $
 
-#let code1 = read("python/ch02_eq_lotka_fixed.py")
+#let code1 = read("python/ch02_lotka_volterra.py")
 #code(code1)
 
 #figure(
@@ -241,7 +241,7 @@ $
 
 通过解方程$dot(x) = dot(y) = 0$找到临界点。
 
-#let code1 = read("python/ch02_eq_holling_tanner_jac.py")
+#let code1 = read("python/ch02_holling_tanner.py")
 #code(code1)
 
 当$N = 0.5$，得到的两个关键的都不稳定。无论$X(t)$和$y(t)$的初始值是多少，种群最终会周期性地上升和下降。这种孤立的周期性轨迹称为稳定的极限环。从长远来看，第一象限的所有轨迹都会被吸引到这个周期性的循环中，一旦到了那里，就会永远留在那里。

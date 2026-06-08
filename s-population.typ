@@ -2,6 +2,7 @@
 #show: touying-quick.with(
   title: "种群动力学",
   subtitle: "生物建模系列课程第1讲",
+  info: slide,
 )
 
 = 背景介绍
@@ -29,10 +30,14 @@
 
 == 模型提出
 
-1798年，马尔萨斯（Thomas Malthus）在《人口论》中提出：人口按几何级数增长而生活资源只能按算术级数增长，所以不可避免地要导致饥饿、战争和疾病。
+#[
+  #set text(size: 18pt)
+  1798年，马尔萨斯（Thomas Malthus）在《人口论》中提出：人口按几何级数增长而生活资源只能按算术级数增长，所以不可避免地要导致饥饿、战争和疾病。
+]
 
-#block(height: 15em, columns(gutter: -2em)[
-  #h(2em)令时刻$t$时的总种群为$X(t)$，平均生育率为$b$，平均死亡率为$d$，则有
+#block(height: 16em, columns(gutter: -2em)[
+  #set text(size: 18pt)
+  令时刻$t$时的总种群为$X(t)$，平均生育率为$b$，平均死亡率为$d$，则有
 
   $ dv(X(t), t) = (b - d) X(t) $
 
@@ -162,12 +167,15 @@ $ lim_(x → ∞) X(t) = r / m = K $
 
 == 下节预告
 
-#block(height: 19em, columns()[
+#block(height: 18em, columns()[
   - Allée 效应
   - 编程实践
+  #[
+    #set text(size: 5pt)
 
-  #let code1 = read("python/ch02_eq_logistic.py")
-  #code(code1)
+    #let code1 = read("python/ch02_logistic_eq.py")
+    #code(code1)
+  ]
 
   $
     X^' = r X (1 - frac(X, K))(frac(X, a) - 1)
@@ -178,4 +186,3 @@ $ lim_(x → ∞) X(t) = r / m = K $
     caption: none,
   )
 ])
-

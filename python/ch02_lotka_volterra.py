@@ -57,10 +57,10 @@ def plot_phase_portrait(ax, X, Y, U, V, xy_range, coefs, t_span, n_trajectories=
     ax.legend()
 
 
-def plot_population_time_series(
-    ax, initial_condition, t_span, coefs, labels=["Preys", "Predators"]
-):
+def plot_population_time_series(ax, initial_condition, t_span, coefs, labels=None):
     """Plot population time series."""
+    if labels is None:
+        labels = ["Preys", "Predators"]
     t, preys, predators = solve_lotka_volterra_trajectory(
         initial_condition, t_span, coefs
     )
@@ -79,7 +79,7 @@ def create_lotka_volterra_plot():
     t_span = [0, 100]
 
     # Prepare system data
-    X, Y, U, V, X_R, coefs = prepare_lotka_volterra_data(coefs, xy_range, n_points)
+    X, Y, U, V, _, coefs = prepare_lotka_volterra_data(coefs, xy_range, n_points)
 
     # Create figure with subplots
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5), constrained_layout=1)

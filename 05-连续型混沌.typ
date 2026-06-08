@@ -1,6 +1,6 @@
 #import "lib/lib.typ": *
 #show: chapter-style.with(title: "连续型混沌", info: info)
-#import "@preview/typsium:0.3.0": ce
+#import "@preview/typed-smiles:0.1.0": ce
 
 = 吸引子
 <吸引子>
@@ -155,7 +155,7 @@ $ p(t) = ∫_0^t ϕ x(s) cos ω_0 s dd(s) $
 
 令
 
-$ K = lim_(t → ∞) frac(log M(t), log(t)) $
+$ K = lim_(t -> ∞) frac(log M(t), log(t)) $
 
 其中，$M$为$p(t)$的均方位移。通常情况下，$K = 0$表示规则动力学，$K = 1$表示混沌动力学。他们指出，该试验对连续系统和离散系统都很有效。
 
@@ -187,7 +187,7 @@ Lorenz 得出的惊人结论，现在被广泛标榜为蝴蝶效应（butterfly 
   caption: "lorenz attractor",
 )
 
-Lorenz 系统具有天然的对称性，其$z$轴是不变的，$(x, y, z) → (x, - y, z)$。由于$div X = -(α + β + 1) < 0$，其中，$X$是向量场，故流动是体积收缩的。
+Lorenz 系统具有天然的对称性，其$z$轴是不变的，$(x, y, z) -> (x, - y, z)$。由于$div X = -(α + β + 1) < 0$，其中，$X$是向量场，故流动是体积收缩的。
 
 - 当$0 < ρ < 1$时，原点是唯一的临界点，它是一个全局吸引子。
 - 当$r = 1$时，有一个分岔，两个临界点，$C_1 = (β (ρ - 1), β (ρ - 1), ρ - 1)$和$C_2 = (-β (ρ - 1), - β (ρ - 1), ρ - 1)$。
@@ -250,14 +250,14 @@ $
     [Step], [Reaction], [Rate],
     [1], [#ce("BrO3^- + Br^- -> HBrO2 + HOBr")], [#ce("k1 [BrO3]- [Br]-")],
     [2], [#ce("HBrO2 + Br^- -> 2HOBr")], [#ce("k2 [HBrO2] [Br]-")],
-    [3], [#ce("BrO3^- + HBrO2 → 2HBrO2 + 2M_ox")], [#ce("k3 [BrO3]- [HBrO2]")],
-    [4], [#ce("2HBrO2 → BrO3^- + HOBr")], [#ce("k4 [HBr2]^2")],
-    [5], [#ce("OS + M_ox → 1\/2CBr^-")], [#ce("k5 [OS][M_ox]")],
+    [3], [#ce("BrO3^- + HBrO2 -> 2HBrO2 + 2M_o&x")], [#ce("k3 [BrO3]- [HBrO2]")],
+    [4], [#ce("2HBrO2 -> BrO3^- + HOBr")], [#ce("k4 [HBr2]^2")],
+    [5], [#ce("OS + M_o&x -> 1\/2CBr^-")], [#ce("k5 [OS][M_o&x]")],
   ),
   caption: "BZ 振荡反应",
 )
 
-其中，#ce("OS") 代表所有可氧化的有机物种，#ce("M_ox") 代表氧化形式的金属离子催化剂，$C$为常数。请注意，在第 3 步中，#ce("[HBrO2]") 刺激自身生成，这个过程称为自催化。中间物浓度 x = #ce("[HBrO2]")，y = #ce("[Br^-]")，z = #ce("M_ox") 的反应速率方程为
+其中，#ce("OS") 代表所有可氧化的有机物种，#ce("M_o&x") 代表氧化形式的金属离子催化剂，$C$为常数。请注意，在第 3 步中，#ce("[HBrO2]") 刺激自身生成，这个过程称为自催化。中间物浓度 x = #ce("[HBrO2]")，y = #ce("[Br^-]")，z = #ce("M_o&x") 的反应速率方程为
 
 $
   dot(x) & = k_1 a y - k_2 x y + k_3 a x - 2 k_4 x^2 \
