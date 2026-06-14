@@ -90,7 +90,7 @@ $ z_(n+1) = z_n^2 $
 
 设$c = -0.5 + 0.3 i$，Julia 集$J(-0.5, 0.3)$定义了有界和无界轨道的边界。从$J(-0.5, 0.3)$集内$z_0 = 0 + 0 i$处开始的轨道仍然是有界的，而从$J(-0.5, 0.3)$集外$z = -1 - i$处开始的轨道是无界的。
 
-#let code1 = read("python/ch12_set_julia_sym.py")
+#let code1 = read("python/set_julia_sym.py")
 #code(code1)
 
 #figure(

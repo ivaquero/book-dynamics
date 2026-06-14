@@ -52,7 +52,7 @@ $
   …
 $
 
-#let code1 = read("python/ch10_eq_diff_1st.py")
+#let code1 = read("python/eq_diff_1st.py")
 #code(code1)
 
 == 二阶差分方程
@@ -86,7 +86,7 @@ $ x_(n + 2) = x_(n+1) + 6 x_n, n ∈ ℕ $
 
 其中，$x_0 = 1$, $x_1 = 2$
 
-#let code1 = read("python/ch10_eq_diff_2nd.py")
+#let code1 = read("python/eq_diff_2nd.py")
 #code(code1)
 
 == 2. Leslie 模型

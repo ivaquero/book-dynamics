@@ -163,7 +163,7 @@ $ p = sum_(i=1)^s q_i p_i + r, ∀p ∈ K[x] $
 
 固定一个项序$x ≻_("lex") y ≻_("lex") z$，用有序列表${ x_2 + y, z_2 y - 1, y - z_2 }$除以多项式$f = x^4 + y^4 + z^4$。
 
-#let code1 = read("python/ch07_polynomial.py")
+#let code1 = read("python/polynomial.py")
 #code(code1)
 
 注意，多元多项式的除法算法不会产生唯一的余数。当理想的基是 Gröbner 基时，唯一的余数是存在的。
@@ -186,7 +186,7 @@ $ p = sum_(i=1)^s q_i p_i + r, ∀p ∈ K[x] $
 
 设$p = x - 13 y^2 - 12 z^3，pi = x^2 - x y + 92 z$，请确定$S (p, pi)$与项序$x ≻_("lex") y ≻_("lex") z$的关系。
 
-#let code1 = read("python/ch07_s_polynomial.py")
+#let code1 = read("python/s_polynomial.py")
 #code(code1)
 
 == Buchberger 算法
@@ -224,7 +224,7 @@ $
   dot(y) & = 4 x^3 - 12 x y^2 + x^4 + 2 x^2 y^2 + y^4
 $
 
-#let code1 = read("python/ch07_groebner.py")
+#let code1 = read("python/groebner.py")
 #code(code1)
 
 第一个生成器仅用$y$表示，求出后用回代法来确定相应的$x$值，即为临界点。
