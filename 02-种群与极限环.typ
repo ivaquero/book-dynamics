@@ -1,6 +1,28 @@
 #import "lib/lib.typ": *
 #show: chapter-style.with(title: "种群与极限环", info: info)
 
+
+= 种群动力学
+
+== 种群动力学的任务
+
+#block(height: 15em, columns()[
+  - 微生物工程需要解决的问题
+    - 目标产物的规模生产
+    - 目标产物的活性保持
+  - 模型预测的挑战
+    - 单一菌群的生化特性变化
+    - 混合菌群的生态学关系复杂
+  - 生物建模的常用技术
+    - *种群动力学模型*
+    - 生态网络模型
+
+  #figure(
+    image("images/fermenter.png", width: 100%),
+    caption: none,
+  )
+])
+
 = 单变量种群
 <单变量种群>
 
