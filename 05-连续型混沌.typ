@@ -184,7 +184,7 @@ Lorenz 得出的惊人结论，现在被广泛标榜为蝴蝶效应（butterfly 
 
 #figure(
   image("images/ch05/attr-lorenz.png", width: 50%),
-  caption: "lorenz attractor",
+  caption: "Lorenz 吸引子",
 )
 
 Lorenz 系统具有天然的对称性，其$z$轴是不变的，$(x, y, z) -> (x, - y, z)$。由于$div X = -(α + β + 1) < 0$，其中，$X$是向量场，故流动是体积收缩的。

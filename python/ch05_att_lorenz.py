@@ -5,7 +5,7 @@ from scipy.integrate import solve_ivp
 from .dynamics.attractors import lorenz
 
 
-def solve_lorenz_trajectory(xyz_init, t_span, params=(10, 2.667, 28), n_points=10000):
+def solve_lorenz_trajectory(xyz_init, t_span, params=(10, 2.667, 28), n_points=10_000):
     """Solve Lorenz trajectory for given initial condition and parameters."""
     σ, β, ρ = params
     sol = solve_ivp(lorenz, t_span, xyz_init, args=(σ, β, ρ), dense_output=True)
@@ -32,7 +32,7 @@ def create_lorenz_attractor_plot():
     params = (10, 2.667, 28)
 
     # Solve trajectory
-    x, y, z, t = solve_lorenz_trajectory(xyz_init, t_span, params)
+    x, y, z, _ = solve_lorenz_trajectory(xyz_init, t_span, params)
 
     # Create figure with 3D projection
     fig = plt.figure()
