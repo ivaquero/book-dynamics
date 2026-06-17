@@ -136,20 +136,24 @@ $
 == Lotka-Volterra 方程
 <Lotka-Volterra-方程>
 
-Lotka-Volterra 方程，又称猎食者-猎物方程，常用于描述两个物种相互作用的生物系统的动态，其中一个作为猎食者，另一个作为猎物。根据这一对方程，种群随着时间的推移而变化。该方程，由 Alfred Lotka（1880\~1949）于 1910 年在其自催化化学反应的研究中首次提出，并在 1925 年进行了拓展。Vito Volterra（1860\~1940）于 1926 年发表了相同的方程，用于研究亚得里亚海的鱼群规模@volterraFluttuazioniNumeroIndinvidui1927。
+Lotka-Volterra（LV）方程，又称猎食者-猎物方程，常用于描述两个物种相互作用的生物系统的动态，其中一个作为猎食者，另一个作为猎物。该方程由 Alfred Lotka（1880\~1949）于 1910 年在其自催化化学反应的研究中首次提出，并在 1925 年进行了拓展。Vito Volterra（1860\~1940）于 1926 年发表了相同的方程，用于研究亚得里亚海的鱼群规模@volterraFluttuazioniNumeroIndinvidui1927。
 
 $
-  dot(x) & = x(β - γ y) \
-  dot(y) & = y(c x - d)
+  dot(x) & = α x - β x y \
+  dot(y) & = - γ x + δ x y
 $
 
-其中，$β, γ$和$c, d$均为常数。通过解$dot(x) = dot(y) = 0$来定位临界点。得临界点为
+其中，$α, β$和$γ, δ$均为实数。通过解$dot(x) = dot(y) = 0$来定位临界点。得临界点为
 
-$ O = (0, 0), R = (d / c, β / γ) $
+$
+  O = (0, 0), R = (γ / δ, α / β)
+$
 
 线性化得
 
-$ 𝑱 = mat(delim: "[", β - γ y, - γ x; c y, - d + c x) $
+$
+  𝑱 = mat(delim: "[", α - β y, - β x; δ y, - γ + δ x)
+$
 
 #let code1 = read("python/ch02_lotka_volterra.py")
 #code(code1)
