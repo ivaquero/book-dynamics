@@ -1,6 +1,6 @@
 #import "lib/lib.typ": *
 #show: chapter-style.with(title: "连续型混沌", info: info)
-#import "@preview/typed-smiles:0.1.0": ce
+#import "@preview/typed-smiles:0.7.0": ce
 
 = 吸引子
 <吸引子>
