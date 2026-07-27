@@ -1,6 +1,6 @@
 #import "lib/lib.typ": *
 #show: chapter-style.with(title: "连续型混沌", info: info)
-#import "@preview/typed-smiles:0.8.0": ce
+#import "@preview/typed-smiles:0.9.0": ce
 
 = 吸引子
 <吸引子>
@@ -252,7 +252,7 @@ $
     [2], [#ce("HBrO2 + Br^- -> 2HOBr")], [#ce("k2 [HBrO2] [Br]-")],
     [3], [#ce("BrO3^- + HBrO2 -> 2HBrO2 + 2M_o&x")], [#ce("k3 [BrO3]- [HBrO2]")],
     [4], [#ce("2HBrO2 -> BrO3^- + HOBr")], [#ce("k4 [HBr2]^2")],
-    [5], [#ce("OS + M_o&x -> 1\/2CBr^-")], [#ce("k5 [OS][M_o&x]")],
+    [5], [#ce("OS + M_o&x -> 1\/2CBr^-")], [#ce("k5 [OS][M_o&x ]")],
   ),
   caption: "BZ 振荡反应",
 )
