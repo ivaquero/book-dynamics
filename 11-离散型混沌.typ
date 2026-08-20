@@ -30,13 +30,7 @@ $ x_(n+1) = T(x_n) $
 
 其中，$x_n in [0, 1]$。虽然帐篷映射的形式很简单，所涉及的方程亦为线性的，但对于某些参数值，这个系统可表现出非常复杂的行为，甚至出现混沌现象。对于某些参数值，映射会发生拉伸和折叠变换，并显示出对初始条件和周期性的敏感性。幸运的是，对系统进行简单的迭代并不困难。
 
-#let code1 = read("python/map_tent.py")
-#code(code1)
-
 #strong[图迭代]：从初始点$x_0$开始，画一条垂直线，直至函数$T(x)$。从这一点开始，向左或向右画一条水平线，连接对角线$y = x$，$x$坐标对应于迭代$x_1 = T(x_0)$。从点$(x_1, T(x_0))$出发，向上或向下画一条垂直线，连接函数$T(x)$。从这一点到对角线的点$(x_2, T(x_1))$画一条水平线。
-
-#let code1 = read("python/ch11_map_tent_plot.py")
-#code(code1)
 
 #figure(
   image("images/ch11/cobweb.png", width: 60%),
@@ -316,9 +310,6 @@ $ 𝑱 = mat(delim: "[", - 2 α x, 1; β, 0) $
 )
 
 #strong[例]：求 $α = 1.2$和$β = 0.4$时，Hénon 映射的 Lyapunov 指数。
-
-#let code1 = read("python/ch11_map_henon_lyapunov.py")
-#code(code1)
 
 在这些情况下，初始条件的选择是很重要的，因为有些轨道是无界的，会移动到无穷大。必须从这个映射的吸引盆（basin of attraction）内的点开始。但，对于 Hénon 映射来说，在$α$的参数值范围内，不同的混沌吸引子可同时存在，这个系统在某些参数值上也会出现滞后现象（hysteresis）。
 

@@ -28,5 +28,7 @@
 
 `"Yields falsehood when preceded by its quotation" yields falsehood when preceded by its quotation.`
 
+= 代码
+
 #let quine = read("python/ch14_quine.py")
 #raw(quine, lang: "python", block: true)

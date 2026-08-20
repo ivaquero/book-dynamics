@@ -59,9 +59,6 @@ $ r(t) = frac(1, 1 + θ(t)) $
 
 $ r_(n+1) = P(r_n) = frac(r_n, 1 + 2pi r_n) $
 
-#let code1 = read("python/ch06_map_poincare_pts.py")
-#code(code1)
-
 == 特性乘数
 <特性乘数>
 
