@@ -1,4 +1,4 @@
-#import "@preview/qooklet:0.6.2": *
+#import "@preview/qooklet:0.7.0": *
 #import "@preview/touying-quick:0.4.2": *
 #import "@preview/subpar:0.2.2": grid as sgrid
 #import "@preview/rexllent:0.4.1": xlsx-parser
