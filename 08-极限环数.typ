@@ -22,7 +22,7 @@ $ H_n = "sup" {pi(P, Q) : ∂P, ∂Q ≤ n} $
 
 其中，$∂$表示次（degree），$pi(P, Q)$为系统的极限环数。
 
-#theorem(title: ctext("Dulac 定理"))[
+#theorem(ctext("Dulac 定理"))[
   一个给定的多项式系统不可能有无限多的极限环。
 ]
 

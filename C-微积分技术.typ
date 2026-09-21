@@ -151,11 +151,11 @@ $
 
 = 辅助定理
 
-#theorem(title: ctext("Weierstrass 逼近定理"))[
+#theorem(ctext("Weierstrass 逼近定理"))[
   $[a, b]$上的任何连续函数都可以通过有限次多项式逼近。
 ]
 
-#theorem(title: ctext("留数定理"))[
+#theorem(ctext("留数定理"))[
   $
     "Res"(frac(1, g(x)); x_0) = frac(1, g'(x_0))
   $
