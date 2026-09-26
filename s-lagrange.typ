@@ -9,22 +9,28 @@
 
 == 为什么需要插值
 
-#block(height: 15em, columns()[
-  - 羊群跟踪的重要性
-    - 监测健康
-    - 产量管理
-  - 数据采集的挑战
-    - 离散数据
-    - 数据不均衡
-  - 目标跟踪所需的技术
-    - *插值（interpolation）*
-    - 外推（extrapolation）
-  #figure(
-    image("images/slides/grid.png", width: 100%),
-    caption: "动物的运动轨迹",
-    supplement: none,
-  )
-])
+#columns()[
+  #[
+    - 羊群跟踪的重要性
+      - 监测健康
+      - 产量管理
+    - 数据采集的挑战
+      - 离散数据
+      - 数据不均衡
+    - 目标跟踪所需的技术
+      - *插值（interpolation）*
+      - 外推（extrapolation）
+  ]
+  #colbreak()
+
+  #[
+    #figure(
+      image("images/slides/grid.png", width: 100%),
+      caption: "动物的运动轨迹",
+      supplement: none,
+    )
+  ]
+]
 
 = 多项式插值
 
@@ -32,17 +38,23 @@
 
 给定5个点：$(x_1, y_1), (x_2, y_2), (x_3, y_3), (x_4, y_4), (x_5, y_5)$，有唯一的4次多项式穿过它们。
 
-#block(height: 9em, columns()[
-  利用待定系数法有：
+#columns()[
+  #[
+    利用待定系数法有：
 
-  $ y = a_0 + a_1x + a_2x^2 + a_3x^3 + a_4x^4 $
+    $ y = a_0 + a_1x + a_2x^2 + a_3x^3 + a_4x^4 $
 
-  其中，$a_0, a_1, a_2, a_3, a_4$ 是待定系数。
-  #figure(
-    image("images/slides/interp-lagrange-5.png", width: 90%),
-    caption: none,
-  )
-])
+    其中，$a_0, a_1, a_2, a_3, a_4$ 是待定系数。
+  ]
+  #colbreak()
+
+  #[
+    #figure(
+      image("images/slides/interp-lagrange-5.png", width: 90%),
+      caption: none,
+    )
+  ]
+]
 
 #tip(title: text("辅助软件", fill: black))[
   课程绘图及实验使用 GeoGebra，该软件可从其官网和手机商店中下载安装。
@@ -232,19 +244,24 @@ $
 
 == 主要意义
 
-#block(height: 18em, columns()[
-  *主要意义*·
-  - 可以得到过程中任意点的坐标
-  - 平滑数据，更好地展示实际情况
-  \
+#columns()[
+  #[
+    *主要意义*·
+    - 可以得到过程中任意点的坐标
+    - 平滑数据，更好地展示实际情况
+    \
 
-  *后续课程*
-  - Lagrange 插值法代码实现
-  - 常见问题与解决方案
-  \
+    *后续课程*
+    - Lagrange 插值法代码实现
+    - 常见问题与解决方案
+    \
+  ]
+  #colbreak()
 
-  #figure(
-    image("images/slides/py.png", width: 90%),
-    caption: none,
-  )
-])
+  #[
+    #figure(
+      image("images/slides/py.png", width: 90%),
+      caption: none,
+    )
+  ]
+]

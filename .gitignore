@@ -12,6 +12,9 @@
 __pycache__
 *.pyc
 
-### Extra ###
+
+.workbuddy
+.tmp
+
 *.pdf
 test.*
