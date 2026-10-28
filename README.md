@@ -7,3 +7,16 @@
 现公开分享供对动力学感兴趣的朋友参考及共同讨论。
 
 > 书中配套 Python 代码经过重新命名和整理，方便查阅。
+
+## 配套代码
+
+`python/` 下的脚本按章节命名（`chXX_*.py`），跨章共享的模型、积分器与绘图实现集中在 `python/dynamics/` 子包。
+
+依赖：numpy、scipy、matplotlib、sympy（由 conda/micromamba 环境承载）。
+
+从仓库根目录运行单个脚本：
+
+```bash
+python -m python.ch01_critical
+```
+

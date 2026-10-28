@@ -19,7 +19,7 @@ ax.set(xlabel=r"$θ$", ylabel=r"$ϕ$")
 ax2 = fig.add_subplot(122, projection="3d")
 
 zs = np.array(
-    [hamiltonian_fun(x, y) for x, y in zip(np.flatten(X), np.flatten(Y), strict=True)]
+    [hamiltonian_fun(x, y) for x, y in zip(X.flatten(), Y.flatten(), strict=True)]
 )
 Z = zs.reshape(X.shape)
 

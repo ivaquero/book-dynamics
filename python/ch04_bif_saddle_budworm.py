@@ -14,10 +14,10 @@ matrix = []
 
 cmap = colors.ListedColormap(["red", "orange"])
 bounds = [1, 2, 3]
-extent = [0, 40, 0, 0.6]
+extent = (0, 40, 0, 0.6)
 norm = colors.BoundaryNorm(bounds, cmap.N)
 
-matrix = number_track(rs, ks, n_points)
+matrix = number_track(rs, ks)
 
 _, ax = plt.subplots()
 

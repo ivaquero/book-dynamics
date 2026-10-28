@@ -1,5 +1,5 @@
-import matplotlib.cm as cm
 import matplotlib.pyplot as plt
+from matplotlib import cm
 
 from .dynamics.attractors import julia_set
 

@@ -266,3 +266,21 @@ def pillar(X, Y, vec):
         y.append(Y[i * vec])
         t.append(i * vec)
     return x, y, t
+
+
+def arrows_param(
+    ax, param, X_list, func, head_width=0.02, head_length=0.5, color="black"
+):
+    """Draw vertical arrows along a vertical line at `param` for each point in `X_list`."""
+    ax.vlines(param, min(X_list) - 1, max(X_list) + 1, color=color)
+    for x in X_list:
+        points_at = func(x, param)
+        ax.arrow(
+            param,
+            x,
+            0,
+            points_at,
+            head_width=head_width,
+            head_length=head_length,
+            color=color,
+        )

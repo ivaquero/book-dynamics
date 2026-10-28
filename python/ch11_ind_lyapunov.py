@@ -29,7 +29,7 @@ zero = [0] * mult
 ax.plot(xticks, zero, "k-")
 ax.plot(xticks, maps, "r.", ms=3, label="Logistic map")
 ax.plot(μs, λs, "b-", lw=1, label="Lyapunov exponent")
-ax.grid("on")
+ax.grid(True)
 
 ax.set(xlabel="$μ$", ylim=(-1, 1), title="Logistic map versus Lyapunov exponent")
 ax.legend(loc="best")

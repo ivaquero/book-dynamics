@@ -130,3 +130,22 @@ def compute_henon_lyapunov_exponents(
     lyap_exp_2 = lyap_sum2 / iterations
 
     return lyap_exp_1, lyap_exp_2
+
+
+def prepare_cobweb_data(r=4, x_init=0.01, steps=50, t_resolution=0.001):
+    """Prepare cobweb plot data.
+
+    Returns
+    -------
+    tuple
+        (T_series, X_series, T_curve, X_curve) for diagram and time series.
+    """
+    # Time series data
+    T_series = np.arange(0, steps, 1)
+    X_series = cobweb_points(x_init, r, len(T_series))
+
+    # Function curve data
+    T_curve = np.arange(0, 1, t_resolution)
+    X_curve = logistic_map(T_curve, r)
+
+    return T_series, X_series, T_curve, X_curve

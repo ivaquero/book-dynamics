@@ -39,7 +39,7 @@ for i, n in enumerate(n_list):
 
         matrix[i][j] = 1 if count > 3 else 0
 
-extent = [0, 0.5, 0, 0.5]
+extent = (0, 0.5, 0, 0.5)
 # extent = [x_min , x_max, y_min , y_max]
 
 _, ax = plt.subplots()

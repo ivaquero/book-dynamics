@@ -1,6 +1,6 @@
 [global]
-title = ""
-author = "Yāng Xīnbīn"
+title = "动力系统入门"
+author = "Yáng Xīnbīn"
 footer = "Yāng Xīnbīn"
 header = "动力系统入门"
 lang = "zh"
@@ -8,6 +8,6 @@ lang = "zh"
 [slide]
 author = "主讲：杨鑫斌"
 institution = "人工智能学院"
-footer = "Kalman 滤波系列课程"
+footer = "动力系统入门"
 lang = "zh"
 ending = "感谢大家聆听"

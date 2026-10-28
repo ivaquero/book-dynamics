@@ -193,3 +193,179 @@ def derivatives(t, z, a, b, c, d):
     u = a * x + b * y
     v = c * x + d * y
     return [u, v]
+
+
+def make_param_anim(
+    ax, compute_xy_for_param, xlim=None, ylim=None, xlabel=None, ylabel=None
+):
+    """Create init and animate callables for a parameterized curve.
+
+    - `compute_xy_for_param(param)` should return (x_array, y_array).
+    - Returned `init()` clears the line; `animate(param)` sets data and returns the line tuple.
+    """
+
+    (line,) = ax.plot([], [], lw=2)
+
+    def init():
+        line.set_data([], [])
+        return (line,)
+
+    def animate(param):
+        x, y = compute_xy_for_param(param)
+        line.set_data(x, y)
+        ax.set(xlim=xlim, ylim=ylim, xlabel=xlabel, ylabel=ylabel)
+
+        return (line,)
+
+    return init, animate
+
+
+def make_multi_traj_anim(
+    ax, compute_trajs_for_param, xlim=None, ylim=None, xlabel=None, ylabel=None
+):
+    """Create an animate callable that clears the axes and plots multiple trajectories for a parameter."""
+
+    def animate(param):
+        ax.clear()
+        ax.set(xlim=xlim, ylim=ylim, xlabel=xlabel, ylabel=ylabel)
+
+        trajs = compute_trajs_for_param(param)
+        for X in trajs:
+            ax.plot(X[:, 0], X[:, 1])
+
+    return animate
+
+
+def time_series_from_pulsed_factory(
+    start, stop, I_ext_value, ts, z0, integrator=None, factory_func=None
+):
+    """Integrate a pulsed factory over time grid `ts` using `integrator`.
+
+    - `integrator` defaults to `dynamics.integrators.euler_fixed` and must accept
+      signature `integrator(func, z0, step_size, n_steps)`.
+    - Returns `(traj, times)` where `traj` is array n_steps x dim and `times` equals `ts`.
+    """
+
+    if integrator is None:
+        from .integrators import euler_fixed as _default_integrator
+
+        integrator = _default_integrator
+
+    # delayed import to avoid circulars; pulsed factory is in attractors
+    from .attractors import pulsed_FHN_factory
+
+    if factory_func is None:
+        factory_func = pulsed_FHN_factory
+
+    func = factory_func(start, stop, I_ext_value)
+    step = ts[1] - ts[0]
+    traj, times = integrator(func, z0, step, len(ts))
+    return traj, times
+
+
+def arrows_with_r(
+    ax, r_val, X_list, func, *func_args, head_width=0.02, head_length=0.5, color="black"
+):
+    """Draw vertical arrows along a vertical line at `r_val` for each point in `X_list`."""
+    ax.vlines(r_val, min(X_list) - 1, max(X_list) + 1, color=color)
+    for x in X_list:
+        points_at = func(x, *func_args, r_val)
+        ax.arrow(
+            r_val,
+            x,
+            0,
+            points_at,
+            head_width=head_width,
+            head_length=head_length,
+            color=color,
+        )
+
+
+def draw_cobweb(ax, steps, x_init, r, color="b"):
+    """Draw a cobweb diagram on the given axis.
+
+    - `ax` is a matplotlib Axes instance.
+    - `steps` number of cobweb iterations to draw.
+    - `x_init` initial x value.
+    - `r` logistic map parameter.
+    """
+    from .attractors import logistic_map
+
+    X, Y = [], []
+    X.append(x_init)
+    Y.append(0)
+    for _ in range(steps):
+        # compute next point and draw the two segments of the cobweb
+        y_next = logistic_map(X[-1], r)
+        X.append(X[-1])
+        Y.append(y_next)
+        ax.plot(X[-2:], Y[-2:], color=color)
+        X.append(y_next)
+        Y.append(y_next)
+        ax.plot(X[-2:], Y[-2:], color=color)
+
+
+def plot_hpg_3d_with_vectors(ax, x, y, z, dx, dy, dz, **plot_kwargs):
+    """Plot HPG 3D trajectory with vector field.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        3D axes instance for plotting.
+    x, y, z : array-like
+        Arrays of trajectory coordinates.
+    dx, dy, dz : array-like
+        Arrays of derivative components for vector field.
+    **plot_kwargs : dict
+        Additional keyword arguments passed to ax.plot().
+
+    Returns
+    -------
+    matplotlib.lines.Line2D
+        The plotted line object.
+    """
+    # Add quiver arrows at intervals
+    for i in range(100, len(x), 400):
+        ax.quiver(x[i], y[i], z[i], dx[i], dy[i], dz[i], color="red")
+
+    line = ax.plot(x, y, z, label="Limit Cycle of HPG", **plot_kwargs)
+    ax.set(xlabel="x", ylabel="y", zlabel="z")
+    return line
+
+
+def plot_hpg2_phase_portraits(ax, trajectories, **plot_kwargs):
+    """Plot HPG2 phase portraits for multiple trajectories.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        2D axes instance for plotting.
+    trajectories : list
+        List of (x_traj, y_traj) tuples.
+    **plot_kwargs : dict
+        Additional keyword arguments passed to ax.plot().
+    """
+    for x_traj, y_traj in trajectories:
+        ax.plot(x_traj, y_traj, **plot_kwargs)
+
+
+def plot_poincare_section(ax, X, **plot_kwargs):
+    """Plot Poincare section on given axes.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        2D axes instance for plotting.
+    X : numpy.ndarray
+        Trajectory array of shape (n_points, 2) containing [x, y] coordinates.
+    **plot_kwargs : dict
+        Additional keyword arguments passed to ax.plot().
+
+    Returns
+    -------
+    matplotlib.lines.Line2D
+        The plotted line object.
+    """
+    line = ax.plot(X[:, 0], X[:, 1], "r-", **plot_kwargs)
+    ax.set(xlabel="x", ylabel="y", xlim=(-0.5, 1.5), ylim=(-0.5, 0.5))
+    return line

@@ -1,3 +1,4 @@
+from functools import partial
 from itertools import product
 
 import matplotlib.pyplot as plt
@@ -14,13 +15,13 @@ def prepare_system_matrix(a=2, b=1, c=1, d=2):
     return m, eigen
 
 
-def solve_trajectory_pair(init, t_span1, t_span2, t1, t2):
+def solve_trajectory_pair(init, t_span1, t_span2, t1, t2, derivs):
     """Solve trajectory pair for forward and backward time spans."""
-    sol1 = integrate.solve_ivp(derivatives, t_span1, init, dense_output=True)
+    sol1 = integrate.solve_ivp(derivs, t_span1, init, dense_output=True)
     X1 = sol1.sol(t1).T
     x1, y1 = X1[:, 0], X1[:, 1]
 
-    sol2 = integrate.solve_ivp(derivatives, t_span2, init, dense_output=True)
+    sol2 = integrate.solve_ivp(derivs, t_span2, init, dense_output=True)
     X2 = sol2.sol(t2).T
     x2, y2 = X2[:, 0], X2[:, 1]
 
@@ -42,10 +43,10 @@ def setup_axis_properties(ax, xlabel="x", ylabel="y", xlim=(-1, 1), ylim=(-1, 1)
     ax.yaxis.set_major_locator(major_locator)
 
 
-def plot_vector_field(ax, xy_range, n_points, color="b"):
+def plot_vector_field(ax, xy_range, n_points, a, b, c, d, color="b"):
     """Plot vector field on given axes."""
     X, Y = gen_mesh(xy_range, n_points)
-    u, v = derivatives(t=0, z=[X, Y])
+    u, v = derivatives(t=0, z=[X, Y], a=a, b=b, c=c, d=d)
     ax.quiver(X, Y, u, v, color=color)
 
 
@@ -73,15 +74,18 @@ def create_orthogonalization_plot():
             a, b, c, d = eigen[1], 0, 0, eigen[0]
 
         # Plot trajectories for all initial conditions
+        derivs = partial(derivatives, a=a, b=b, c=c, d=d)
         for init in product(ic, ic):
-            (x1, y1), (x2, y2) = solve_trajectory_pair(init, t_span1, t_span2, t1, t2)
+            (x1, y1), (x2, y2) = solve_trajectory_pair(
+                init, t_span1, t_span2, t1, t2, derivs
+            )
             plot_trajectory_pair(axes[i], x1, y1, x2, y2)
 
         # Setup axis properties
         setup_axis_properties(axes[i], xlabel[i], ylabel[i])
 
         # Plot vector field
-        plot_vector_field(axes[i], xy_range, n_points)
+        plot_vector_field(axes[i], xy_range, n_points, a, b, c, d)
 
     return fig, axes
 
