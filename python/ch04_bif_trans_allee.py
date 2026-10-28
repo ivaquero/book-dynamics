@@ -3,51 +3,62 @@ import numpy as np
 
 from .dynamics.bifurcations import allee, arrows_param, stablity
 
-x_range = [1, 2000]
-interval = 1
 
-a_array = np.arange(x_range[0], x_range[1], interval)
+def main():
+    x_range = [1, 2000]
+    interval = 1
 
-stable_x, stable_y = [], []
-unstable_x, unstable_y = [], []
-zero_x_stable, zero_y_stable = [], []
-zero_x_unstable, zero_y_unstable = [], []
+    a_array = np.arange(x_range[0], x_range[1], interval)
 
-for a in a_array:
-    if stablity(a, allee, a):
-        stable_x.append(a)
-        stable_y.append(a)
-    else:
-        unstable_x.append(a)
-        unstable_y.append(a)
+    stable_x, stable_y = [], []
+    unstable_x, unstable_y = [], []
+    zero_x_stable, zero_y_stable = [], []
+    zero_x_unstable, zero_y_unstable = [], []
 
-    if stablity(1000, allee, a):
-        stable_x.append(a)
-        stable_y.append(1000)
-    else:
-        unstable_x.append(a)
-        unstable_y.append(1000)
+    for a in a_array:
+        if stablity(a, allee, a):
+            stable_x.append(a)
+            stable_y.append(a)
+        else:
+            unstable_x.append(a)
+            unstable_y.append(a)
 
-    if stablity(0, allee, a):
-        zero_x_stable.append(a)
-        zero_y_stable.append(0)
-    else:
-        zero_x_unstable.append(a)
-        zero_y_unstable.append(0)
+        if stablity(1000, allee, a):
+            stable_x.append(a)
+            stable_y.append(1000)
+        else:
+            unstable_x.append(a)
+            unstable_y.append(1000)
 
-_, ax = plt.subplots()
+        if stablity(0, allee, a):
+            zero_x_stable.append(a)
+            zero_y_stable.append(0)
+        else:
+            zero_x_unstable.append(a)
+            zero_y_unstable.append(0)
 
-ax.plot(stable_x, stable_y, color="g", label="stable")
-ax.plot(unstable_x, unstable_y, color="r", label="unstable")
-ax.plot(zero_x_stable, zero_y_stable, linestyle="-.", color="g", label="zero stable")
-ax.plot(
-    zero_x_unstable, zero_y_unstable, linestyle="-.", color="r", label="zero unstable"
-)
+    _, ax = plt.subplots()
+
+    ax.plot(stable_x, stable_y, color="g", label="stable")
+    ax.plot(unstable_x, unstable_y, color="r", label="unstable")
+    ax.plot(
+        zero_x_stable, zero_y_stable, linestyle="-.", color="g", label="zero stable"
+    )
+    ax.plot(
+        zero_x_unstable,
+        zero_y_unstable,
+        linestyle="-.",
+        color="r",
+        label="zero unstable",
+    )
+
+    arrows_param(ax, 300, [-50, 100, 500, 1200], allee)
+    arrows_param(ax, 500, [-50, 100, 500, 1200], allee)
+    arrows_param(ax, 1200, [-50, 250, 1110, 1500], allee)
+    ax.set(xlabel="a", ylabel="X")
+    ax.legend(loc="right")
+    plt.show()
 
 
-arrows_param(ax, 300, [-50, 100, 500, 1200], allee)
-arrows_param(ax, 500, [-50, 100, 500, 1200], allee)
-arrows_param(ax, 1200, [-50, 250, 1110, 1500], allee)
-ax.set(xlabel="a", ylabel="X")
-ax.legend(loc="right")
-plt.show()
+if __name__ == "__main__":
+    main()

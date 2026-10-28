@@ -17,9 +17,6 @@ L, Vmax = 6, 16
 # thin wrapper removed; use `euler_delay` directly in `animate`
 
 
-fig, ax = plt.subplots()
-
-
 def compute_trajs_for_param(n):
     func = partial(mckey_glass, n=n)
     X = euler_delay(func, 2, 0.01, len(ts), τ, history_value=0.5)
@@ -27,9 +24,21 @@ def compute_trajs_for_param(n):
     return [np.column_stack((ts, X))]
 
 
-animate = make_multi_traj_anim(
-    ax, compute_trajs_for_param, xlim=(0, 10), ylim=(0, 4), xlabel="time", ylabel="X"
-)
+def main():
+    fig, ax = plt.subplots()
 
-anim = FuncAnimation(fig, animate, frames=n_list, interval=200)
-plt.show()
+    animate = make_multi_traj_anim(
+        ax,
+        compute_trajs_for_param,
+        xlim=(0, 10),
+        ylim=(0, 4),
+        xlabel="time",
+        ylabel="X",
+    )
+
+    anim = FuncAnimation(fig, animate, frames=n_list, interval=200)  # noqa: F841
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()

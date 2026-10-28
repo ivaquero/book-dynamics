@@ -9,16 +9,22 @@ t_span = [0, 100]
 n_points = 2000
 z = 0.5, 1.5, 0.5, 0
 
-sol = solve_ivp(hamiltonian_4d, t_span, z, args=(w1, w2), dense_output=True)
 
-t = np.linspace(t_span[0], t_span[1], 2000)
-X = sol.sol(t)
-p1, p2, q1, q2 = X
+def main():
+    sol = solve_ivp(hamiltonian_4d, t_span, z, args=(w1, w2), dense_output=True)
 
-fig = plt.figure()
+    t = np.linspace(t_span[0], t_span[1], 2000)
+    X = sol.sol(t)
+    p1, p2, q1, q2 = X  # noqa: RUF059
 
-ax = fig.add_subplot(projection="3d")
+    fig = plt.figure()
 
-ax.plot(p1, q1, q2, "b-", lw=0.5)
-ax.set(xlabel=r"$p_1$", ylabel=r"$q_1$", zlabel=r"$q_2$", title="H=1.365416000")
-plt.show()
+    ax = fig.add_subplot(projection="3d")
+
+    ax.plot(p1, q1, q2, "b-", lw=0.5)
+    ax.set(xlabel=r"$p_1$", ylabel=r"$q_1$", zlabel=r"$q_2$", title="H=1.365416000")
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()

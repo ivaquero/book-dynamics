@@ -8,19 +8,27 @@ from .dynamics.attractors import lienard
 t_span = [0, 20]
 t = np.arange(t_span[0], t_span[1], 0.1)
 x0 = [1, 0]
-
-fig, ax = plt.subplots()
-
-my_images = []
 μs = np.arange(0, 5, 0.1)
 
-for μ in μs:
-    sol = solve_ivp(lienard, t_span, x0, args=(μ,))
-    X = sol.y
-    img = ax.plot(X[0, :], X[1, :], "r-")
-    my_images.append(img)
 
-my_anim = ArtistAnimation(fig, my_images, interval=100, blit=False, repeat_delay=100)
+def main():
+    fig, ax = plt.subplots()
 
-ax.set(xlim=(-1.5, 1.5), ylim=(-5, 5), title="Liénard System")
-plt.show()
+    my_images = []
+
+    for μ in μs:
+        sol = solve_ivp(lienard, t_span, x0, args=(μ,))
+        X = sol.y
+        img = ax.plot(X[0, :], X[1, :], "r-")
+        my_images.append(img)
+
+    my_anim = ArtistAnimation(  # noqa: F841
+        fig, my_images, interval=100, blit=False, repeat_delay=100
+    )
+
+    ax.set(xlim=(-1.5, 1.5), ylim=(-5, 5), title="Liénard System")
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()

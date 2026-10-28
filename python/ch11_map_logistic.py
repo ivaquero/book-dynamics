@@ -8,7 +8,6 @@ def prepare_logistic_map_data(
     initial_condition=0.4, r=4, n_iterations=500, x_range=(0, 1, 0.001)
 ):
     """Prepare logistic map data."""
-    T = np.arange(0, n_iterations, 1)
     X = ppen(initial_condition, r, n_iterations)
     X_ = np.arange(*x_range)
     f = 4 * X_ * (1 - X_)

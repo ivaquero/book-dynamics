@@ -4,7 +4,6 @@ import numpy as np
 from .dynamics.attractors import pulsed_FHN_factory
 from .dynamics.integrators import euler_fixed
 
-fig, axes = plt.subplots(1, 2, constrained_layout=1)
 ts = np.arange(0, 4, 0.01)
 
 
@@ -19,16 +18,23 @@ def run_fhn(start_puls, stop_puls, recover_puls):
     return v, w, i_ext
 
 
-v, w, i_ext = run_fhn(0, 4, 0.01)
-axes[0].set(xlim=(0, 4), ylim=(-0.35, 1), title="constant $I_{ext} = 0.01$")
-axes[0].plot(ts, v, label="neuron")
-axes[0].plot(ts, i_ext, label="flow", color="r")
-axes[0].legend()
+def main():
+    fig, axes = plt.subplots(1, 2, constrained_layout=1)  # noqa: RUF059
 
-v_, w_, i_ext_ = run_fhn(0, 4, 0.2)
-axes[1].set(xlim=(0, 4), ylim=(-0.35, 1), title="constant $I_{ext} = 0.2$")
-axes[1].plot(ts, v_, label="neuron")
-axes[1].plot(ts, i_ext_, label="flow", color="r")
-axes[1].legend()
+    v, w, i_ext = run_fhn(0, 4, 0.01)  # noqa: RUF059
+    axes[0].set(xlim=(0, 4), ylim=(-0.35, 1), title="constant $I_{ext} = 0.01$")
+    axes[0].plot(ts, v, label="neuron")
+    axes[0].plot(ts, i_ext, label="flow", color="r")
+    axes[0].legend()
 
-plt.show()
+    v_, w_, i_ext_ = run_fhn(0, 4, 0.2)  # noqa: RUF059
+    axes[1].set(xlim=(0, 4), ylim=(-0.35, 1), title="constant $I_{ext} = 0.2$")
+    axes[1].plot(ts, v_, label="neuron")
+    axes[1].plot(ts, i_ext_, label="flow", color="r")
+    axes[1].legend()
+
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()

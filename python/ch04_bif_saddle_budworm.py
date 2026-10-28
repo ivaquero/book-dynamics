@@ -4,32 +4,38 @@ from matplotlib import colors
 
 from .dynamics.bifurcations import number_track
 
-n_points = 20
-r_range = [0, 0.6]
-k_range = [0, 40]
-rs = np.linspace(r_range[0], r_range[1], n_points)
-ks = np.linspace(k_range[0], k_range[1], n_points)
 
-matrix = []
+def main():
+    n_points = 20
+    r_range = [0, 0.6]
+    k_range = [0, 40]
+    rs = np.linspace(r_range[0], r_range[1], n_points)
+    ks = np.linspace(k_range[0], k_range[1], n_points)
 
-cmap = colors.ListedColormap(["red", "orange"])
-bounds = [1, 2, 3]
-extent = (0, 40, 0, 0.6)
-norm = colors.BoundaryNorm(bounds, cmap.N)
+    matrix = []
 
-matrix = number_track(rs, ks)
+    cmap = colors.ListedColormap(["red", "orange"])
+    bounds = [1, 2, 3]
+    extent = (0, 40, 0, 0.6)
+    norm = colors.BoundaryNorm(bounds, cmap.N)
 
-_, ax = plt.subplots()
+    matrix = number_track(rs, ks)
 
-image = ax.imshow(
-    matrix,
-    interpolation="nearest",
-    origin="lower",
-    cmap=cmap,
-    norm=norm,
-    extent=extent,
-    aspect="auto",
-)
+    _, ax = plt.subplots()
 
-plt.colorbar(image, boundaries=bounds, ticks=[1, 2, 3])
-plt.show()
+    image = ax.imshow(
+        matrix,
+        interpolation="nearest",
+        origin="lower",
+        cmap=cmap,
+        norm=norm,
+        extent=extent,
+        aspect="auto",
+    )
+
+    plt.colorbar(image, boundaries=bounds, ticks=[1, 2, 3])
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()

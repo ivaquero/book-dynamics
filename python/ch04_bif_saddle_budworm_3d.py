@@ -4,8 +4,12 @@ import numpy as np
 from .dynamics.bifurcations import track_in_3D
 
 
-def prepare_3d_bifurcation_data(n_points=20, r_range=[0, 0.6], k_range=[0, 40]):
+def prepare_3d_bifurcation_data(n_points=20, r_range=None, k_range=None):
     """Prepare 3D bifurcation data."""
+    if k_range is None:
+        k_range = [0, 40]
+    if r_range is None:
+        r_range = [0, 0.6]
     rs = np.linspace(r_range[0], r_range[1], n_points)
     ks = np.linspace(k_range[0], k_range[1], n_points)
     stable_points, unstable_points = track_in_3D(rs, ks)

@@ -87,7 +87,7 @@ def create_rossler_plot(
 
 def main():
     """Main function to generate Rossler attractor plot."""
-    fig, ax, line = create_rossler_plot()
+    _fig, _ax, _line = create_rossler_plot()
     plt.show()
 
 

@@ -5,13 +5,19 @@ from .dynamics.symbolic import groebner_basis
 x = symbols("x")
 y = symbols("y")
 
-g = groebner_basis(
-    [x + y**2 - x**3, 4 * x**3 - 12 * x * y**2 + x**4 + 2 * x**2 * y**2 + y**4],
-    (x, y),
-    order="lex",
-)
 
-print(g)
-# GroebnerBasis(
-# (5970075x + 160356y10 + 14472880y8−162599547y6 + 163845838y4+ 5970075y2,
-# y12 +90y10−1037y8+ 1278y6−195y4), (x, y))
+def main():
+    g = groebner_basis(
+        [x + y**2 - x**3, 4 * x**3 - 12 * x * y**2 + x**4 + 2 * x**2 * y**2 + y**4],
+        (x, y),
+        order="lex",
+    )
+
+    print(g)
+    # GroebnerBasis(
+    # (5970075x + 160356y10 + 14472880y8−162599547y6 + 163845838y4+ 5970075y2,
+    # y12 +90y10−1037y8+ 1278y6−195y4), (x, y))
+
+
+if __name__ == "__main__":
+    main()

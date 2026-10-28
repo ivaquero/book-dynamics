@@ -9,8 +9,7 @@ from .dynamics.plotting import make_multi_traj_anim
 
 def prepare_hopf_bifurcation_data(initial_conditions, t_span, n_points=20000):
     """Prepare Hopf bifurcation analysis data."""
-    t = np.linspace(t_span[0], t_span[1], n_points)
-    return t
+    return np.linspace(t_span[0], t_span[1], n_points)
 
 
 def compute_hopf_trajectory_for_parameter(mu, initial_conditions, t_span, t):

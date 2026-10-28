@@ -41,10 +41,17 @@ a_vals = np.arange(-1, 2, 0.01)
 x_vals = np.arange(-1, 1, 0.01)
 
 X = symbols("X")
-final_xs, final_ys, final_x, final_y = pitchwork(a_vals, x_vals)
 
-_, ax = plt.subplots()
 
-ax.scatter(final_xs, final_ys, color="g")
-ax.scatter(final_x, final_y, color="r")
-plt.show()
+def main():
+    final_xs, final_ys, final_x, final_y = pitchwork(a_vals, x_vals)
+
+    _, ax = plt.subplots()
+
+    ax.scatter(final_xs, final_ys, color="g")
+    ax.scatter(final_x, final_y, color="r")
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()

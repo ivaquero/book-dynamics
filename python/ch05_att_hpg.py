@@ -15,7 +15,7 @@ def create_hpg_plot():
     """Create the main HPG system plot with 3D and 2D subplots."""
     # HPG 3D plot
     initial_conditions = prepare_hpg_initial_conditions()
-    traj, times = solve_hpg_trajectory(initial_conditions)
+    traj, _times = solve_hpg_trajectory(initial_conditions)
     x, y, z = traj[:, 0], traj[:, 1], traj[:, 2]
     dx, dy, dz = compute_hpg_derivatives(traj)
 

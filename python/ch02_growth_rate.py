@@ -5,9 +5,11 @@ from .dynamics.integrators import euler_fixed
 from .dynamics.plotting import gen_mesh, vector_field
 
 
-def prepare_growth_rate_data(xy_range=[0, 100, 0, 100], n_points=15):
+def prepare_growth_rate_data(xy_range=None, n_points=15):
     """Prepare growth rate data on a grid."""
     # create a grid
+    if xy_range is None:
+        xy_range = [0, 100, 0, 100]
     X, Y = gen_mesh(xy_range, n_points)
     # compute growth rate on the grid
     U, V = lotka_volterra(t=0, z=[X, Y])

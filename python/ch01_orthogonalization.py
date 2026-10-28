@@ -54,7 +54,7 @@ def create_orthogonalization_plot():
     """Create the main orthogonalization plot."""
     # System parameters
     a, b, c, d = 2, 1, 1, 2
-    m, eigen = prepare_system_matrix(a, b, c, d)
+    _m, eigen = prepare_system_matrix(a, b, c, d)
 
     # Plot parameters
     xlabel, ylabel = ["x", "u"], ["y", "v"]

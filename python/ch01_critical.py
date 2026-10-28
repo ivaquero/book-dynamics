@@ -48,8 +48,10 @@ def plot_trajectory_with_pillars(ax, x, y, vec, color, pillar_func=pillar):
     ax.plot(x, y, color=color)
 
 
-def plot_eigenvectors(ax, X, Y, origin=(0, 0), colors=["b", "g"]):
+def plot_eigenvectors(ax, X, Y, origin=(0, 0), colors=None):
     """Plot eigenvectors."""
+    if colors is None:
+        colors = ["b", "g"]
     ax.quiver(
         origin, origin, X, Y, scale=0.01, scale_units="xy", angles="xy", color=colors
     )

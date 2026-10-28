@@ -9,11 +9,17 @@ mu = 2
 inputs = []
 outputs = []
 
-for i in range(10):
-    inputs.append(x)
-    y = tent_map(x, mu)
-    outputs.append(y)
-    print((inputs[-1], outputs[-1]))
+
+def main():
+    for _i in range(10):
+        inputs.append(x)
+        y = tent_map(x, mu)
+        outputs.append(y)
+        print((inputs[-1], outputs[-1]))
+
+
+if __name__ == "__main__":
+    main()
 
 # Expected sequence (as rationals):
 # (1/5, 1/5)

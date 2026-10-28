@@ -8,19 +8,27 @@ from .dynamics.attractors import homoclinic
 x0 = [1, 0]
 t_span = [0, 200]
 t = np.arange(t_span[0], t_span[1], 0.01)
-
-fig, ax = plt.subplots()
-
-my_images = []
 Cs = np.arange(-0.2, 0.2, 0.01)
 
-for C in Cs:
-    sol = solve_ivp(homoclinic, t_span, x0, args=(C,))
-    X = sol.y
-    img = ax.plot(X[0, :], X[1, :], "r-")
-    my_images.append(img)
 
-my_anim = ArtistAnimation(fig, my_images, interval=100, blit=False, repeat_delay=100)
+def main():
+    fig, ax = plt.subplots()
 
-ax.set(xlim=(-1.25, 1.25), ylim=(-1, 1), title="Homoclinic Bifurcation")
-plt.show()
+    my_images = []
+
+    for C in Cs:
+        sol = solve_ivp(homoclinic, t_span, x0, args=(C,))
+        X = sol.y
+        img = ax.plot(X[0, :], X[1, :], "r-")
+        my_images.append(img)
+
+    my_anim = ArtistAnimation(  # noqa: F841
+        fig, my_images, interval=100, blit=False, repeat_delay=100
+    )
+
+    ax.set(xlim=(-1.25, 1.25), ylim=(-1, 1), title="Homoclinic Bifurcation")
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()

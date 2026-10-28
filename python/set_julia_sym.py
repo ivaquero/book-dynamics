@@ -2,6 +2,8 @@ import numpy as np
 
 from .dynamics.symbolic import compute_julia_unstable
 
+rng = np.random.default_rng()
+
 a, b = -0.5, 0.3
 k = 15
 num_iterations = 2**k
@@ -16,11 +18,16 @@ def julia(X):
     xn, yn = u1, v1
     if y1 < b:
         yn = -yn
-    if np.random.random() < 0.5:
+    if rng.random() < 0.5:
         xn, yn = -u1, -yn
     return (xn, yn)
 
 
-is_unstable = compute_julia_unstable(a, b)
-print(is_unstable)
-# 2.78590787704913
+def main():
+    is_unstable = compute_julia_unstable(a, b)
+    print(is_unstable)
+    # 2.78590787704913
+
+
+if __name__ == "__main__":
+    main()

@@ -6,10 +6,12 @@ from .dynamics.attractors import lotka_volterra
 from .dynamics.plotting import gen_mesh, vector_field
 
 
-def prepare_lotka_volterra_data(
-    coefs=[1, 0.7, 0.35, 1], xy_range=[0, 5, 0, 10], n_points=20
-):
+def prepare_lotka_volterra_data(coefs=None, xy_range=None, n_points=20):
     """Prepare Lotka-Volterra system data."""
+    if xy_range is None:
+        xy_range = [0, 5, 0, 10]
+    if coefs is None:
+        coefs = [1, 0.7, 0.35, 1]
     a, b, c, d = coefs
     X, Y = gen_mesh(xy_range, n_points)
     U, V = lotka_volterra(t=0, z=[X, Y], coefs=coefs)

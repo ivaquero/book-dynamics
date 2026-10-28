@@ -8,7 +8,7 @@ from .dynamics.integrators import euler_fixed
 
 def solve_trajectory(f, xy_init, step_size, period, integrator=euler_fixed):
     """Solve trajectory using specified integrator."""
-    traj, t = integrator(f, xy_init, step_size, period)
+    traj, _t = integrator(f, xy_init, step_size, period)
     x = traj[:, 0]
     y = traj[:, 1]
     return x, y

@@ -51,10 +51,17 @@ def bifurcation(a_values=None, h_values=None, x_values=None):
 
 
 X = symbols("X", nonzero=True)
-final_xs, final_ys, final_x, final_y = bifurcation()
 
-_, ax = plt.subplots()
 
-ax.scatter(final_xs, final_ys, color="g")
-ax.scatter(final_x, final_y, color="r")
-plt.show()
+def main():
+    final_xs, final_ys, final_x, final_y = bifurcation()
+
+    _, ax = plt.subplots()
+
+    ax.scatter(final_xs, final_ys, color="g")
+    ax.scatter(final_x, final_y, color="r")
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()

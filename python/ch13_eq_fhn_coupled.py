@@ -24,13 +24,18 @@ def run_coupled(start_puls, stop_puls, recover_puls):
     return v_1, v_2, i_ext
 
 
-v_1, v_2, i_ext = run_coupled(1, 1.20, 0.025)
+def main():
+    v_1, v_2, i_ext = run_coupled(1, 1.20, 0.025)
 
-_, ax = plt.subplots()
+    _, ax = plt.subplots()
 
-ax.set(xlim=(0, 4), ylim=(-0.35, 1))
-ax.plot(ts, v_1, label="neuron 1")
-ax.plot(ts, v_2, label="neuron 2")
-ax.plot(ts, i_ext, label="power surge", title="2 connected neurons")
-ax.legend()
-plt.show()
+    ax.set(xlim=(0, 4), ylim=(-0.35, 1))
+    ax.plot(ts, v_1, label="neuron 1")
+    ax.plot(ts, v_2, label="neuron 2")
+    ax.plot(ts, i_ext, label="power surge", title="2 connected neurons")
+    ax.legend()
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()
