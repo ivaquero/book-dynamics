@@ -66,7 +66,8 @@ def plot_population_time_series(ax, initial_condition, t_span, coefs, labels=Non
     t, preys, predators = solve_lotka_volterra_trajectory(
         initial_condition, t_span, coefs
     )
-    ax.plot(t, [preys, predators])
+    ax.plot(t, preys)
+    ax.plot(t, predators)
     ax.set(xlabel="Time", ylabel="Population", xlim=(t_span[0], t_span[1]))
     ax.grid()
     ax.legend(labels)

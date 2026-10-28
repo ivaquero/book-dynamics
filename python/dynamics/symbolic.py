@@ -12,6 +12,7 @@ from sympy import (
     I,
     Matrix,
     Rational,
+    S,
     dsolve,
     expand,
     im,
@@ -103,7 +104,7 @@ def groebner_basis(polys, symbols_tuple, order="lex"):
     """
     from sympy import groebner
 
-    return groebner(*polys, *symbols_tuple, order=order)
+    return groebner(polys, *symbols_tuple, order=order)
 
 
 def build_piecewise_time_lambdas(tmax=10):
@@ -123,7 +124,7 @@ def build_piecewise_time_lambdas(tmax=10):
     x = []
     for j in range(tmax + 1):
         if j == 0:
-            x.append(1)
+            x.append(S.One)
         else:
             prev = x[j - 1]
             prev_at_jm1 = prev.subs(t, j - 1)

@@ -58,8 +58,8 @@ def main():
 
     _, ax = plt.subplots()
 
-    ax.scatter(final_xs, final_ys, color="g")
-    ax.scatter(final_x, final_y, color="r")
+    ax.scatter(np.concatenate(final_xs), np.concatenate(final_ys), color="g")
+    ax.scatter(np.concatenate(final_x), np.concatenate(final_y), color="r")
     plt.show()
 
 

@@ -101,6 +101,9 @@ def plot_phase(ax, func, t_span, z):
 def plot_poincare(ax, func, t_span, z, n_period):
     """Plot Poincaré section of a dynamical system.
 
+    Integrates over `t_span` and samples the solution stroboscopically at
+    every period `n_period`, then plots the section points.
+
     Parameters
     ----------
     ax : matplotlib.axes.Axes
@@ -111,19 +114,15 @@ def plot_poincare(ax, func, t_span, z, n_period):
         Time span [t_start, t_end]
     z : array-like
         Initial condition
-    n_period : int
-        Number of periods to sample
+    n_period : float
+        Period of the driving term
     """
     sol = solve_ivp(func, t_span, z, dense_output=True)
-    t = np.linspace(
-        t_span[0], t_span[1] * n_period, int((t_span[1] - t_span[0]) * n_period)
-    )
-    X2 = sol.sol(t).T
+    n_cycles = int((t_span[1] - t_span[0]) / n_period)
+    ts = t_span[0] + n_period * np.arange(1, n_cycles + 1)
+    X2 = sol.sol(ts).T
 
-    x = [X2[int(t_span[1] * i), 0] for i in range(int(t_span[1]))]
-    y = [X2[int(t_span[1] * i), 1] for i in range(int(t_span[1]))]
-
-    ax.plot(x, y, "b.", ms=2)
+    ax.plot(X2[:, 0], X2[:, 1], "b.", ms=2)
     ax.set(title="Poincaré section")
 
 

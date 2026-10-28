@@ -29,10 +29,10 @@ def main():
 
     _, ax = plt.subplots()
 
-    ax.set(xlim=(0, 4), ylim=(-0.35, 1))
+    ax.set(xlim=(0, 4), ylim=(-0.35, 1), title="2 connected neurons")
     ax.plot(ts, v_1, label="neuron 1")
     ax.plot(ts, v_2, label="neuron 2")
-    ax.plot(ts, i_ext, label="power surge", title="2 connected neurons")
+    ax.plot(ts, i_ext, label="power surge")
     ax.legend()
     plt.show()
 
