@@ -145,7 +145,7 @@ $ dot.double(x) + f(x) dot(x) + g(x) = 0 $
 
 #theorem[
   设特征指数（characteristic exponent）
-  $ ∫_Γ div(X) dd(t) = ∫_0^⊤(pdv(P, x) + pdv(Q, y)(x(t), y(t))) dd(t) $
+  $ ∫_Γ div(X) dd(t) = ∫_0^T(pdv(P, x) + pdv(Q, y)(x(t), y(t))) dd(t) $
 
   - 若$∫_Γ div(X) dd(t) < 0$，则$Γ$为双曲吸引。
   - 若$∫_Γ div(X) dd(t) > 0$，则$Γ$为双曲排斥。

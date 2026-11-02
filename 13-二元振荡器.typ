@@ -47,3 +47,22 @@ $
 $
 
 取$ɛ = 0.008, R = 45, γ = 0.5, a = 0.1$及$I_(e x t) = 0.025$
+
+#figure(
+  image("images/ch13/fitzhugh-nagumo.png", width: 70%),
+  caption: [FitzHugh-Nagumo 系统的相平面：红色为极限环轨迹，蓝色虚线为两条零倾线（nullclines）],
+)
+
+#genby("python/ch13_eq_fhn_lim.py")
+
+= 配套代码
+
+FHN 振荡器的相图、零倾线、极限环与耦合神经元模拟由以下脚本生成：
+
+#companion(
+  "python/ch13_eq_fhn.py",
+  "python/ch13_eq_fhn2.py",
+  "python/ch13_eq_fhn_coupled.py",
+  "python/ch13_eq_fhn_lim.py",
+  "python/ch13_eq_fhn_nullclines.py",
+)

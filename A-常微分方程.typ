@@ -208,7 +208,7 @@ $ J dv(x, t) + J P x = J Q $
 
 变形得
 
-$ dv(, t)(J x) = J dv(x, t) + x dv(J, t) = J Q $
+$ dv(J x, t) = J dv(x, t) + x dv(J, t) = J Q $
 
 令
 
@@ -220,7 +220,7 @@ $ J(t) = exp(∫ P(t) dd(t)) $
 
 于是当$J Q$可积，方程的解为
 
-$ dv(, t)(J x) = J Q $
+$ dv(J x, t) = J Q $
 
 = Euler 法
 <Euler-法>

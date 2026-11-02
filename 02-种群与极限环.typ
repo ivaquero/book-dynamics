@@ -142,7 +142,7 @@ Lotka-Volterra（LV）方程，又称猎食者-猎物方程，常用于描述两
 
 $
   dot(x) & = α x - β x y \
-  dot(y) & = - γ x + δ x y
+  dot(y) & = - γ y + δ x y
 $
 
 其中，$α, β$和$γ, δ$均为实数。通过解$dot(x) = dot(y) = 0$来定位临界点。得临界点为
@@ -161,6 +161,7 @@ $
   image("images/ch02/lotka-volterra.png", width: 80%),
   caption: "Lotka-Volterra",
 )
+#genby("python/ch02_lotka_volterra.py")
 
 = 三变量种群
 <三变量种群>
@@ -185,6 +186,17 @@ $R_0 = β / γ$
 <SEIR-模型>
 
 这里引入了一个参数$α$，它是平均孵化时间的倒数，确保了模型中的一种缓慢形式。$ρ$也将被引入作为一个措施控制因素，$ρ$越小，措施规则就越严格。可以在$β$中加入$ρ$。
+
+在 SIR 模型的基础上引入$E$（Exposed，已暴露但尚未具传染性的潜伏者）类，即得 SEIR 模型：
+
+$
+  S^' & = -ρ β frac(S I, N) \
+  E^' & = ρ β frac(S I, N) - α E \
+  I^' & = α E - γ I \
+  R^' & = γ I
+$
+
+其中，新进入者先流入潜伏类$E$，经速率$α$转为感染类$I$；$ρ β$为受控制措施调节的有效感染率。
 
 = 极限环
 <极限环>
@@ -256,7 +268,7 @@ $
 对如下 Holling-Tanner 模型
 
 $
-  dot(x) ̇ & = x(1 - x / 7) - ω frac(x y, (1 + x)) \
+  dot(x) & = x(1 - x / 7) - ω frac(x y, (1 + x)) \
    dot(y) & = ϕ y(1 - frac(N y, x))
 $
 
@@ -274,6 +286,7 @@ $
   image("images/ch02/holling-tanner.png", width: 60%),
   caption: "Holling-Tanner",
 )
+#genby("python/ch02_holling_tanner.py")
 
 = 极限环的存在
 <极限环的存在>
@@ -303,7 +316,7 @@ $ ∬ D [pdv(P, x) + pdv(Q, y)] dd(x, y) y= ∮_J P dd(y) - Q dd(x) $
 #theorem(ctext("Dulac 准则"))[
   考虑一个环形区域$𝑨$，包含在一个开放集$E$中。若
 
-  $ Z_𝑨 = div (ψ 𝑿) = pdv(, x)(ψ P) + pdv(, y)(ψ Q) $
+  $ Z_𝑨 = div (ψ 𝑿) = pdv(ψ P, x) + pdv(ψ Q, y) $
 
   其中，$ψ$是连续可微分的，若$Z_A$在$𝑨$中不改变符号，则在$𝑨$中最多有一个完全包含的极限环。
 ]
@@ -311,7 +324,7 @@ $ ∬ D [pdv(P, x) + pdv(Q, y)] dd(x, y) y= ∮_J P dd(y) - Q dd(x) $
 #theorem(ctext("Bendixson 准则"))[
   考虑系统，设$D$是一个简单连通的域（$D$中无孔洞），且
 
-  $ div (ψ 𝑿) = pdv(, x)(ψ P) + pdv(, y)(ψ Q) ≠ 0 $
+  $ div (ψ 𝑿) = pdv(ψ P, x) + pdv(ψ Q, y) ≠ 0 $
 
   存在于$D$，则$D$中不存在完全包含的极限环。
 ]
@@ -329,5 +342,15 @@ $ I_𝑿 (J) = frac(Δ Θ, 2pi) $
 
 #bibx(bib)
 
-= 代码
+= 配套代码
 
+本章种群动力学模型的数值模拟由以下脚本生成：
+
+#companion(
+  "python/ch02_logistic_eq.py",
+  "python/ch02_growth_rate.py",
+  "python/ch02_lotka_volterra.py",
+  "python/ch02_holling_tanner.py",
+  "python/ch02_mod_sir.py",
+  "python/ch02_mod_seir.py",
+)
