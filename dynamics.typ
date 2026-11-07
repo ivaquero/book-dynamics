@@ -3,7 +3,12 @@
 #cover(info)
 #contents(depth: 1, info: info)
 
+#include "00-前言.typ"
+
 #let chapter(filename) = {
+  let m = filename.match(regex("^([0-9]+)"))
+  if m != none { counter-chapter-local.update(int(m.text)) }
+  counter-example.update(0)
   include filename
   counter(heading).update(0)
 }
@@ -24,6 +29,6 @@
 #chapter("14-混沌控制.typ")
 #chapter("15-非线性系统.typ")
 #chapter("16-系统仿真.typ")
-// #chapter("A-常微分方程.typ")
-// #chapter("B-积分与数值法.typ")
-// #chapter("C-微积分技术.typ")
+#chapter("A-常微分方程.typ")
+#chapter("B-微积分技术.typ")
+#chapter("C-自指与可计算性.typ")

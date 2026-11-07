@@ -23,3 +23,23 @@
   inset: 0pt,
   ..paths.map(p => [#raw(p, block: false)]),
 )
+
+// —— 例题：独立计数，按章重置（章号由 dynamics.typ 的 chapter 包装写入）——
+
+#let counter-chapter-local = counter("chapter-local")
+#let counter-example = counter("example-local")
+
+#let example(body) = {
+  counter-example.step()
+  block(
+    above: 1.1em,
+    below: 1.1em,
+    width: 100%,
+    context {
+      let c = counter-chapter-local.get().first()
+      let n = counter-example.get().first()
+      [#text(weight: "bold")[例 #c.#n.] #body]
+    },
+  )
+}
+
