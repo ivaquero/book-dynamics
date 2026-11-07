@@ -5,10 +5,22 @@
 
 #include "00-前言.typ"
 
+// 图的章内编号：章号 + 本章图序。
+#let chapter-figure-numbering(n) = context {
+  let c = counter-chapter-local.get().first()
+  numbering(d => str(c) + "." + str(d), n)
+}
+
 #let chapter(filename) = {
   let m = filename.match(regex("^([0-9]+)"))
   if m != none { counter-chapter-local.update(int(m.text)) }
+  // 各计数器每章归零，使编号形如 公式 (3.7)、图 3.2、定理 3.1。
   counter-example.update(0)
+  counter-theorem-local.update(0)
+  counter-definition-local.update(0)
+  counter(math.equation).update(0)
+  counter(figure.where(kind: image)).update(0)
+  set figure(numbering: chapter-figure-numbering)
   include filename
   counter(heading).update(0)
 }

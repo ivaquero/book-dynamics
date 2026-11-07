@@ -8,7 +8,7 @@
 
 $ z_(n+1) = f_c(z_n) = z_n^2 + c $
 
-其中，$z_n$和$c$是复数。虽然上述方程和实数圆的方程一样简单，但所显示的动力学却非常复杂。1919 年，Gaston Julia 发表了一篇关于某些类型的保形复数映射的长文，其图像直到多年后计算机图形的出现才出现。保形映射（conformal mapping）既保留了角的大小，也保留了角的符号。
+其中，$z_n$和$c$是复数。虽然上述方程和实数圆的方程一样简单，但所显示的动力学却非常复杂。1918 年，Gaston Julia 发表了一篇关于有理函数迭代的长文@juliaMemoireIterationFonctions1918，其图像直到多年后计算机图形出现才为人所见。保形映射（conformal mapping）既保留了角的大小，也保留了角的符号。
 
 #definition[
   考虑一个形式为$z_(n+1) = f(z_n)$的复数多项式映射。位于$f$轨道且有界的点和$f$轨道且无界的点之间的边界上的点统称为 Julia 集。
@@ -116,7 +116,7 @@ $ z_(n+1) = z_n^2 $
 = Mandelbrot 集
 <Mandelbrot-集>
 
-1979 年，Mandelbrot 设计了一种方法来区分那些完全连接的 Julia 集和那些完全不连接的 Julia 集。他利用了这样一个事实：若且仅当$z → z^2 + c$所生成的轨道是有界的，则$J(a, b)$是连接的。这样，就不难生成现在著名的 Mandelbrot 集。
+1979 年前后，Mandelbrot 设计了一种方法来区分那些完全连通的 Julia 集和那些完全不连通的 Julia 集@mandelbrotFractalAspectsIteration1980。他所依据的是 Douady 与 Hubbard 证明的定理：$J(a, b)$ 连通，当且仅当临界点 $z = 0$ 在映射 $z → z^2 + c$ 下的轨道有界@douadyEtudeDynamiquePolynomes1984。这样，就不难生成现在著名的 Mandelbrot 集。
 
 将计算机屏幕上的一个点赋于 Argand 平面的坐标位置$c = (a, b)$。然后在映射下迭代点$z = 0 + 0 i$，得到一个轨道为
 
@@ -227,6 +227,8 @@ $ |c + 1| = 1 / 4 $
 
   于是 Mandelbrot 集的结构可以这样读：每个圆盘是一个稳定的周期轨道参数区，圆盘之间的接触点是一个又一个分岔值，而最右端的尖点就是周期 1 的诞生处。
 ]
+
+#chapterbib("11-复数型混沌.typ")
 
 = 习题
 <习题>

@@ -65,11 +65,11 @@ $ δ dot(x)≈ J_0 δ x_(τ_1) δ x_(τ_1) + … + J_(τ_n) δ x_(τ_n) $
 
 其中，矩阵$J_(τ_i)$是对应$x_(τ_i)$的雅各布系数。设 DDE 和 ODE 一样有指数解，则
 
-$ δ x(t) = 𝑨 e^(λ t) $
+$ δ x(t) = bold(A) e^(λ t) $
 
 其中，$λ$是 Jacobian 矩阵的特征值。将其代入可得
 
-$ λ 𝑨 = 𝑨 (J_0 + sum e^(-λ τ_i) J_(τ_i)) $
+$ λ bold(A) = bold(A) (J_0 + sum e^(-λ τ_i) J_(τ_i)) $
 
 特征方程由以下公式给出
 
@@ -88,7 +88,7 @@ $ dot(x) = -x(t - τ) $
 
 $ cos(ω τ) = 0, quad ω = sin(ω τ) $
 
-故$ω = 1$，$τ = π / 2$。也就是说：$τ < π / 2$时平衡点渐近稳定，扰动单调衰减并带振荡；$τ$越过$π / 2$后一对共轭根进入右半平面，衰减变成增幅，振荡不会平息。图@dde-switch 给出主支特征根实部随$τ$的变化与两种$τ$下的解。
+故$ω = 1$，$τ = π / 2$。也就是说：$τ < π / 2$时临界点渐近稳定，扰动单调衰减并带振荡；$τ$越过$π / 2$后一对共轭根进入右半平面，衰减变成增幅，振荡不会平息。图@dde-switch 给出主支特征根实部随$τ$的变化与两种$τ$下的解。
 
 #figure(
   image("images/ch12/dde-switch.svg", width: 78%),
@@ -158,10 +158,10 @@ $
   caption: "lv delay",
 )
 
-== MacKey-Glass 方程
-<MacKey-Glass-方程>
+== Mackey-Glass 方程
+<Mackey-Glass-方程>
 
-MacKey-Glass 方程以 Michael Mackey 和 Leon Glass 命名，指一个延迟微分方程系列，其行为在某些生物背景下能够模仿健康和病理行为@mackeyOscillationChaosPhysiological1977。
+Mackey-Glass 方程以 Michael Mackey 和 Leon Glass 命名，指一个延迟微分方程系列，其行为在某些生物背景下能够模仿健康和病理行为@mackeyOscillationChaosPhysiological1977。
 
 一个例子为
 
@@ -192,7 +192,7 @@ $ X^' = L - frac(V_("max") X^n (t - τ), 1 + X^n (t - τ) X) $
 
 两章的判据也是同一套：稳定性都由准多项式的根决定，都可能经由 Hopf 分岔从稳定转入振荡。区别只在意图：这一章关心"延迟会不会让系统失稳"，第 14 章关心"怎么用延迟让系统稳定"。
 
-#bibx(bib)
+#chapterbib("12-延迟效应.typ")
 
 = 习题
 <习题>
