@@ -55,6 +55,22 @@ $
   caption: "saddle bifurcation",
 )
 
+#example[
+  对一个按逻辑规律增长、同时按常数速率$h$被收割的种群：
+
+  $ dot(x) = r x (1 - x slash K) - h $
+
+  其中$x$为种群规模，$r$为内禀增长率，$K$为容纳量。求平衡点随$h$的变化。
+
+  平衡点满足$r x (1 - x slash K) = h$，即抛物线$f(x) = r x (1 - x slash K)$被水平线$y = h$截出的交点数。抛物线的顶点在$x = K slash 2$，最大值为$r K slash 4$：
+
+  - $h < r K slash 4$：两个平衡点，解二次方程得$x = frac(K, 2)(1 ± sqrt(1 - 4 h slash (r K)))$。较大的一个是稳定结点，较小的是鞍点。
+  - $h = r K slash 4$：两解重合于$K slash 2$，抛物线与水平线相切，唯一的非双曲平衡点。
+  - $h > r K slash 4$：无平衡点，$dot(x) < 0$恒成立，种群在有限时间内灭绝。
+
+  取$r = 1$、$K = 100$，则临界收割率$h_c = 25$。这不是一个可以试探着越过的数值：超过它，系统不是缓慢衰退，而是直接把平衡点抹掉。渔业管理里的"最大可持续产量"就是这个顶点的纵坐标。
+]
+
 == 跨临界分岔
 <跨临界分岔>
 
@@ -131,6 +147,24 @@ $
   image("images/ch04/bif-hopf.png", width: 60%),
   caption: "hopf bifurcation",
 )
+
+#example[
+  van der Pol 方程$dot.double(x) + μ(x^2 - 1) dot(x) + x = 0$，取$μ$为参数。化为一阶系统：
+
+  $ dot(x) = y, quad dot(y) = -x - μ(x^2 - 1) y $
+
+  原点处$bold(J) = mat(0, 1; -1, μ)$，特征值
+
+  $ λ = frac(μ ± sqrt(μ^2 - 4), 2) $
+
+  当$|μ| < 2$时特征值为复，实部$μ slash 2$。于是$μ < 0$时原点为稳定焦点，$μ > 0$时为不稳定焦点，$μ = 0$时特征值为$± i$，实部恰为零——这正是 Hopf 分岔点。
+
+  但要小心：线性化到此为止。$μ > 0$时原点失稳，轨线去了哪里？线性化答不上来，因为零实部的特征值让线性项完全失效，必须看三次项。规范形分析给出的答案是：$μ > 0$时存在一条稳定的极限环。这里有个容易误判的地方——一般的 Hopf 分岔中，极限环振幅按$sqrt(μ)$增长（正如前面极坐标规范形里的$r = sqrt(μ)$），但 van der Pol 的平均化方程给出的是
+
+  $ dot(A) = frac(μ, 2) A (1 - frac(A^2, 4)) $
+
+  平衡点在$A = 2$，与$μ$无关。所以振幅从一开始就稳定在 $2$ 附近，$μ$改变的是波形：$μ$小时环接近圆，近似正弦；$μ$增大后环变成"慢爬升、快跳回"的张弛形状，而振幅几乎不变。
+]
 
 = 稳定性
 <稳定性>
@@ -245,4 +279,30 @@ $ 𝑱 = mat(delim: "[", 1 - 3 r^2, 0; cos θ, - r sin θ) $
 #figure(
   image("images/ch04/bif-snic.png", width: 60%),
   caption: "snic bifurcation",
+)
+
+= 习题
+<习题>
+
++ 【基础】对$dot(x) = μ - x^2$、$dot(y) = -y$，求$μ < 0$、$μ = 0$、$μ > 0$三种情形下的平衡点及其类型，并在$(μ, x)$平面上画出分岔图。
++ 【基础】对$dot(x) = μ x - x^2$、$dot(y) = -y$，求平衡点，说明$μ$穿过零时两个平衡点如何交换稳定性，并指出这是哪种分岔。
++ 【基础】对$dot(x) = μ x - x^3$、$dot(y) = -y$，求$μ > 0$与$μ < 0$时的平衡点与稳定性，说明该系统关于$x -> -x$的对称性如何决定了分岔图的形状。
++ 【进阶】对常数收割模型$dot(x) = r x(1 - x slash K) - h$，求临界收割率$h_c$与平衡点个数随$h$的变化；若取$r = 1$、$K = 100$，问$h = 20$与$h = 30$时种群的长期行为分别是什么。
++ 【进阶】对 van der Pol 方程$dot.double(x) + μ(x^2 - 1) dot(x) + x = 0$，用线性化证明$μ = 0$是 Hopf 分岔点；再说明为什么仅凭线性化无法判断$μ > 0$时极限环是否稳定，需要补充哪一类信息。
++ 【进阶】比较$dot(r) = μ r - r^3$与$dot(r) = μ r + r^3$（两式都配$dot(θ) = -1$）：分别求出$μ > 0$时的极限环及其稳定性，说明哪一个对应超临界（软）分岔、哪一个对应亚临界（硬）分岔，并解释为什么后者在工程上更危险。
+
+= 配套代码
+
+本章各类型分岔图与双稳态图示由以下脚本生成：
+
+#companion(
+  "python/ch04_bif_saddle.py",
+  "python/ch04_bif_saddle_budworm.py",
+  "python/ch04_bif_saddle_budworm_3d.py",
+  "python/ch04_bif_saddle_lac.py",
+  "python/ch04_bif_snic.py",
+  "python/ch04_bif_trans_allee.py",
+  "python/ch04_bif_pitchwork_logistic.py",
+  "python/ch04_bif_pitchwork_opinion.py",
+  "python/ch04_bif_hopf.py",
 )

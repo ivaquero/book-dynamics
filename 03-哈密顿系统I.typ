@@ -208,5 +208,4 @@ $ lim_(t → ∞) norm(x(t) - x_0(t)) = 0 $
 #companion(
   "python/ch03_hamiltonian.py",
   "python/ch03_eq_duffing.py",
-  "python/ch06_hamiltonian2.py",
 )

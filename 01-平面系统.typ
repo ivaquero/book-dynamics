@@ -283,3 +283,15 @@ $ 𝒙(t) = C_1 exp(t)(1, - 1)^⊤ + C_2 exp(3 t)(1, 1)^⊤ $
 + 【进阶】证明：若$det bold(A) != 0$且$bold(A)$的特征值不全是纯虚数，则系统$dot(bold(x)) = bold(A) bold(x)$不存在闭轨。提示：写出解$bold(x)(t) = e^(bold(A) t) bold(x)_0$，考虑周期解对特征值的要求。
 + 【进阶】设$bold(A) = mat(-2, 1; 0, 3)$，求稳定流形$E^S$与不稳定流形$E^U$，说明它们为什么是过原点的直线，并在相平面上画出这两条直线与四条典型轨线。
 + 【进阶】在$(op("tr"), det)$平面上画出抛物线$T^2 = 4 D$，把平面分成若干区域，标注每个区域对应的临界点类型；再说明$det = 0$时为何不能按上述判据分类，此时系统的临界点有多少个。
+
+= 配套代码
+
+本章的相图与流形示意图由以下脚本生成：
+
+#companion(
+  "python/ch01_critical.py",
+  "python/ch01_spiral.py",
+  "python/ch01_saddle.py",
+  "python/ch01_orthogonalization.py",
+  "python/ch01_switch_collins.py",
+)
