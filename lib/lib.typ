@@ -3,17 +3,10 @@
 #import "@preview/physica:0.9.8": *
 #import "@preview/rexllent:0.4.1": xlsx-parser
 #import "@preview/subpar:0.2.2": grid as sgrid
-#import "@preview/typed-smiles:0.13.0": ce
+#import "@preview/typed-smiles:0.14.0": ce
 
 #let info = toml("info.toml").global
 #let slide = toml("info.toml").slide
-
-// —— 章末参考文献 ——
-// 全书的文献库仍是 dynam.bib 一个文件，但每章章末只排本章真正引用过的条目。
-// 做法：从该章源文件里提取 @key（与 bib 键取交集，故 @标签、@preview 之类不会误收），
-// 再把这些键对应的原始条目拼成一段临时书目交给 bibliography。
-// 这样新增引用无需另行登记，也不会把全书文献堆在某一章后面。
-// 注意：Typst 的文献编号是全书连续计数（[1]…[n]），不按章重排。
 
 #let bib-entries = {
   let d = (:)
@@ -101,4 +94,3 @@
 #let corollary(..args) = numbered-env("推论", counter-theorem-local, args)
 
 #let definition(..args) = numbered-env("定义", counter-definition-local, args)
-
